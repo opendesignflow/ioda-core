@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.idyria.ioda</groupId>
+	<artifactId>ioda-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>IODA Parent Description</name>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.odfi</groupId>
+		<artifactId>superpom-scala</artifactId>
+		<version>2.12.7.r1</version>
+	</parent>
+
+	<properties>
+		<indesign.ide.version>1.1.1-SNAPSHOT</indesign.ide.version>
+		<ooxoo.version>3.3.1-SNAPSHOT</ooxoo.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.odfi.wsb</groupId>
+				<artifactId>wsb-webapp</artifactId>
+				<version>2.2.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ooxoo-plugin</artifactId>
+				<version>${ooxoo.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.odfi.indesign.ide</groupId>
+						<artifactId>indesign-ide-core</artifactId>
+						<version>${indesign.ide.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<!-- Repositories to find ODFI packages -->
+	<!-- ############################################## -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype</id>
+			<name>Sonatype OSS Snapshots Repository</name>
+			<url>http://oss.sonatype.org/content/groups/public</url>
+		</pluginRepository>
+		<pluginRepository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>odfi.central</id>
+			<name>plugins-release</name>
+			<url>http://www.opendesignflow.org/maven/repository/internal/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>odfi.snapshots</id>
+			<name>plugins-snapshot</name>
+			<url>http://www.opendesignflow.org/maven/repository/snapshots/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<repositories>
+		<repository>
+			<id>sonatype</id>
+			<name>Sonatype OSS Snapshots Repository</name>
+			<url>http://oss.sonatype.org/content/groups/public</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>odfi.central</id>
+			<name>odfi-release</name>
+			<url>http://www.opendesignflow.org/maven/repository/internal/</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>odfi.snapshots</id>
+			<name>odfi-snapshot</name>
+			<url>http://www.opendesignflow.org/maven/repository/snapshots/</url>
+		</repository>
+	</repositories>
+
+	<modules>
+		<module>ioda-core</module>
+	</modules>
+</project>

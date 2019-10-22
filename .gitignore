@@ -1,0 +1,9 @@
+.classpath
+.project
+.externalToolBuilders/org.eclipse.jdt.core.javabuilder.launch
+.settings/
+ioda-core/indesign-config/
+**/target/
+ioda-core/ioda-std/
+*.cache-main
+*.swp
