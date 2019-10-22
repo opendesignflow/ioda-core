@@ -11,6 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install Maven
-        run: sudo apt install mvn
+        run: sudo apt install maven
       - name: Run Maven
         run: mvn install
