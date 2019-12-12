@@ -1,6 +1,7 @@
 // TEA
 node {
  
+    //-- Github trigger
     properties([pipelineTriggers([[$class: 'GitHubPushTrigger']])])
 
     //-- JDK

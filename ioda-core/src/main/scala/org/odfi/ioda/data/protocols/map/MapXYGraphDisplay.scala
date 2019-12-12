@@ -2,8 +2,8 @@ package org.odfi.ioda.data.protocols.map
 
 import org.odfi.ioda.data.protocols.ProtocolWithId
 import org.odfi.ioda.data.types.DataMapMessage
-import kit.edu.ipe.adl.chiptest.measurement.data.XYGraph
 import org.jfree.data.xy.DefaultXYDataset
+import org.odfi.instruments.measurements.data.XYGraph
 
 class MapXYGraphDisplay extends ProtocolWithId  {
   

@@ -75,35 +75,14 @@
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.197" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:13" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:13" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:13" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:13" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:13" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:13" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:13" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:13" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:13" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:win:13" level="project" />
-    <orderEntry type="library" name="Maven: kit.edu.ipe.adl:chiptest-lib:1.1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: kit.ipe.adl.rfg3:rfg3-core:3.2.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.odfi.instruments:instruments-core:1.2.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.13" level="project" />
-    <orderEntry type="library" name="Maven: com.nativelibs4java:bridj:0.7.0" level="project" />
-    <orderEntry type="library" name="Maven: com.google.android.tools:dx:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.jfree:jcommon:1.0.24" level="project" />
-    <orderEntry type="library" name="Maven: org.scream3r:jssc:2.8.0" level="project" />
-    <orderEntry type="library" name="Maven: dk.thibaut:jserial:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:4.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.jfree:jfreechart:1.0.19" level="project" />
-    <orderEntry type="library" name="Maven: org.jfree:jfreesvg:3.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.poi:poi:3.15" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml:3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml-schemas:3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" level="project" />
-    <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
-    <orderEntry type="library" name="Maven: com.github.virtuald:curvesapi:1.04" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.jackrabbit:jackrabbit-webdav:2.15.0" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:13" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:13" level="project" />
     <orderEntry type="library" name="Maven: org.jmdns:jmdns:3.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.16" level="project" />
     <orderEntry type="module" module-name="ubroker-core" />
@@ -122,6 +101,26 @@
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api-scala_2.12:11.0" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.13.1" level="project" />
     <orderEntry type="library" name="Maven: org.fusesource.jansi:jansi:1.18" level="project" />
+    <orderEntry type="module" module-name="instruments-core" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.19" level="project" />
+    <orderEntry type="library" name="Maven: com.nativelibs4java:bridj:0.7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.android.tools:dx:1.7" level="project" />
+    <orderEntry type="library" name="Maven: org.jfree:jfreechart:1.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jfree:jfreesvg:3.4" level="project" />
+    <orderEntry type="library" name="Maven: org.scream3r:jssc:2.8.0" level="project" />
+    <orderEntry type="library" name="Maven: dk.thibaut:jserial:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:4.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi:3.15" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml:3.15" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml-schemas:3.15" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" level="project" />
+    <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.virtuald:curvesapi:1.04" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.jackrabbit:jackrabbit-webdav:2.15.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jfree:jcommon:1.0.24" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang.modules:scala-parallel-collections_2.13:0.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.scalatest:scalatest_2.13:3.0.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.scalactic:scalactic_2.13:3.0.8" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.13.1" level="project" />

@@ -1,8 +1,7 @@
 package org.odfi.ioda.data.protocols.display
 
-import org.odfi.ioda.data.protocols.Protocol
+import org.odfi.instruments.measurements.data.XYGraph
 import org.odfi.ioda.data.types.IntValuesMessage
-import kit.edu.ipe.adl.chiptest.measurement.data.XYGraph
 import org.odfi.ioda.data.types.DoubleValuesMessage
 import org.odfi.ioda.data.protocols.ProtocolWithId
 

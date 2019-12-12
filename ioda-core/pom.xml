@@ -84,25 +84,25 @@
 		<!-- <version>2.2.0</version> -->
 		<!-- </dependency> -->
 
-		<dependency>
-			<groupId>kit.edu.ipe.adl</groupId>
-			<artifactId>chiptest-lib</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.odfi.wsb.fwapp</groupId>
-					<artifactId>fwapp-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.odfi.wsb</groupId>
-					<artifactId>wsb-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.odfi.wsb</groupId>
-					<artifactId>wsb-webapp</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>kit.edu.ipe.adl</groupId>-->
+<!--			<artifactId>chiptest-lib</artifactId>-->
+<!--			<version>1.1.0-SNAPSHOT</version>-->
+<!--			<exclusions>-->
+<!--				<exclusion>-->
+<!--					<groupId>org.odfi.wsb.fwapp</groupId>-->
+<!--					<artifactId>fwapp-core</artifactId>-->
+<!--				</exclusion>-->
+<!--				<exclusion>-->
+<!--					<groupId>org.odfi.wsb</groupId>-->
+<!--					<artifactId>wsb-core</artifactId>-->
+<!--				</exclusion>-->
+<!--				<exclusion>-->
+<!--					<groupId>org.odfi.wsb</groupId>-->
+<!--					<artifactId>wsb-webapp</artifactId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.jmdns</groupId>
@@ -142,7 +142,11 @@
 			<version>1.18</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.odfi.instruments</groupId>
+			<artifactId>instruments-core</artifactId>
+			<version>1.3.0-SNAPSHOT</version>
+		</dependency>
 
 	</dependencies>
 </project>
