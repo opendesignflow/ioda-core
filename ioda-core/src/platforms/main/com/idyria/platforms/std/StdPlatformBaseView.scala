@@ -1,6 +1,6 @@
 package com.idyria.platforms.std
 
-import com.idyria.ioda.ui.IODABaseView
+import org.odfi.ioda.ui.IODABaseView
 import org.odfi.wsb.fwapp.module.semantic.SemanticView
 import org.odfi.indesign.core.harvest.Harvest
 import org.odfi.wsb.fwapp.framework.FWAppValueBufferView

@@ -6,10 +6,10 @@ import org.odfi.wsb.fwapp.jmx.FWAPPJMX
 import org.odfi.indesign.core.config.ooxoo.OOXOOConfigModule
 import java.io.File
 import org.odfi.indesign.core.module.IndesignModule
-import com.idyria.ioda.data.phy.comport.COMPortHarvester
+import org.odfi.ioda.data.phy.comport.COMPortHarvester
 import org.odfi.indesign.core.harvest.Harvest
-import com.idyria.ioda.data.phy.PhysicalInterfaceHarvester
-import com.idyria.ioda.IODA
+import org.odfi.ioda.data.phy.PhysicalInterfaceHarvester
+import org.odfi.ioda.IODA
 
 object StdPlatform extends IndesignModule {
 

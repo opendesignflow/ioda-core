@@ -3,7 +3,7 @@ package com.idyria.platforms.std
 import org.odfi.indesign.core.main.IndesignPlatorm
 import org.odfi.indesign.core.config.ooxoo.OOXOOConfigModule
 import java.io.File
-import com.idyria.osi.tea.logging.TLogSource
+import org.odfi.tea.logging.TLogSource
 import org.odfi.wsb.fwapp.views.FWAppViewIntermediary
 
 object StdPlatformMain extends App with TLogSource {

@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.idyria.ioda</groupId>
+		<groupId>org.odfi.ioda</groupId>
 		<artifactId>ioda-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
@@ -38,8 +38,8 @@
 						<configuration>
 							<sources>
 								<source>${project.build.directory}/generated-sources/scala</source>
-								<source>${project.basedir}/src/platforms/main</source>
-								<source>${project.basedir}/src/examples/scala</source>
+<!--								<source>${project.basedir}/src/platforms/main</source>-->
+<!--								<source>${project.basedir}/src/examples/scala</source>-->
 							</sources>
 						</configuration>
 					</execution>
@@ -51,8 +51,8 @@
 						<configuration>
 							<sources>
 								<source>${project.build.directory}/generated-sources/scala</source>
-								<source>${project.basedir}/src/platforms/main</source>
-								<source>${project.basedir}/src/examples/scala</source>
+<!--								<source>${project.basedir}/src/platforms/main</source>-->
+<!--								<source>${project.basedir}/src/examples/scala</source>-->
 							</sources>
 						</configuration>
 					</execution>
@@ -70,9 +70,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.odfi.indesign.ide</groupId>
-			<artifactId>indesign-ide-core</artifactId>
-			<version>${indesign.ide.version}</version>
+			<groupId>org.odfi.indesign</groupId>
+			<artifactId>indesign-core</artifactId>
+			<version>${indesign.version}</version>
 		</dependency>
 
 
@@ -113,9 +113,8 @@
 
 
 		<dependency>
-			<groupId>org.odfi.wsb</groupId>
-			<artifactId>wsb-core</artifactId>
-			<version>3.4.1-SNAPSHOT</version>
+			<groupId>org.odfi.ubroker</groupId>
+			<artifactId>ubroker-core</artifactId>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->

@@ -4,13 +4,13 @@ import com.idyria.platforms.std.StdPlatformBaseView
 import com.idyria.platforms.std.StdPlatform
 import com.idyria.platforms.std.StdPlatformUI
 import org.odfi.wsb.fwapp.module.jquery.JQueryFormValidationClientUtils
-import com.idyria.ioda.env.EnvironmentHarvester
-import com.idyria.ioda.env.Environment
-import com.idyria.ioda.data.phy.PhysicalInterfaceHarvester
-import com.idyria.ioda.simulation.SimulationHarvester
-import com.idyria.ioda.IODA
-import com.idyria.ioda.simulation.data.phy.SIMPhysicalInterface
-import com.idyria.ioda.data.phy.PhysicalInterface
+import org.odfi.ioda.env.EnvironmentHarvester
+import org.odfi.ioda.env.Environment
+import org.odfi.ioda.data.phy.PhysicalInterfaceHarvester
+import org.odfi.ioda.simulation.SimulationHarvester
+import org.odfi.ioda.IODA
+import org.odfi.ioda.simulation.data.phy.SIMPhysicalInterface
+import org.odfi.ioda.data.phy.PhysicalInterface
 import com.idyria.platforms.std.ui.utils.ErrorUIUtils
 
 class EnvironmentUI extends StdPlatformBaseView with JQueryFormValidationClientUtils with ErrorUIUtils with EnvironmentUIUtils {

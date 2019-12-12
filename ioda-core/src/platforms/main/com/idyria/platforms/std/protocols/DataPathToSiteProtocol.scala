@@ -1,6 +1,6 @@
 package com.idyria.platforms.std.protocols
 
-import com.idyria.ioda.data.protocols.ProtocolWithId
+import org.odfi.ioda.data.protocols.ProtocolWithId
 import org.odfi.wsb.fwapp.Site
 
 class DataPathToSiteProtocol extends ProtocolWithId {

@@ -1,8 +1,8 @@
 package com.idyria.platforms.std.simulation
 
 import com.idyria.platforms.std.StdPlatformBaseView
-import com.idyria.ioda.simulation.SimulationHarvester
-import com.idyria.ioda.simulation.data.phy.SIMPhysicalInterfaceProvider
+import org.odfi.ioda.simulation.SimulationHarvester
+import org.odfi.ioda.simulation.data.phy.SIMPhysicalInterfaceProvider
 
 class SimulationUI extends StdPlatformBaseView {
   

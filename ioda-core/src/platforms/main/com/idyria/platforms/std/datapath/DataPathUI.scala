@@ -4,8 +4,8 @@ import com.idyria.platforms.std.StdPlatformBaseView
 import com.idyria.platforms.std.environment.EnvironmentUIUtils
 import org.odfi.wsb.fwapp.module.jquery.JQueryFormValidation
 import org.odfi.wsb.fwapp.lib.ooxoo.OOXOOEntityBindView
-import com.idyria.ioda.env.EnvironmentTraitDataPath
-import com.idyria.ioda.IODA
+import org.odfi.ioda.env.EnvironmentTraitDataPath
+import org.odfi.ioda.IODA
 import com.idyria.platforms.std.ui.utils.IODAUIUtils
 import com.idyria.platforms.std.ui.utils.ErrorUIUtils
 import org.odfi.indesign.ide.core.module.d3.D3View

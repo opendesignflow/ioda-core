@@ -4,18 +4,18 @@ import org.odfi.indesign.core.main.IndesignPlatorm
 import com.idyria.platforms.std.StdPlatform
 import org.odfi.indesign.core.config.ooxoo.OOXOOConfigModule
 import org.odfi.indesign.core.config.Config
-import com.idyria.ioda.IODA
-import com.idyria.ioda.env.Environment
-import com.idyria.ioda.simulation.data.protocols.text.SIMValuesListPhy
-import com.idyria.ioda.data.protocols.text.ValuesListProtocol
-import com.idyria.ioda.data.protocols.display.PrintMessageProtocol
-import com.idyria.ioda.data.protocols.display.SeriesGUIPlotter
-import com.idyria.ioda.data.protocols.text.IntValuesListProtocol
-import com.idyria.ioda.data.protocols.text.DoubleValuesListProtocol
-import com.idyria.ioda.data.protocols.matrix.ListToMatrix
+import org.odfi.ioda.IODA
+import org.odfi.ioda.env.Environment
+import org.odfi.ioda.simulation.data.protocols.text.SIMValuesListPhy
+import org.odfi.ioda.data.protocols.text.ValuesListProtocol
+import org.odfi.ioda.data.protocols.display.PrintMessageProtocol
+import org.odfi.ioda.data.protocols.display.SeriesGUIPlotter
+import org.odfi.ioda.data.protocols.text.IntValuesListProtocol
+import org.odfi.ioda.data.protocols.text.DoubleValuesListProtocol
+import org.odfi.ioda.data.protocols.matrix.ListToMatrix
 import java.io.File
 import com.idyria.platforms.std.StdPlatformUI
-//import com.idyria.ioda.data.protocols.matrix.jfx.JFXMatrixStage
+//import org.odfi.ioda.data.protocols.matrix.jfx.JFXMatrixStage
 
 object StdValuesListExample extends App {
 

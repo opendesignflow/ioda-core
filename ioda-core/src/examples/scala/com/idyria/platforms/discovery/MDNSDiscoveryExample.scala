@@ -20,11 +20,11 @@ import scala.collection.convert.DecorateAsScala
 import net.posick.mDNS.Lookup.RecordListener
 import net.posick.mDNS.Browse
 import org.xbill.DNS.Message
-import com.idyria.osi.wsb.webapp.http.message.HTTPPathIntermediary
-import com.idyria.osi.wsb.webapp.http.connector.HTTPProtocolHandler
-import com.idyria.osi.wsb.core.network.connectors.tcp.TCPProtocolHandlerConnector
-import com.idyria.osi.wsb.core.network.connectors.tcp.TCPConnector
-import com.idyria.osi.wsb.webapp.http.connector.HTTPConnector
+import org.odfi.ubroker.app.http.message.HTTPPathIntermediary
+import org.odfi.ubroker.app.http.connector.HTTPProtocolHandler
+import org.odfi.ubroker.core.network.connectors.tcp.TCPProtocolHandlerConnector
+import org.odfi.ubroker.core.network.connectors.tcp.TCPConnector
+import org.odfi.ubroker.app.http.connector.HTTPConnector
 import org.odfi.wsb.fwapp.DefaultSite
 
 object MDNSDiscoveryExample extends App with DecorateAsScala {

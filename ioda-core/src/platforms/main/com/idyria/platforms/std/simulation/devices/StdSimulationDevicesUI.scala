@@ -3,10 +3,10 @@ package com.idyria.platforms.std.simulation.devices
 import com.idyria.platforms.std.StdPlatformBaseView
 import com.idyria.platforms.std.environment.EnvironmentUIUtils
 import com.idyria.platforms.std.ui.utils.ErrorUIUtils
-import com.idyria.ioda.IODA
+import org.odfi.ioda.IODA
 import org.odfi.wsb.fwapp.framework.FWAppTempBufferView
-import com.idyria.ioda.simulation.data.phy.SIMPhysicalInterface
-import com.idyria.ioda.env.EnvironmentTraitSimulationTraitPhysical
+import org.odfi.ioda.simulation.data.phy.SIMPhysicalInterface
+import org.odfi.ioda.env.EnvironmentTraitSimulationTraitPhysical
 import org.odfi.wsb.fwapp.module.semantic.indesign.SemanticConfigUtil
 
 class StdSimulationDevicesUI extends StdPlatformBaseView with EnvironmentUIUtils with ErrorUIUtils with FWAppTempBufferView with SemanticConfigUtil {

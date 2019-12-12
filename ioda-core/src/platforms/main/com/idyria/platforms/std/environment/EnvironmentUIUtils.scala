@@ -1,8 +1,8 @@
 package com.idyria.platforms.std.environment
 
 import org.odfi.wsb.fwapp.module.semantic.SemanticView
-import com.idyria.ioda.env.EnvironmentHarvester
-import com.idyria.ioda.env.Environment
+import org.odfi.ioda.env.EnvironmentHarvester
+import org.odfi.ioda.env.Environment
 import com.idyria.osi.ooxoo.core.buffers.structural.xelement
 
 trait EnvironmentUIUtils extends SemanticView {

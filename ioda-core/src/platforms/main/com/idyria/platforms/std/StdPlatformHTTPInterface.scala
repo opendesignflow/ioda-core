@@ -3,16 +3,16 @@ package com.idyria.platforms.std
 import org.odfi.wsb.fwapp.DefaultSite
 import java.net.URL
 import java.net.HttpURLConnection
-import com.idyria.ioda.env.EnvironmentTraitDataPath
-import com.idyria.ioda.data.types.StringValuesMessage
-import com.idyria.ioda.data.types.StringValueMessage
-import com.idyria.osi.wsb.webapp.http.message.HTTPResponse
-import com.idyria.ioda.data.types.DataMessage
-import com.idyria.ioda.data.types.DataMapMessage
+import org.odfi.ioda.env.EnvironmentTraitDataPath
+import org.odfi.ioda.data.types.StringValuesMessage
+import org.odfi.ioda.data.types.StringValueMessage
+import org.odfi.ubroker.app.http.message.HTTPResponse
+import org.odfi.ioda.data.types.DataMessage
+import org.odfi.ioda.data.types.DataMapMessage
 import org.odfi.wsb.fwapp.Site
-import com.idyria.ioda.data.protocols.params.ParamsMessage
-import com.idyria.ioda.data.protocols.params.ParamValue
-import com.idyria.osi.wsb.webapp.http.message.HTTPRequest
+import org.odfi.ioda.data.protocols.params.ParamsMessage
+import org.odfi.ioda.data.protocols.params.ParamValue
+import org.odfi.ubroker.app.http.message.HTTPRequest
 
 class StdPlatformHTTPInterface {
 

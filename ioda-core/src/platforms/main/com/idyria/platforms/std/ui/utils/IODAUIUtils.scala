@@ -1,7 +1,7 @@
 package com.idyria.platforms.std.ui.utils
 
 import org.odfi.wsb.fwapp.lib.ooxoo.OOXOOEntityBindView
-import com.idyria.ioda.IODA
+import org.odfi.ioda.IODA
 import org.odfi.wsb.fwapp.framework.FWAppTempBufferView
 import org.odfi.wsb.fwapp.lib.ooxoo.EntityBindBuffer
 import scala.reflect.ClassTag
