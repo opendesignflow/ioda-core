@@ -24,27 +24,28 @@ node {
 
     stage('Test') {
         sh "${mvnHome}/bin/mvn ${mavenOptions}  -Dmaven.test.failure.ignore test"
-        junit '**/target/surefire-reports/TEST-*.xml'
+        junit testResults:'**/target/surefire-reports/TEST-*.xml', allowEmptyResults: true 
     }
 
     //-- DEV and MASTER Deploy, other branches are just compiling
     if (env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'master') {
 	  
 	    stage('Deploy') {
-            configFileProvider(
+            /*configFileProvider(
                 [configFile(fileId: '040c946b-486d-4799-97a0-e92a4892e372', variable: 'MAVEN_SETTINGS')]) {
                 //sh 'mvn -s $MAVEN_SETTINGS clean package'
                 mavenOptions="$mavenOptions -s $MAVEN_SETTINGS"
         
-                    sh "${mvnHome}/bin/mvn ${mavenOptions} -DskipTests=true deploy"
-            }
+                    
+            }*/
+            sh "${mvnHome}/bin/mvn ${mavenOptions} -DskipTests=true deploy"
 		    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
 	    }
 
         // Trigger sub builds on dev
         if (env.BRANCH_NAME == 'dev') {
             stage("Downstream") { 
-                build job: '../ooxoo-core/dev', wait: false, propagate: true
+               // build job: '../ooxoo-core/dev', wait: false, propagate: true
             } 
         }
 
