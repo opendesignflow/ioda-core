@@ -75,7 +75,7 @@ object Pipeline {
         println(s"Searching against: "+sns+" -> "+sname)
         (ns == sns && name == sname)
     } match {
-      case Some(cl) => Some(cl._2.newInstance())
+      case Some(cl) => Some(cl._2.getDeclaredConstructor().newInstance())
       case other => None
     }
   }

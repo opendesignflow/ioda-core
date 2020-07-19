@@ -92,7 +92,7 @@ trait ManagedOpenClosePhy extends PhysicalInterface {
     this.on("closed")(cl)
   }
 
-  def doOpen
-  def doClose
+  def doOpen : Unit
+  def doClose : Unit
 
 }

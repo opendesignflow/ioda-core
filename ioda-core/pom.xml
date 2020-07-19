@@ -1,152 +1,129 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.odfi.ioda</groupId>
-		<artifactId>ioda-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../</relativePath>
-	</parent>
-	<artifactId>ioda-core</artifactId>
-	<name>IODA Core lib</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.odfi.ioda</groupId>
+        <artifactId>ioda-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+    <artifactId>ioda-core</artifactId>
+    <name>IODA Core lib</name>
 
 
-	<build>
-		<!-- <resources> -->
-		<!-- <resource> -->
-		<!-- <directory>src/main/resources</directory> -->
-		<!-- <includes><include>**/*</include></includes> -->
-		<!-- </resource> -->
-		<!-- <resource> -->
-		<!-- <directory>src/platform/resources</directory> -->
-		<!-- <includes><include>**/*</include></includes> -->
-		<!-- </resource> -->
-		<!-- </resources> -->
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.9.1</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${project.build.directory}/generated-sources/scala</source>
-<!--								<source>${project.basedir}/src/platforms/main</source>-->
-<!--								<source>${project.basedir}/src/examples/scala</source>-->
-							</sources>
-						</configuration>
-					</execution>
-					<execution>
-						<phase>pre-site</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${project.build.directory}/generated-sources/scala</source>
-<!--								<source>${project.basedir}/src/platforms/main</source>-->
-<!--								<source>${project.basedir}/src/examples/scala</source>-->
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+    <build>
+        <!-- <resources> -->
+        <!-- <resource> -->
+        <!-- <directory>src/main/resources</directory> -->
+        <!-- <includes><include>**/*</include></includes> -->
+        <!-- </resource> -->
+        <!-- <resource> -->
+        <!-- <directory>src/platform/resources</directory> -->
+        <!-- <includes><include>**/*</include></includes> -->
+        <!-- </resource> -->
+        <!-- </resources> -->
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/scala</source>
+                                <!--								<source>${project.basedir}/src/platforms/main</source>-->
+                                <!--								<source>${project.basedir}/src/examples/scala</source>-->
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/scala</source>
+                                <!--								<source>${project.basedir}/src/platforms/main</source>-->
+                                <!--								<source>${project.basedir}/src/examples/scala</source>-->
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
 
-	</build>
-	<dependencies>
+    </build>
+    <dependencies>
 
-		<dependency>
-			<groupId>com.fazecast</groupId>
-			<artifactId>jSerialComm</artifactId>
-			<version>2.0.2</version>
-		</dependency>
+        <dependency>
+            <groupId>com.fazecast</groupId>
+            <artifactId>jSerialComm</artifactId>
+            <version>2.6.2</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.odfi.indesign</groupId>
-			<artifactId>indesign-core</artifactId>
-			<version>${indesign.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.odfi.indesign</groupId>
+            <artifactId>indesign-core</artifactId>
+            <version>${indesign.version}</version>
+        </dependency>
 
-
-
-
-		<!-- <dependency> -->
-		<!-- <groupId>net.posick</groupId> -->
-		<!-- <artifactId>mdnsjava</artifactId> -->
-		<!-- <version>2.2.0</version> -->
-		<!-- </dependency> -->
-
-<!--		<dependency>-->
-<!--			<groupId>kit.edu.ipe.adl</groupId>-->
-<!--			<artifactId>chiptest-lib</artifactId>-->
-<!--			<version>1.1.0-SNAPSHOT</version>-->
-<!--			<exclusions>-->
-<!--				<exclusion>-->
-<!--					<groupId>org.odfi.wsb.fwapp</groupId>-->
-<!--					<artifactId>fwapp-core</artifactId>-->
-<!--				</exclusion>-->
-<!--				<exclusion>-->
-<!--					<groupId>org.odfi.wsb</groupId>-->
-<!--					<artifactId>wsb-core</artifactId>-->
-<!--				</exclusion>-->
-<!--				<exclusion>-->
-<!--					<groupId>org.odfi.wsb</groupId>-->
-<!--					<artifactId>wsb-webapp</artifactId>-->
-<!--				</exclusion>-->
-<!--			</exclusions>-->
-<!--		</dependency>-->
-
-		<dependency>
-			<groupId>org.jmdns</groupId>
-			<artifactId>jmdns</artifactId>
-			<version>3.5.3</version>
-		</dependency>
+        <dependency>
+            <groupId>org.jmdns</groupId>
+            <artifactId>jmdns</artifactId>
+            <version>3.5.3</version>
+        </dependency>
 
 
+        <dependency>
+            <groupId>org.odfi.ubroker</groupId>
+            <artifactId>ubroker-core</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.odfi.ubroker</groupId>
-			<artifactId>ubroker-core</artifactId>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
 
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.13.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.13.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api-scala_2.13</artifactId>
+            <version>12.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+        <dependency>
+            <groupId>org.fusesource.jansi</groupId>
+            <artifactId>jansi</artifactId>
+            <version>1.18</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api-scala_2.12</artifactId>
-			<version>11.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
-		<dependency>
-			<groupId>org.fusesource.jansi</groupId>
-			<artifactId>jansi</artifactId>
-			<version>1.18</version>
-		</dependency>
+        <dependency>
+            <groupId>org.odfi.instruments</groupId>
+            <artifactId>instruments-core</artifactId>
+            <version>1.3.1</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.odfi.instruments</groupId>
-			<artifactId>instruments-core</artifactId>
-			<version>1.3.0-SNAPSHOT</version>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>15-ea+7</version>
+            <scope>provided</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 </project>

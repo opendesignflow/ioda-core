@@ -8,7 +8,7 @@ trait BytesInterfacePhy extends PhysicalInterface {
    // Bytes Interface
   //--------------
   
-  def phyWrite(b:Array[Byte]) 
+  def phyWrite(b:Array[Byte]) :  Unit
   
   def phyRead(count:Int) : Array[Byte] 
   

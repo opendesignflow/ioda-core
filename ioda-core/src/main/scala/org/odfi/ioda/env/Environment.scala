@@ -165,9 +165,9 @@ class Environment extends EnvironmentTrait {
   // Cleaning
   //-------------------
   def mrproper = {
-    this.dataPaths.clear
-    this.dataSources.clear
-    this.globalPhysicals.clear
+    this.dataPaths.clear()
+    this.dataSources.clear()
+    this.globalPhysicals.clear()
   }
 
 }
