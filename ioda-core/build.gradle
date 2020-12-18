@@ -3,7 +3,7 @@ buildscript {
 
     dependencies {
         //compile "org.odfi.indesign:indesign-core:${indesign_version}"
-         if (findProject(":indesign-core")!= null) {
+         if (findProject(":indesign-core")== null) {
             classpath "org.odfi.indesign:indesign-core:1.3.3-SNAPSHOT"
          } else {
             classpath project(":indesign-core")
