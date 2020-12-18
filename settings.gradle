@@ -1,0 +1,25 @@
+
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        maven {
+            name = 'ODFI Releases'
+            url = 'https://www.opendesignflow.org/maven/repository/internal/'
+        }
+        maven {
+            name = 'ODFI Snapshots'
+            url = 'https://www.opendesignflow.org/maven/repository/snapshots/'
+        }
+    }
+}
+
+gradle.ext.version = "1.1.0-SNAPSHOT"
+rootProject.name  = "ioda"
+
+include(":core")
+project(":core").projectDir = new java.io.File("ioda-core")
+
+/*
+include(":ioda-core")
+include(":ioda-ui")*/

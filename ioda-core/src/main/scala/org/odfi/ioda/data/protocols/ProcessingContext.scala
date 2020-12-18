@@ -9,7 +9,7 @@ import org.apache.logging.log4j.core.LoggerContext
 import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilder
 import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration
 
-class ProcessingContext {
+class ProcessingContext extends MetadataContainer {
 
   var verbose = false
   var verboseLevel = Level.INFO

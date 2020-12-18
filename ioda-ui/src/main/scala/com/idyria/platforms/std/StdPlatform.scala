@@ -1,14 +1,11 @@
 package com.idyria.platforms.std
 
-import org.odfi.wsb.fwapp.DefaultSite
-import org.odfi.indesign.core.main.IndesignPlatorm
-import org.odfi.wsb.fwapp.jmx.FWAPPJMX
+
+
 import org.odfi.indesign.core.config.ooxoo.OOXOOConfigModule
 import java.io.File
 import org.odfi.indesign.core.module.IndesignModule
-import org.odfi.ioda.data.phy.comport.COMPortHarvester
-import org.odfi.indesign.core.harvest.Harvest
-import org.odfi.ioda.data.phy.PhysicalInterfaceHarvester
+
 import org.odfi.ioda.IODA
 
 object StdPlatform extends IndesignModule {

@@ -7,3 +7,6 @@ ioda-core/indesign-config/
 ioda-core/ioda-std/
 *.cache-main
 *.swp
+**/build 
+**/out
+.gradle

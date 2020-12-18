@@ -1,0 +1,70 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven {
+            name = 'Sonatype Nexus Snapshots'
+            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+        maven {
+            url "https://repo.triplequote.com/libs-release/"
+        }
+        maven {
+            name = 'ODFI Releases'
+            url = 'https://www.opendesignflow.org/maven/repository/internal/'
+        }
+        maven {
+            name = 'ODFI Snapshots'
+            url = 'https://www.opendesignflow.org/maven/repository/snapshots/'
+        }
+        jcenter()
+    }
+    dependencies {
+
+    }
+}
+
+
+plugins {
+    id "scala"
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+
+
+}
+
+javafx {
+    version = "16-ea+4"
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics']
+}
+
+def scala_major = "2.13"
+def scala_version = "$scala_major.4"
+dependencies {
+    compile project(":ioda-core")
+
+    compile("org.scala-lang:scala-library:$scala_version")
+}
+
+repositories {
+
+    mavenLocal()
+    mavenCentral()
+    maven {
+        name = 'Sonatype Nexus Snapshots'
+        url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    maven {
+        name = 'ODFI Releases'
+        url = 'https://www.opendesignflow.org/maven/repository/internal/'
+    }
+    maven {
+        name = 'ODFI Snapshots'
+        url = 'https://www.opendesignflow.org/maven/repository/snapshots/'
+    }
+    maven {
+        url "https://repo.triplequote.com/libs-release/"
+    }
+    google()
+    jcenter()
+}

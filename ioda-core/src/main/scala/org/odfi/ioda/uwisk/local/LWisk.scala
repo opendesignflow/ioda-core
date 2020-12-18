@@ -1,0 +1,70 @@
+package org.odfi.ioda.uwisk.local
+
+
+import org.odfi.ioda.uwisk.{IWiskInstanciator, wpackage}
+
+class LWisk extends LWiskTrait {
+
+
+  var instantiator : IWiskInstanciator = _
+
+  def getInstantiator = instantiator match {
+    case null =>
+      sys.error("No instantiator defined")
+    case other =>
+      other
+  }
+
+  /**
+   * Saves pending trigger with a counter
+   */
+  val pendingTriggers = scala.collection.mutable.HashMap[String,Int]()
+
+  /**
+   * Saves pending trigger with a counter
+   */
+  val packages = scala.collection.mutable.HashMap[String,wpackage]()
+
+  def requestTrigger(namespace:String,action:String) : String  = {
+
+    val cleanNS = (namespace+"/"+action).trim.replaceAll("//+","/")
+    pendingTriggers.synchronized {
+      pendingTriggers.put(cleanNS,pendingTriggers.getOrElse(cleanNS,0)+1)
+    }
+
+    cleanNS
+
+  }
+
+  def getPendingTriggers(actionName:String) = {
+    this.pendingTriggers.synchronized {
+
+      val foundKeys = this.pendingTriggers.keys.filter {
+        pendingAction =>
+          pendingAction.startsWith(actionName)
+      }
+      foundKeys.foreach(pendingTriggers.remove)
+      foundKeys
+    }
+  }
+
+  def runTrigger(namespace:String,action:String) = {
+
+  }
+
+
+
+  // Packages
+  //--------------
+
+  def listPackages = this.packages.keys.toList.sorted
+
+  def getAllPackages = this.packages.values.toList
+
+  def getPackage(packageNS:String) = this.packages.get(packageNS)
+
+  def registerPackage(ns:String,p:wpackage) = {
+    this.packages.put(ns,p)
+  }
+
+}

@@ -14,18 +14,21 @@ node {
 
     stage('Clean') {
         checkout scm
-        sh "${mvnHome}/bin/mvn -version"
-        sh "${mvnHome}/bin/mvn ${mavenOptions} clean"
+        sh "chmod +x gradlew"
+        sh "./gradlew clean"
+        //sh "${mvnHome}/bin/mvn -version"
+        //sh "${mvnHome}/bin/mvn ${mavenOptions} clean"
     }
 
     stage('Build') {
-        sh "${mvnHome}/bin/mvn ${mavenOptions}  compile test-compile"
+        //sh "${mvnHome}/bin/mvn ${mavenOptions}  compile test-compile"
+        sh "./gradlew build"
     }
 
-    stage('Test') {
-        sh "${mvnHome}/bin/mvn ${mavenOptions}  -Dmaven.test.failure.ignore test"
-        junit testResults:'**/target/surefire-reports/TEST-*.xml', allowEmptyResults: true 
-    }
+    //stage('Test') {
+    //    sh "${mvnHome}/bin/mvn ${mavenOptions}  -Dmaven.test.failure.ignore test"
+    //    junit testResults:'**/target/surefire-reports/TEST-*.xml', allowEmptyResults: true 
+    //}
 
     //-- DEV and MASTER Deploy, other branches are just compiling
     if (env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'master') {
@@ -38,8 +41,9 @@ node {
         
                     
             }*/
-            sh "${mvnHome}/bin/mvn ${mavenOptions} -DskipTests=true deploy"
-		    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
+            //sh "${mvnHome}/bin/mvn ${mavenOptions} -DskipTests=true deploy"
+		    //step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
+            sh "./gradlew publish"
 	    }
 
         // Trigger sub builds on dev

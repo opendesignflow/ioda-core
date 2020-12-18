@@ -1,17 +1,20 @@
 package org.odfi.ioda.data.types
 
 import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+
 import scala.language.implicitConversions
 import org.odfi.ioda.data.protocols.params.ParamValue
-import org.odfi.ioda.data.protocols.ProcessingContext
+import org.odfi.ioda.data.protocols.{MetadataContainer, ProcessingContext}
+
 import scala.reflect.ClassTag
 import org.odfi.tea.listeners.ListeningSupport
 import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 
 @xelement(name = "DataMessage")
-trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedResourceDefaultId {
+trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedResourceDefaultId with MetadataContainer {
 
 
+  this.metadata = Map()
 
   var __nextMessage: Option[_ <: DataMessage] = None
 
@@ -85,84 +88,7 @@ trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedR
 
   }
 
-  // Metadata
-  //--------------
-  var metadata = Map[String, ParamValue]()
 
-  def addMetadata(name: String, value: Any): ParamValue = {
-    val pv = ParamValue(value)
-    metadata = metadata + (name -> pv)
-
-    pv
-
-  }
-
-  def addMetadata(name: String, value: String): ParamValue = {
-
-    val pv = ParamValue(value)
-    metadata = metadata + (name -> pv)
-
-    pv
-
-  }
-
-  def addMetadata(name: String, value: Int): ParamValue = {
-
-    val pv = ParamValue(value)
-    metadata = metadata + (name -> pv)
-
-    pv
-
-  }
-
-  def addMetadata(name: String, value: Double): ParamValue = {
-    val pv = ParamValue(value)
-    metadata = metadata + (name -> pv)
-
-    pv
-  }
-
-  def addMetadata(name: String, value: Long): ParamValue = {
-    val pv = ParamValue(value)
-    metadata = metadata + (name -> pv)
-
-    pv
-  }
-  def addMetadata(name: String, value: Boolean): ParamValue = {
-    val pv = ParamValue(value)
-    metadata = metadata + (name -> pv)
-
-    pv
-  }
-
-  def getMetadata(name: String): Option[ParamValue] = {
-    this.metadata.get(name)
-  }
-
-  def getMetadataOfType[T](name: String)(implicit tag: ClassTag[T]): Option[T] = {
-    getMetadata(name) match {
-      case Some(pv) if (pv.isOfType[T]) => Some(pv.asType[T])
-      case other => None
-    }
-  }
-
-  def getMetadataBoolean(name: String): Option[Boolean] = {
-    this.metadata.get(name) match {
-      case Some(m) if (m.isBoolean) =>
-        Some(m.asBoolean)
-      case other =>
-        None
-    }
-  }
-  
-  def getMetadataString(name: String): Option[String] = {
-    this.metadata.get(name) match {
-      case Some(m) if (m.isString) =>
-        Some(m.asString)
-      case other =>
-        None
-    }
-  }
 
   def addUID(uid: String) = {
     this.addMetadata("ioda.uid", uid)

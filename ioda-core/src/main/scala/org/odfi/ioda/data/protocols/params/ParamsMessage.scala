@@ -68,6 +68,12 @@ object ParamValue {
     pv
   }
 
+  def apply(pv:ParamValue) = {
+    val v = new ParamValue()
+    v.value = pv.value
+    v
+  }
+
 }
 
 /**
