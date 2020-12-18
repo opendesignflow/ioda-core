@@ -22,6 +22,7 @@ node {
 
     stage('Build') {
         //sh "${mvnHome}/bin/mvn ${mavenOptions}  compile test-compile"
+        sh "./gradlew generateOOXOO"
         sh "./gradlew build"
     }
 
