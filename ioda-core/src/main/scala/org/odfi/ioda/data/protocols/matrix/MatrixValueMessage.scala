@@ -4,6 +4,8 @@ package org.odfi.ioda.data.protocols.matrix
 import com.idyria.osi.ooxoo.core.buffers.structural.xelement
 import org.odfi.ioda.data.types.MatrixValueMessageTrait
 
+import scala.util.Random
+
 @xelement(name = "MatrixValueMessage")
 class MatrixValueMessage[DT] extends MatrixValueMessageTrait {
 
@@ -57,5 +59,22 @@ class LongMatrixValueMessage extends NumericMatrixValueMessage[Long] {
 }
 
 class DoubleMatrixValueMessage extends NumericMatrixValueMessage[Double] {
+
+  def initRandom(rows : Int, columns : Int,min:Double,max:Double) = {
+
+    val rand = new Random()
+
+    val res = (0 until rows).map {
+      r =>
+        (0 until columns).map  {
+          c =>
+            rand.between(min,max)
+
+        }.toList
+    }.toList
+
+    this.data = Some(res)
+
+  }
 
 }

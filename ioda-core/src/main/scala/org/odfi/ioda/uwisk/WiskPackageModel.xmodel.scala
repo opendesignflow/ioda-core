@@ -31,11 +31,12 @@ object WiskPackageModel extends ModelBuilder {
   // Package
   "wpackage" is {
     makeTraitAndUseCustomImplementation
+    withTrait(idAndMetadata)
 
     attribute("namespace")
     attribute("version")
     attribute("name")
-    attribute("id")
+
 
     "environment" multiple {
       withTrait(idAndMetadata)
@@ -54,7 +55,7 @@ object WiskPackageModel extends ModelBuilder {
       makeTraitAndUseCustomImplementation
 
       attribute("id")
-      attribute("ignore") ofType ("boolean") default ("true")
+      attribute("ignore") ofType ("boolean") default ("false")
 
       "pre" multiple {
         withTrait(pipelineRef)
@@ -99,11 +100,24 @@ object WiskPackageModel extends ModelBuilder {
 
     // Run pipeline
     "pipeline" multiple {
+      makeTraitAndUseCustomImplementation
       attribute("id")
-      "time" is {
+      attribute("top") ofType ("boolean")
+
+      "parameter" multiple {
+        attribute("name")
+        attribute("value")
+        attribute("type")
+        attribute("unit")
+      }
+
+      "runTime" is {
         "startTS" ofType ("datetime")
         "endTS" ofType ("datetime")
         "total" ofType ("long")
+      }
+      "error" is {
+        "message" ofType("string")
       }
     }
 
@@ -115,6 +129,7 @@ object WiskPackageModel extends ModelBuilder {
   }
   "utrace" is {
     withTrait(commonTrace)
+    attribute("dry-run") ofType("boolean") default("false")
   }
 
 }

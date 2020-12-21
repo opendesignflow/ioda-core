@@ -4,12 +4,12 @@ import org.apache.http.client.fluent.{Executor, Request}
 import org.apache.http.entity.ContentType
 import org.markdown4j.Markdown4jProcessor
 import org.odfi.ioda.logging.WithLogger
-import org.odfi.ioda.pipelines.DefaultPipeline
-import org.odfi.ioda.uwisk.pipeline.WPipeline
+import org.odfi.ioda.pipelines.{DefaultPipeline, PipelineWithId}
+import org.odfi.ioda.uwisk.pipeline.{WPipeline, WPipelineWithId}
 
 import java.net.URI
 
-class TeamsChannelMessage extends WPipeline with WithLogger {
+class TeamsChannelMessage extends WPipelineWithId with WithLogger {
 
   this.onWiskMessage {
     case (msg, context) =>

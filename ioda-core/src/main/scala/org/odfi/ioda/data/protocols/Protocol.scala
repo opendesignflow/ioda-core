@@ -25,6 +25,13 @@ trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[Commo
 
   var verbose = false
 
+  def getLoggerId  = this.getId match {
+    case null =>
+      getClass.getCanonicalName
+    case other =>
+      other
+  }
+
   /*def initConfig = {
     this.configModel match {
       case None =>
@@ -62,7 +69,7 @@ trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[Commo
         // Processing Context Update
         //-------------------
         selectedMessage.processingContext.enterProtocol(this)
-        selectedMessage.processingContext.logInfo("Entering Protocol Processing")
+        selectedMessage.processingContext.logDebug("Entering Protocol Processing")
 
         // Filtering
         //------------------
@@ -89,15 +96,18 @@ trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[Commo
 
         }
 
+
         if (selectedMessage.drop) {
           accept = false
         }
+
+       // println(s"Message in ${toString} accepted=$accept")
 
         accept match {
 
           // Accept Message
           case true =>
-            selectedMessage.processingContext.logInfo("Processing Message")
+            selectedMessage.processingContext.logDebug("Processing Message")
 
             super.down(selectedMessage)
           // pass this protocol

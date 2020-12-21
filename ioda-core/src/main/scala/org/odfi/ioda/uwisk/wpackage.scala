@@ -107,15 +107,28 @@ class wpackage extends wpackageTrait {
 
     var resStr = str
 
+    // Match variable name against pattern to check correctness
     valRegexp.findAllMatchIn(str)
       .foreach {
         matchRes =>
 
           // Resolve
+          //----------
           val (envName, varName) = matchRes.group(1).split(":") match {
+
+              // If Environment is provided; use it
             case envName if (envName.size == 2) =>
               (envName(0), envName(1))
-            case other => sys.error(s"Variable definition incorrect: ${matchRes.matched}")
+
+              // If only variable name, lookup environment
+            case other if (other.size==1) =>
+
+              //  Use currently defined environment
+              (uwisk.selectedEnvironment,other(0))
+
+
+            case other =>
+              sys.error(s"Variable definition incorrect: ${matchRes.matched}")
           }
           val resolved = findEnvironmentValue(envName, varName)
 

@@ -6,6 +6,10 @@ class wpackageTraitpipeline extends wpackageTraitpipelineTrait {
 
   var overrideMetadata = Map[String,String]()
 
+  def getAbsoluteName = {
+    this.wpackage.getPackageAbsolutePath+"/"+id
+  }
+
   def isJavaPipeline = this.implementationOption match {
     case Some(i) if (i.javaClass!=null) => true
     case other => false

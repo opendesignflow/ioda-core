@@ -1,14 +1,15 @@
 package org.odfi.ioda.pipelines
 
-import org.odfi.ioda.data.protocols.ProtocolWithId
+import org.odfi.ioda.data.protocols.{Protocol, ProtocolWithId}
 import com.idyria.osi.ooxoo.core.buffers.structural.xelement
 import org.odfi.indesign.core.config.model.CommonConfig
 import com.idyria.osi.ooxoo.core.buffers.structural.DataUnit
 import com.idyria.osi.ooxoo.core.buffers.datatypes.XSDStringBuffer
 import com.idyria.osi.ooxoo.core.buffers.structural.xattribute
+import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 
 @xelement(name = "pipeline", ns = "http:///www.opendesignflow.org/ioda/pipelines/1.0")
-trait Pipeline extends ProtocolWithId with CommonConfig {
+trait Pipeline extends Protocol with CommonConfig {
 
   
   @xattribute(name="environment")
@@ -19,7 +20,7 @@ trait Pipeline extends ProtocolWithId with CommonConfig {
     case defined => defined.toString()
   }
   
-  
+
   this.configModel = Some(this)
 
   /**
@@ -57,8 +58,8 @@ trait Pipeline extends ProtocolWithId with CommonConfig {
   }*/
 
 }
-
-class DefaultPipeline extends Pipeline {
+trait PipelineWithId extends Pipeline with HarvestedResourceDefaultId
+class DefaultPipeline extends Pipeline with HarvestedResourceDefaultId {
 
 }
 object Pipeline {

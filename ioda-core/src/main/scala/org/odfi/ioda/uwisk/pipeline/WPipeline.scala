@@ -2,7 +2,7 @@ package org.odfi.ioda.uwisk.pipeline
 
 import org.odfi.ioda.data.protocols.ProcessingContext
 import org.odfi.ioda.data.types.{DataMapMessage, DataMessage}
-import org.odfi.ioda.pipelines.Pipeline
+import org.odfi.ioda.pipelines.{Pipeline, PipelineWithId}
 import org.odfi.ubroker.core.message.Message
 
 /**
@@ -32,3 +32,5 @@ trait WPipeline extends Pipeline {
 
 
 }
+
+trait WPipelineWithId extends WPipeline with PipelineWithId
