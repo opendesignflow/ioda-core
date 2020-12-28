@@ -1,5 +1,5 @@
 package com.idyria.platforms.std.devices
-
+/*
 import com.idyria.platforms.std.StdPlatformBaseView
 import org.odfi.ioda.data.phy.PhysicalInterfaceHarvester
 import org.odfi.ioda.data.phy.PhysicalInterface
@@ -40,4 +40,4 @@ class DevicesUI extends StdPlatformBaseView {
     
   }
   
-}
+}*/

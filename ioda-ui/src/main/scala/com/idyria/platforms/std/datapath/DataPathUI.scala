@@ -1,5 +1,5 @@
 package com.idyria.platforms.std.datapath
-
+/*
 import com.idyria.platforms.std.StdPlatformBaseView
 import com.idyria.platforms.std.environment.EnvironmentUIUtils
 import org.odfi.wsb.fwapp.module.jquery.JQueryFormValidation
@@ -133,4 +133,4 @@ class DataPathUI extends StdPlatformBaseView with EnvironmentUIUtils
 
     }
   }
-}
+}*/

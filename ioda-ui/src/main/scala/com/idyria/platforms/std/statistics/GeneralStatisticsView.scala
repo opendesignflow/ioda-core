@@ -1,5 +1,5 @@
 package com.idyria.platforms.std.statistics
-
+/*
 import org.odfi.wsb.fwapp.module.jquery.JQueryFormValidationClientUtils
 import com.idyria.platforms.std.StdPlatformBaseView
 import com.idyria.platforms.std.ui.utils.ErrorUIUtils
@@ -34,4 +34,4 @@ class GeneralStatisticsView extends StdPlatformBaseView with JQueryFormValidatio
     
   }
   
-}
+}*/

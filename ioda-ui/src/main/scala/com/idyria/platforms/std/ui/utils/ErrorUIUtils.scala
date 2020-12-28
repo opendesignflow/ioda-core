@@ -1,5 +1,5 @@
 package com.idyria.platforms.std.ui.utils
-
+/*
 import org.odfi.wsb.fwapp.module.semantic.SemanticView
 import org.odfi.tea.errors.ErrorSupport
 import org.odfi.tea.errors.ErrorRepairSupport
@@ -48,4 +48,4 @@ trait ErrorUIUtils extends SemanticView {
     }
   }
 
-}
+}*/

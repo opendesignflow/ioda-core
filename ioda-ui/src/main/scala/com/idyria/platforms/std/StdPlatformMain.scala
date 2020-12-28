@@ -4,11 +4,10 @@ import org.odfi.indesign.core.main.IndesignPlatorm
 import org.odfi.indesign.core.config.ooxoo.OOXOOConfigModule
 import java.io.File
 import org.odfi.tea.logging.TLogSource
-import org.odfi.wsb.fwapp.views.FWAppViewIntermediary
 
 object StdPlatformMain extends App with TLogSource {
 
-  tlogEnableFull[FWAppViewIntermediary]
+ // tlogEnableFull[FWAppViewIntermediary]
   
   // Parameters
   //-----------------
@@ -21,7 +20,7 @@ object StdPlatformMain extends App with TLogSource {
   
   // Gui
   //--------------------
-  IndesignPlatorm use StdPlatformUI
+  //IndesignPlatorm use StdPlatformUI
   //StdPlatformUI.listenWithJMXClose(8888)
 
   // Start

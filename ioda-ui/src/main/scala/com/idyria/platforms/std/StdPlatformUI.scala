@@ -1,5 +1,6 @@
 package com.idyria.platforms.std
 
+/*
 import org.odfi.wsb.fwapp.DefaultSite
 import org.odfi.wsb.fwapp.jmx.FWAPPJMX
 import com.idyria.platforms.std.devices.DevicesUI
@@ -68,4 +69,4 @@ object StdPlatformUI extends Site("/ui")   {
     StdPlatform.moveToShutdown
   }*/
   
-}
+}*/

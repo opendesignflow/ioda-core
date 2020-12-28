@@ -1,5 +1,6 @@
 package com.idyria.platforms.std.environment
 
+/*
 import com.idyria.platforms.std.StdPlatformBaseView
 import com.idyria.platforms.std.StdPlatform
 import com.idyria.platforms.std.StdPlatformUI
@@ -255,4 +256,4 @@ class EnvironmentUI extends StdPlatformBaseView with JQueryFormValidationClientU
 
   }
 
-}
+}*/

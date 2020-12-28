@@ -1,5 +1,5 @@
 package com.idyria.platforms.std.environment
-
+/*
 import org.odfi.wsb.fwapp.module.semantic.SemanticView
 import org.odfi.ioda.env.EnvironmentHarvester
 import org.odfi.ioda.env.Environment
@@ -11,7 +11,7 @@ trait EnvironmentUIUtils extends SemanticView {
     EnvironmentHarvester.getResourcesOfType[Environment] match {
       case none if (none.size == 0) =>
 
-        "ui warning message" :: "Please add at least one environment"
+       // "ui warning message" :: "Please add at least one environment"
 
       case environments =>
         cl(environments)
@@ -33,4 +33,4 @@ trait EnvironmentUIUtils extends SemanticView {
  
   }
 
-}
+}*/

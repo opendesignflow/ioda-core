@@ -1,5 +1,5 @@
 package com.idyria.platforms.std
-
+/*
 import org.odfi.ioda.ui.IODABaseView
 import org.odfi.wsb.fwapp.module.semantic.SemanticView
 import org.odfi.indesign.core.harvest.Harvest
@@ -95,4 +95,4 @@ trait StdPlatformBaseView extends IODABaseView with SemanticView with FWappResou
     }
   }
 
-}
+}*/

@@ -1,5 +1,5 @@
 package com.idyria.platforms.std.simulation.devices
-
+/*
 import com.idyria.platforms.std.StdPlatformBaseView
 import com.idyria.platforms.std.environment.EnvironmentUIUtils
 import com.idyria.platforms.std.ui.utils.ErrorUIUtils
@@ -71,4 +71,4 @@ class StdSimulationDevicesUI extends StdPlatformBaseView with EnvironmentUIUtils
     }
 
   }
-}
+}*/

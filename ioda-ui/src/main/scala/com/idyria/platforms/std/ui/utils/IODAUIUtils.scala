@@ -1,5 +1,5 @@
 package com.idyria.platforms.std.ui.utils
-
+/*
 import org.odfi.wsb.fwapp.lib.ooxoo.OOXOOEntityBindView
 import org.odfi.ioda.IODA
 import org.odfi.wsb.fwapp.framework.FWAppTempBufferView
@@ -51,4 +51,4 @@ trait IODAUIUtils extends OOXOOEntityBindView with FWAppTempBufferView {
     }
   }
   
-}
+}*/

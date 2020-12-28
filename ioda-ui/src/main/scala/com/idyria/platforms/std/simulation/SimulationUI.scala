@@ -1,5 +1,5 @@
 package com.idyria.platforms.std.simulation
-
+/*
 import com.idyria.platforms.std.StdPlatformBaseView
 import org.odfi.ioda.simulation.SimulationHarvester
 import org.odfi.ioda.simulation.data.phy.SIMPhysicalInterfaceProvider
@@ -35,4 +35,4 @@ class SimulationUI extends StdPlatformBaseView {
     
   }
   
-}
+}*/

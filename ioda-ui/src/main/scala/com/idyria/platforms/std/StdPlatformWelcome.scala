@@ -1,5 +1,5 @@
 package com.idyria.platforms.std
-
+/*
 class StdPlatformWelcome extends StdPlatformBaseView {
   
   definePage {
@@ -9,4 +9,4 @@ class StdPlatformWelcome extends StdPlatformBaseView {
     }
   }
   
-}
+}*/

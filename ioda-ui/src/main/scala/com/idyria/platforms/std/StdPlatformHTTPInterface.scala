@@ -1,6 +1,6 @@
 package com.idyria.platforms.std
 
-import org.odfi.wsb.fwapp.DefaultSite
+/*
 import java.net.URL
 import java.net.HttpURLConnection
 import org.odfi.ioda.env.EnvironmentTraitDataPath
@@ -201,4 +201,4 @@ object StdPlatformHTTPInterface extends Site("/ioda") {
 
   }
 
-}
+}*/

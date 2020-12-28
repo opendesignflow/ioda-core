@@ -28,22 +28,27 @@ buildscript {
 
 plugins {
     id "scala"
+    id "maven-publish"
+    id "java-library"
     id 'org.openjfx.javafxplugin' version '0.0.9'
 
 
 }
 
 javafx {
-    version = "16-ea+4"
-    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics']
+    version = "16-ea+5"
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics' , 'javafx.media','javafx.web']
 }
 
 def scala_major = "2.13"
 def scala_version = "$scala_major.4"
 dependencies {
-    compile project(":ioda-core")
 
-    compile("org.scala-lang:scala-library:$scala_version")
+//    compile project(":fwapp")
+    api project(":ioda-core")
+    api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
+    api 'org.controlsfx:controlsfx:11.0.3'
+    api("org.scala-lang:scala-library:$scala_version")
 }
 
 repositories {
