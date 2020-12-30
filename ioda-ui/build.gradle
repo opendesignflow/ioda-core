@@ -46,9 +46,17 @@ dependencies {
 
 //    compile project(":fwapp")
     api project(":ioda-core")
+
     api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
     api 'org.controlsfx:controlsfx:11.0.3'
+
+    // https://mvnrepository.com/artifact/org.graalvm.js/js
+    api group: 'org.graalvm.js', name: 'js', version: '20.3.0'
+    api group: 'org.graalvm.js', name: 'js-scriptengine', version: '20.3.0'
+
     api("org.scala-lang:scala-library:$scala_version")
+   // api("org.scala-lang:scala3-library_3.0.0-M2:3.0.0-M2")
+
 }
 
 repositories {
