@@ -14,7 +14,7 @@ pluginManagement {
     }
 }
 
-gradle.ext.version = "1.1.0-SNAPSHOT"
+gradle.ext.version = "1.1.1-SNAPSHOT"
 gradle.ext.branch = System.getenv("BRANCH_NAME")
 if (gradle.ext.branch!=null && gradle.ext.branch=="release") {
     gradle.ext.version = gradle.ext.version.replace("-SNAPSHOT","")
