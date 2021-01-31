@@ -12,6 +12,22 @@ class wpackage extends wpackageTrait {
 
   var uwisk: UWisk = _
 
+  var sourceYAML : Option[URL] = None
+
+
+  def duplicate = {
+
+
+    val p = sourceYAML match {
+      case Some(src) =>
+        wpackage(src)
+      case None =>
+        sys.error("Cannot duplicate package without source URL")
+    }
+
+   p
+  }
+
   def check = {
 
 
@@ -167,7 +183,7 @@ object wpackage {
   def apply(f: File): wpackage = {
     val is = new FileInputStream(f)
     try {
-      return apply(is)
+      return apply(f.toURI.toURL)
     } finally {
       is.close()
     }
@@ -176,11 +192,13 @@ object wpackage {
   def apply(u: URL): wpackage = {
     val is = u.openStream()
     try {
-      return apply(is)
+      val p =  apply(is)
+      p.sourceYAML = Some(u)
+      p
     } catch {
       case e: Throwable =>
 
-        println("Faileed loading: " + u.toExternalForm)
+        println("Failed loading: " + u.toExternalForm)
         throw e
     }
     finally {

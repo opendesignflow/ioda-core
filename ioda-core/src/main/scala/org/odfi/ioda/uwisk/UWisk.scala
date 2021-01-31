@@ -1,5 +1,6 @@
 package org.odfi.ioda.uwisk
 
+import org.odfi.indesign.core.harvest.HarvestedResource
 import org.odfi.ioda.data.protocols.{MetadataContainer, ProcessingContext}
 import org.odfi.ioda.data.types.DataMessage
 import org.odfi.ioda.logging.WithLogger
@@ -13,7 +14,9 @@ import org.odfi.ioda.uwisk.messages.{EmptyMessage, TestTrigger}
  * This is the entry point which references packages, pipelines, actions and triggers them
  *
  */
-class UWisk(val baseNamespace: String = "/") extends WithLogger {
+class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedResource {
+
+  def getId = baseNamespace
 
   // Env
   //------------
@@ -99,6 +102,16 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger {
 
 
   def listPackages = this.wiskImpl.listPackages
+
+  /**
+   * Provided package is duplicated
+   * @param ns
+   * @param p
+   * @return
+   */
+  def importPackage(ns:String,p:wpackage)= {
+    registerPackage(ns,p.duplicate)
+  }
 
   /**
    * Create Register package

@@ -25,6 +25,8 @@ class LWisk extends LWiskTrait {
    */
   val packages = scala.collection.mutable.HashMap[String,wpackage]()
 
+  var requestedTriggerHandler : Option[(String,String,String)=> Unit]  = None
+
   def requestTrigger(namespace:String,action:String) : String  = {
 
     val cleanNS = (namespace+"/"+action).trim.replaceAll("//+","/")
@@ -32,8 +34,18 @@ class LWisk extends LWiskTrait {
       pendingTriggers.put(cleanNS,pendingTriggers.getOrElse(cleanNS,0)+1)
     }
 
+    // Call Handler if set
+    requestedTriggerHandler match {
+      case Some(handler) => handler(cleanNS,namespace,action)
+      case None =>
+    }
+
     cleanNS
 
+  }
+
+  def onTriggerRequest(handler: (String,String,String)=> Unit) = {
+    requestedTriggerHandler = Some(handler)
   }
 
   def getPendingTriggers(actionName:String) = {
@@ -47,9 +59,14 @@ class LWisk extends LWiskTrait {
       foundKeys
     }
   }
+  def clearRequestedTrigger(fullName:String) = {
+    this.pendingTriggers.synchronized {
 
-  def runTrigger(namespace:String,action:String) = {
-
+      pendingTriggers.get(fullName) match {
+        case None =>
+        case Some(n) => pendingTriggers.remove(fullName)
+      }
+    }
   }
 
 
