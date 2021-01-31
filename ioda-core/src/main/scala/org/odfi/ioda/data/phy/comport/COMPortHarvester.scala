@@ -30,7 +30,7 @@ class COMPort(val port : SerialPort) extends ManagedOpenClosePhy with LineSuppor
   override def getDisplayName = port.getDescriptivePortName
   
   var speed = 115200
-  var timeouts = 5000
+  var timeouts = 3000
   
   
   def doOpen = {
@@ -75,7 +75,10 @@ class COMPort(val port : SerialPort) extends ManagedOpenClosePhy with LineSuppor
     open
     Array()
   }
-    
+
+  // Line
+  //----------
+  override def pollValue = send1ZeroByte
   
   
 

@@ -1,13 +1,15 @@
 package org.odfi.ioda.data.protocols
 
+import org.odfi.indesign.core.heart.{Heart, HeartTask}
 import org.odfi.ioda.data.phy.PhysicalInterface
 import org.odfi.ioda.env.EnvironmentTraitDataPathTraitRun
 import org.odfi.ioda.data.types.DataMessage
+
 import scala.reflect.ClassTag
 import org.odfi.ioda.env.EnvironmentTrait
 import org.odfi.ioda.env.EnvironmentTraitDataSource
 
-trait Level0Protocol[PT <: PhysicalInterface] extends Protocol {
+trait Level0Protocol[PT <: PhysicalInterface] extends Protocol with HeartTask[Any] {
 
   // Phy
   //-----------
@@ -46,10 +48,31 @@ trait Level0Protocol[PT <: PhysicalInterface] extends Protocol {
         }
   }
 
+  def collect = {
+    this.dataHarvest(this.connectedPhy.get) match {
+      case Some(dm) =>
+        this.down(dm)
+      case None =>
+    }
+
+  }
+
 
   /**
    * Only Called if a PHY is connected
    */
   def dataHarvest(phy: PT): Option[DataMessage]
+
+  // Scheduling
+  //-------------
+  override def doTask: Any =  {
+    //println("Collecting")
+    this.collect
+  }
+  def scheduleCollect(delayMS:Long) = {
+    this.scheduleEvery = Some(delayMS)
+    this.reschedule
+    //Heart.pump(this)
+  }
 
 }

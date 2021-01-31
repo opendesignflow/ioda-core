@@ -30,13 +30,16 @@ abstract class ValuesListProtocol[DT <: DataMessageValuesListMessage[_]] extends
   
    def sendReceiveValuesList(phy: LineSupportPhy) = {
    
-    phy.sendLineReceiveLine(":VALUES?").split(",").toList
+    //phy.sendLineReceiveLine(":VALUES?").split(",").toList
+     phy.pollValue
+     phy.receiveLine().split(",").toList
+     //phy.sendLineReceiveLine("").split(",").toList
     
   }
 
   def dataHarvest(phy: LineSupportPhy) = {
 
-    (getValuesList(phy), config.get.supportGetInt("valuesCount")) match {
+/*    (getValuesList(phy), config.get.supportGetInt("valuesCount")) match {
       case (None, _) => 
         None
 
@@ -45,7 +48,8 @@ abstract class ValuesListProtocol[DT <: DataMessageValuesListMessage[_]] extends
         None
       case (Some(dm), _) => 
         Some(dm)
-    }
+    }*/
+    (getValuesList(phy))
 
   }
 

@@ -21,6 +21,7 @@ class ParamValue(var value: Any) {
 
   def toInt = {
     this.value = this.value.toString.toInt
+    this.asInt
   }
 
   def isInt = this.value.isInstanceOf[Int]
@@ -28,6 +29,7 @@ class ParamValue(var value: Any) {
 
   def toDouble = {
     this.value = this.value.toString.toDouble
+    this.asDouble
   }
 
   def isDouble = this.value.isInstanceOf[Double]
@@ -44,6 +46,7 @@ class ParamValue(var value: Any) {
     }
 
     this.value = booleanValue
+    this.asBoolean
   }
   def isBoolean = this.value.isInstanceOf[Boolean]
   def asBoolean = this.value.asInstanceOf[Boolean]

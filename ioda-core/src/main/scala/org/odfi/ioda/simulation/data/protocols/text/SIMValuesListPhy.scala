@@ -20,6 +20,10 @@ class SIMValuesListPhy extends SIMLineSupportPhy with ValuesListPhy {
 
   }
 
+  def pollValue =  {
+
+  }
+
   def receivedLineSendbackLine(line: String): String = {
     getValuesList.mkString(",")
   }

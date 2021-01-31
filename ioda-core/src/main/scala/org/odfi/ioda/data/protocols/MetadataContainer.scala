@@ -92,4 +92,14 @@ trait MetadataContainer {
         None
     }
   }
+  def getMetadataDouble(name: String): Option[Double] = {
+    this.metadata.get(name) match {
+      case Some(m) if (m.isDouble) =>
+        Some(m.asDouble)
+      case Some(m) if (m.isString) =>
+        Some(m.toDouble)
+      case other =>
+        None
+    }
+  }
 }

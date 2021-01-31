@@ -15,6 +15,8 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
   }
   var lineIgnorePrefix: Option[String] = None
 
+  def pollValue
+
   /**
    * If LineIgnore is set, ignore all lines starting with prefix
    * This is used so that info/debugging lines and can be prefixed with "#" for example, but the software will still react on relevant lines
@@ -116,18 +118,20 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
 
           line = br.readLine() match {
             case null => ""
-            case other =>
+            case line =>
 
               ignorePrefix match {
 
                 // Ignore line if starting with prefix
-                case Some(prefix) if (other != null && other.startsWith(prefix)) =>
+                case Some(prefix) if (line != null && line.startsWith(prefix)) =>
+                  logInfo("Ignoring Line: "+line)
                 // br.reset
                 case _ =>
+                  // Finished
                   eofLoop = true
               }
 
-              other
+              line
           }
 
         }
