@@ -3,10 +3,13 @@ package org.odfi.ioda.data.phy
 import org.odfi.indesign.core.harvest.HarvestedResource
 import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 import org.odfi.indesign.core.config.ConfigSupport
+
 import java.io.OutputStream
 import java.io.InputStream
 import org.odfi.indesign.core.config.ConfigInModel
 import org.odfi.indesign.core.config.model.CommonConfig
+
+import java.util.concurrent.locks.ReentrantLock
 
 trait PhysicalInterface extends HarvestedResourceDefaultId with ConfigInModel[CommonConfig] {
 
@@ -36,9 +39,28 @@ trait ManagedOpenClosePhy extends PhysicalInterface {
 
   var isOpened = false
   var openError: Option[Throwable] = None
+  var phyBusyLock = new ReentrantLock()
+
+  def waitPhyNotBusy[T](cl: => T) = {
+    phyBusyLock.lock()
+    try {
+      cl
+    } finally {
+      phyBusyLock.unlock()
+    }
+  }
+
+  def withOpenedAndNotBusy[T](cl: => T) = {
+    if (!isOpened) {
+      throw new IllegalStateException("Phy not Opened, open before using!")
+    }
+    waitPhyNotBusy {
+      cl
+    }
+  }
 
   def open = {
-    this.synchronized {
+    waitPhyNotBusy {
       if (!isOpened) {
         try {
           doOpen
@@ -76,7 +98,7 @@ trait ManagedOpenClosePhy extends PhysicalInterface {
   }
 
   def close = {
-    this.synchronized {
+    waitPhyNotBusy {
       if (isOpened) {
         doClose
         isOpened = false
@@ -86,6 +108,7 @@ trait ManagedOpenClosePhy extends PhysicalInterface {
         false
       }
     }
+
   }
 
   def onClosed(cl: => Any) = {

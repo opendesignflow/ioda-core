@@ -8,8 +8,9 @@ import org.odfi.ioda.data.types.DataMessage
 import scala.reflect.ClassTag
 import org.odfi.ioda.env.EnvironmentTrait
 import org.odfi.ioda.env.EnvironmentTraitDataSource
+import org.odfi.ioda.pipelines.ScheduleCollectPipelineTrait
 
-trait Level0Protocol[PT <: PhysicalInterface] extends Protocol with HeartTask[Any] {
+trait Level0Protocol[PT <: PhysicalInterface] extends Protocol with HeartTask[Any]  with ScheduleCollectPipelineTrait{
 
   // Phy
   //-----------
@@ -27,16 +28,27 @@ trait Level0Protocol[PT <: PhysicalInterface] extends Protocol with HeartTask[An
     checkCompatibility(p) match {
       case true => 
         connectedPhy = Some(p)
-      case false => 
-        addImmediateError(s"Connecting PHY ${p.getClass} is not compatible with required ${tag.runtimeClass}")
+      case false =>
+        val e = s"Connecting PHY ${p.getClass} is not compatible with required ${tag.runtimeClass}"
+        println("ERR: "+e)
+        addImmediateError(e)
     }
     
+  }
+
+  def disconnectPhy = {
+    connectedPhy match {
+      case Some(phy) =>
+        this.connectedPhy = None
+      case None =>
+    }
   }
 
   def collectData(datasource:EnvironmentTraitDataSource,phy: PT) = {
         keepErrorsOn(this, true) {
           dataHarvest(phy) match {
             case None =>
+              //println("No Data fetched from Phy")
             case Some(m) =>
               m.virtualChannel = phy.getVCID match {
                 case Some(vcid) => Some(vcid)
@@ -48,12 +60,26 @@ trait Level0Protocol[PT <: PhysicalInterface] extends Protocol with HeartTask[An
         }
   }
 
+  /**
+   * Runs based on scheduling to collect some data
+   * This never fails and repeats at the scheduled rate
+   */
   def collect = {
-    this.dataHarvest(this.connectedPhy.get) match {
-      case Some(dm) =>
-        this.down(dm)
-      case None =>
+
+    keepErrorsOn(this,true) {
+      println("Collecting: "+this.connectedPhy)
+      this.connectedPhy match {
+        case Some(phy) =>
+          this.dataHarvest(phy) match {
+            case Some(dm) =>
+              this.down(dm)
+            case None =>
+          }
+        case None =>
+      }
     }
+
+
 
   }
 
@@ -65,14 +91,14 @@ trait Level0Protocol[PT <: PhysicalInterface] extends Protocol with HeartTask[An
 
   // Scheduling
   //-------------
-  override def doTask: Any =  {
+  /*override def doTask: Any =  {
     //println("Collecting")
     this.collect
-  }
-  def scheduleCollect(delayMS:Long) = {
+  }*/
+  /*def scheduleCollect(delayMS:Long) = {
     this.scheduleEvery = Some(delayMS)
     this.reschedule
     //Heart.pump(this)
-  }
+  }*/
 
 }

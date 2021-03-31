@@ -9,11 +9,9 @@ import java.net.URL
 
 class wpackage extends wpackageTrait {
 
-
   var uwisk: UWisk = _
 
   var sourceYAML : Option[URL] = None
-
 
   def duplicate = {
 

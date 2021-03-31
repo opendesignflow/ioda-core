@@ -28,6 +28,7 @@ class COMPort(val port : SerialPort) extends ManagedOpenClosePhy with LineSuppor
   
   override def getId = port.getSystemPortName
   override def getDisplayName = port.getDescriptivePortName
+  override def toString = getDisplayName
   
   var speed = 115200
   var timeouts = 3000
@@ -35,7 +36,7 @@ class COMPort(val port : SerialPort) extends ManagedOpenClosePhy with LineSuppor
   
   def doOpen = {
   
-    println("Opening")
+    //println("Opening")
     
     this.port.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING | SerialPort.TIMEOUT_WRITE_BLOCKING, timeouts, timeouts)
     //this.port.setComPortTimeouts(SerialPort.TIMEOUT_NONBLOCKING| SerialPort.TIMEOUT_WRITE_SEMI_BLOCKING, timeouts, timeouts)
@@ -59,26 +60,29 @@ class COMPort(val port : SerialPort) extends ManagedOpenClosePhy with LineSuppor
   //--------------
   
   def phyGetOutputStream : OutputStream = {
-    open 
-    this.port.getOutputStream
+    withOpenedAndNotBusy {
+      this.port.getOutputStream
+    }
+
   }
   def phyGetInputStream : InputStream = {
-    open
-    this.port.getInputStream
+    withOpenedAndNotBusy {
+      this.port.getInputStream
+    }
+
   }
   
   def phyWrite(b:Array[Byte]) = {
-    open
+    sys.error("Not Implemented")
   }
   
   def phyRead(count:Int) : Array[Byte] = {
-    open
-    Array()
+    sys.error("Not Implemented")
   }
 
   // Line
   //----------
-  override def pollValue = send1ZeroByte
+  override def pollValue = send1LineReturn
   
   
 

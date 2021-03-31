@@ -26,7 +26,10 @@ trait WPipeline extends Pipeline {
   def onWiskMessage(cl: PartialFunction[(DataMessage, ProcessingContext), Any]) = {
     this.onDownMessage {
       msg =>
-        cl(msg, this.processingContext)
+        if (cl.isDefinedAt(msg,this.processingContext)) {
+          cl(msg, this.processingContext)
+        }
+
     }
   }
 

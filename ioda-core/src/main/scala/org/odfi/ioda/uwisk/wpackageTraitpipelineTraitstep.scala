@@ -4,5 +4,4 @@ class wpackageTraitpipelineTraitstep extends wpackageTraitpipelineTraitstepTrait
 
   def isJavaPipeline = this.id.startsWith("java/")
   def getJavaClass = this.id.stripPrefix("java/")
-
 }

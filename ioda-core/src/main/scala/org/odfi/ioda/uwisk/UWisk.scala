@@ -32,6 +32,7 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
   // Context
   //--------------
 
+
   // Utils
   //-----------
   def splitParams(str: String) = str match {
@@ -47,9 +48,9 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
             case value =>
               (value(0).toString, value(1).toString)
           }
-
       }.toMap
   }
+
 
   def splitNamespaceToPackageAndActionQuery(q: String) = {
     """([^#]+#\w+)\/@([^{}]+)(?:\{([\w=_\-\.,]+)\})?""".r.findFirstMatchIn(q) match {
@@ -99,8 +100,6 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
 
   // Packages
   //-------------
-
-
   def listPackages = this.wiskImpl.listPackages
 
   /**

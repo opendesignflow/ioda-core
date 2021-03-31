@@ -25,10 +25,15 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
     this.lineIgnorePrefix = Some(prefix)
   }
 
-  def clearReceivedLineInBuffer: String = {
+  def clearReceivedLineInBuffer  = {
 
     try {
-      this.receiveLine()
+      withOpenedAndNotBusy {
+        if (this.phyGetInputStream.available()>0) {
+          this.receiveLine()
+        }
+      }
+
     } catch {
       case e: Throwable =>
         ""
@@ -50,11 +55,9 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
   }*/
 
   def sendLine(command: String): Unit = {
-    this.synchronized {
+    withOpenedAndNotBusy {
       try {
-        open
-        //comPort.getOutputStream.flush()
-        //clearReceivedLineInBuffer
+
         var writer = new PrintWriter(new OutputStreamWriter(this.phyGetOutputStream))
         writer.println(s"${command}")
         writer.flush()
@@ -70,7 +73,7 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
   }
 
   def sendLineReceiveLine(command: String, localPrefix: String = ""): String = {
-    this.synchronized {
+    withOpenedAndNotBusy {
       try {
         sendLine(command)
         this.receiveLine(localPrefix).trim
@@ -85,7 +88,7 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
   }
 
   def send1ZeroByte = {
-    this.synchronized {
+    withOpenedAndNotBusy {
       try {
         this.phyGetOutputStream.write(0)
         this.phyGetOutputStream.flush
@@ -99,10 +102,24 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
     }
   }
 
-  def receiveLine(localPrefix: String = "", forceReceive: Boolean = false) = {
-    this.synchronized {
+  def send1LineReturn = {
+    withOpenedAndNotBusy {
       try {
-        open
+        this.phyGetOutputStream.write('\n')
+        this.phyGetOutputStream.flush
+      } catch {
+        // Board has been removed!
+        //case e: SerialException if (isExceptionRemoved(e)) =>
+        //   ""
+
+        case e: Throwable => throw e
+      }
+    }
+  }
+
+  def receiveLine(localPrefix: String = "", forceReceive: Boolean = false) = {
+    withOpenedAndNotBusy {
+      try {
         var ignorePrefix = localPrefix.trim match {
           case any if (forceReceive) => None
           case "" => this.lineIgnorePrefix
@@ -117,17 +134,22 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
         while (!eofLoop) {
 
           line = br.readLine() match {
-            case null => ""
+            case null =>
+              println("Got null line")
+
+              ""
             case line =>
 
               ignorePrefix match {
 
                 // Ignore line if starting with prefix
                 case Some(prefix) if (line != null && line.startsWith(prefix)) =>
+                  println("Ignoring Line: "+line)
                   logInfo("Ignoring Line: "+line)
                 // br.reset
                 case _ =>
                   // Finished
+                  println("Got Line: "+println("Got null line"))
                   eofLoop = true
               }
 
@@ -135,32 +157,7 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
           }
 
         }
-        /* while (!eofLoop) {
 
-          var readCount = this.phyGetInputStream.read(buf)
-          println("Read: " + readCount)
-          if (readCount > 0) {
-            line = line + new String(buf.slice(0, readCount - 1))
-
-            println("Now line: " + line)
-            ignorePrefix match {
-
-              // Ignore line if starting with prefix
-              case Some(prefix) if (line.startsWith(prefix)) =>
-              // br.reset
-              case _ =>
-             //   eofLoop = true
-            }
-
-            // Detect EOF Line
-            if (line.last=='\n') {
-              println("EOF Line")
-              eofLoop = true
-              line=line.trim
-            }
-          }
-
-        }*/
 
         line
 
