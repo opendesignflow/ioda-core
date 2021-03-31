@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.odfi.ioda.ui.sim.SingleValueGeneratorAController">
+   <children>
+      <HBox>
+         <children>
+            <Label text="Sensor Bits:" HBox.hgrow="ALWAYS" />
+            <Spinner fx:id="sensorBits" editable="true" />
+         </children>
+      </HBox>
+      <CheckBox fx:id="randomize" mnemonicParsing="false" text="Randomize" />
+      <HBox alignment="BASELINE_CENTER">
+         <children>
+            <Label text="Max:" />
+            <TextField fx:id="maxValue" promptText="Max." />
+         </children>
+      </HBox>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Slider fx:id="sensorValueSlider" minHeight="150.0" orientation="VERTICAL" showTickMarks="true" snapToTicks="true" />
+            <Spinner fx:id="sensorValue" editable="true" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
+            <Pane fx:id="colorPane" minWidth="50.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+         </children>
+      </GridPane>
+      <HBox alignment="BASELINE_CENTER">
+         <children>
+            <Label text="Min:" />
+            <TextField fx:id="minValue" promptText="Min." />
+         </children>
+      </HBox>
+   </children>
+</VBox>

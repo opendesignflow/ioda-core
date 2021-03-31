@@ -36,7 +36,18 @@ class PipedWritersToPipedReader {
       }
     }
   }
-  val streamExecutor = Executors.newSingleThreadExecutor()
+  val streamExecutorTHFactory2 = new ThreadFactory {
+
+
+
+    override def newThread(r: Runnable): Thread =  {
+      val nth = new Thread
+      nth.setDaemon(true)
+      nth
+    }
+  }
+  val streamExecutor = Executors.newCachedThreadPool(streamExecutorTHFactory2)
+
 
   def runOnPipeThread(cl : => Unit) = {
     this.streamExecutor.invokeAll(List(new Callable[Unit] {

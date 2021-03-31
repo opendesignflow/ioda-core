@@ -36,12 +36,12 @@ plugins {
 }
 
 javafx {
-    version = "16-ea+5"
-    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics' , 'javafx.media','javafx.web']
+    version = "17-ea+3"
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics' , 'javafx.media','javafx.web','javafx.swing']
 }
 
 def scala_major = "2.13"
-def scala_version = "$scala_major.4"
+def scala_version = gradle.ext.has("scala_version") ?gradle.ext.scala_version :  "$scala_major.5"
 dependencies {
 
 //    compile project(":fwapp")
@@ -49,6 +49,8 @@ dependencies {
 
     api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
     api 'org.controlsfx:controlsfx:11.0.3'
+
+    api 'net.mahdilamb:colormap:0.9.45'
 
     // https://mvnrepository.com/artifact/org.graalvm.js/js
     api group: 'org.graalvm.js', name: 'js', version: '20.3.0'

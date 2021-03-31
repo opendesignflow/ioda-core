@@ -174,7 +174,7 @@ trait JavaFXUtilsTrait {
 
     }
 
-    def onJFXMouseEvent(h: ObjectProperty[EventHandler[MouseEvent]])(cl: (MouseEvent => Unit)) = {
+    def onJFXMouseEvent(h: ObjectProperty[EventHandler[ _ >: MouseEvent]])(cl: (MouseEvent => Unit)) = {
 
         h.setValue(new EventHandler[MouseEvent] {
             def handle(event: MouseEvent) = {
@@ -184,7 +184,7 @@ trait JavaFXUtilsTrait {
 
     }
 
-    def onJFXMouseClicked(n: Control)(cl: (MouseEvent => Unit)) = {
+    def onJFXMouseClicked(n: Node)(cl: (MouseEvent => Unit)) = {
         n.setOnMouseClicked(new EventHandler[MouseEvent] {
             def handle(event: MouseEvent) = {
                 cl(event)

@@ -69,6 +69,7 @@ object TerminalViewPlus {
     terminalView.getTerminalConfig.setCopyOnSelect(true)
     terminalView.getTerminalConfig.setEnableClipboardNotice(true)
 
+
     terminalView
   }
 

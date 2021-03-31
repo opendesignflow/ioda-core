@@ -77,7 +77,7 @@ object JFXRun {
 
   def onJavaFX[T](cl: => T, block: Boolean = false): Option[T] = {
 
-    println(s"Running JFX: " + Platform.isFxApplicationThread)
+   // println(s"Running JFX: " + Platform.isFxApplicationThread)
     Platform.isFxApplicationThread match {
       case true =>
 
