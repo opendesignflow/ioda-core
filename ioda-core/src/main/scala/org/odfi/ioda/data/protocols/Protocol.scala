@@ -21,7 +21,10 @@ import org.apache.logging.log4j.core.config.Configurator
 
 trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[CommonConfig] {
 
-  val ttag = classTag[DataMessage]
+  //val ttag = classTag[DataMessage]
+  // Message Type
+  //-----------------
+  def messageType = classOf[DataMessage]
 
   var verbose = false
 

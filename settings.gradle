@@ -14,6 +14,8 @@ pluginManagement {
     }
 }
 
+
+
 gradle.ext.version = "1.1.1-SNAPSHOT"
 gradle.ext.branch = System.getenv("BRANCH_NAME")
 if (gradle.ext.branch!=null && gradle.ext.branch=="release") {
@@ -22,9 +24,7 @@ if (gradle.ext.branch!=null && gradle.ext.branch=="release") {
 
 rootProject.name  = "ioda"
 
-include(":core")
-project(":core").projectDir = new java.io.File("ioda-core")
-
-/*
 include(":ioda-core")
-include(":ioda-ui")*/
+include(":ioda-ui")
+include(":ioda-instruments")
+

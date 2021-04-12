@@ -1,0 +1,29 @@
+-library visa
+-Isrc/main/native/
+-Isrc/main/jnaerator/
+-I/usr/include/x86_64-linux-gnu/
+-I/usr/include/linux
+-I/usr/include/x86_64-linux-gnu/linux
+-I/usr/include/x86_64-linux-gnu/c++/5
+-I/usr/include/x86_64-linux-gnu/c++/4.7
+-I/usr/include/x86_64-linux-gnu/c++/4.9
+-I/usr/include/x86_64-linux-gnu/c++/4.8/
+-I/usr/include/c++/4.7/x86_64-linux-gnu
+-I/usr/include/c++/4.4.4/x86_64-redhat-linux
+-I/usr/lib/gcc/x86_64-redhat-linux/4.4.4/include/
+-I/usr/include/x86_64-redhat-linux
+-I/usr/src/linux-headers-3.2.0-4-common/arch/x86/include/
+-I/usr/src/$(uname -r)/arch/x86/include/
+
+
+
+src/main/jnaerator/fixes.h
+src/main/jnaerator/external/visa.h
+src/main/jnaerator/external/visatype.h
+src/main/jnaerator/external/vpptype.h
+
+-runtime BridJ
+#-parseChunks
+-v
+-package org.odfi.ioda.instruments.nivisa
+

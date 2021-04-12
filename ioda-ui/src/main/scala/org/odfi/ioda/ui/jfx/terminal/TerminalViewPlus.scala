@@ -1,5 +1,5 @@
 package org.odfi.ioda.ui.jfx.terminal
-
+/*
 import com.kodedu.terminalfx.TerminalView
 import javafx.scene.paint.Color
 import org.odfi.indesign.core.module.jfx.JavaFXUtilsTrait
@@ -74,3 +74,4 @@ object TerminalViewPlus {
   }
 
 }
+*/

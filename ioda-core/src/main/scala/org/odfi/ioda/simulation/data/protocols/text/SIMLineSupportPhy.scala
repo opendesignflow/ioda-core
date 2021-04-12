@@ -3,7 +3,6 @@ package org.odfi.ioda.simulation.data.protocols.text
 import org.odfi.ioda.simulation.data.phy.SIMPhysicalInterface
 import org.odfi.ioda.data.phy.LineSupportPhy
 import java.io.ByteArrayOutputStream
-import org.codehaus.plexus.util.StringInputStream
 import java.io.DataInputStream
 import java.io.ByteArrayInputStream
 

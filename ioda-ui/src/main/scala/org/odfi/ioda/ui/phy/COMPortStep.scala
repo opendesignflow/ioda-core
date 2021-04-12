@@ -3,8 +3,8 @@ package org.odfi.ioda.ui.phy
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.scene.control.{Button, ComboBox}
 import javafx.scene.layout.HBox
-import org.odfi.ioda.data.phy.comport.{COMPort, COMPortHarvester}
 import org.odfi.ioda.data.phy.state.{PhyClosedMessage, PhyOpenedMessage}
+import org.odfi.ioda.instruments.serial.{COMPort, COMPortHarvester}
 import org.odfi.ioda.ui.jfx.JavaFXUtilsTrait
 import org.odfi.ioda.uwisk.pipeline.{WPipeline, WPipelineWithId}
 import org.odfi.tea.thread.ThreadLanguage

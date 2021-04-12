@@ -1,18 +1,12 @@
 package org.odfi.ioda.data.phy
 
 import org.odfi.indesign.core.harvest.Harvester
-import org.odfi.ioda.data.phy.comport.COMPortHarvester
 import org.odfi.ioda.IODA
 import org.odfi.ioda.env.EnvironmentHarvester
 import org.odfi.ioda.env.Environment
 
 object PhysicalInterfaceHarvester extends Harvester {
-  
-  
-  this --> COMPortHarvester
- 
-  
-  
+
 
   def findPhysicalInterfaces = PhysicalInterfaceHarvester.findResourcesOfType[PhysicalInterface]
   

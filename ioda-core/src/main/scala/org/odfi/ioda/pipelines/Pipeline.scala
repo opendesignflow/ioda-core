@@ -8,11 +8,8 @@ import com.idyria.osi.ooxoo.core.buffers.datatypes.XSDStringBuffer
 import com.idyria.osi.ooxoo.core.buffers.structural.xattribute
 import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 
-@xelement(name = "pipeline", ns = "http:///www.opendesignflow.org/ioda/pipelines/1.0")
 trait Pipeline extends Protocol with CommonConfig {
 
-  
-  @xattribute(name="environment")
   var _environment : XSDStringBuffer = null
   
   def environment = _environment match {

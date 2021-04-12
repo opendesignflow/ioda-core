@@ -1,42 +1,39 @@
 
-buildscript {
-    repositories {
-        mavenCentral()
-        mavenLocal()
-        maven {
-            name = 'Sonatype Nexus Snapshots'
-            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
-        }
-        maven {
-            url "https://repo.triplequote.com/libs-release/"
-        }
-        maven {
-            name = 'ODFI Releases'
-            url = 'https://www.opendesignflow.org/maven/repository/internal/'
-        }
-        maven {
-            name = 'ODFI Snapshots'
-            url = 'https://www.opendesignflow.org/maven/repository/snapshots/'
-        }
-        jcenter()
-    }
-    dependencies {
-
-    }
-}
-
 
 plugins {
-    id "scala"
-    id "maven-publish"
+    // OOXOO
+    id "org.odfi.ooxoo" version "3.4.4"
+
+    // Publish
+    id 'maven-publish'
     id "java-library"
+
+    // Scala
+    id 'scala'
+
+    // JFX
     id 'org.openjfx.javafxplugin' version '0.0.9'
 
-
+}
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+    withJavadocJar()
+    withSourcesJar()
 }
 
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+// Dependencies
+//----------------------
+
 javafx {
-    version = "17-ea+3"
+    version = "17-ea+6"
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics' , 'javafx.media','javafx.web','javafx.swing']
 }
 
@@ -46,8 +43,9 @@ dependencies {
 
 //    compile project(":fwapp")
     api project(":ioda-core")
+    api project(":ioda-instruments")
 
-    api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
+    //api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
     api 'org.controlsfx:controlsfx:11.0.3'
 
     api 'net.mahdilamb:colormap:0.9.45'
@@ -81,5 +79,4 @@ repositories {
         url "https://repo.triplequote.com/libs-release/"
     }
     google()
-    jcenter()
 }
