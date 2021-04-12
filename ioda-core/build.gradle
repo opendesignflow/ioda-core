@@ -172,6 +172,7 @@ publishing {
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
             // Credentials
+            //-------------
             def mavenOdfiPropertiesFile = new File(System.getProperty("user.home") + File.separator + ".gradle/odfi-maven.properties").getCanonicalFile()
 
             if (mavenOdfiPropertiesFile.exists()) {
@@ -181,6 +182,11 @@ publishing {
                 credentials {
                     username keystoreProperties["user"]
                     password keystoreProperties["password"]
+                }
+            } else {
+                credentials {
+                    username System.getenv("PUBLISH_USERNAME")
+                    password System.getenv("PUBLISH_PASSWORD")
                 }
             }
         }

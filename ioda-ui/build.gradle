@@ -15,6 +15,10 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.9'
 
 }
+
+group = 'org.odfi.ioda'
+version = gradle.ext.has("version") ? gradle.ext.version : "dev"
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(11))
@@ -57,6 +61,68 @@ dependencies {
     api("org.scala-lang:scala-library:$scala_version")
    // api("org.scala-lang:scala3-library_3.0.0-M2:3.0.0-M2")
 
+}
+
+publishing {
+
+    publications {
+
+        publishToMavenLocal(MavenPublication) {
+
+            artifactId "ioda-ui"
+            from components.java
+
+            pom {
+                name = 'IODA UI'
+                description = 'Visualizing Helpers for IODA'
+
+                //properties = [ ]
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'richnou'
+                        name = 'Richnou'
+                        email = 'leys.richard@gmail.com'
+                    }
+                }
+
+            }
+        }
+
+    }
+    repositories {
+        maven {
+
+            // change URLs to point to your repos, e.g. http://my.org/repo
+            def releasesRepoUrl = "https://www.opendesignflow.org/maven/repository/internal/"
+            def snapshotsRepoUrl = "https://www.opendesignflow.org/maven/repository/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            // Credentials
+            //-------------
+            def mavenOdfiPropertiesFile = new File(System.getProperty("user.home") + File.separator + ".gradle/odfi-maven.properties").getCanonicalFile()
+
+            if (mavenOdfiPropertiesFile.exists()) {
+                def keystoreProperties = new Properties()
+                keystoreProperties.load(new FileInputStream(mavenOdfiPropertiesFile))
+
+                credentials {
+                    username keystoreProperties["user"]
+                    password keystoreProperties["password"]
+                }
+            } else {
+                credentials {
+                    username System.getenv("PUBLISH_USERNAME")
+                    password System.getenv("PUBLISH_PASSWORD")
+                }
+            }
+        }
+    }
 }
 
 repositories {
