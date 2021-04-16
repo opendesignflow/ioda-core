@@ -186,7 +186,7 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
   def runPipeline(spipeline: wpackageTraitpipeline, msg: DataMessage, pipelineContext: ProcessingContext, trace: utrace = new utrace()) = {
 
     logger.info(s"Starting Pipeline ${spipeline.getAbsoluteName}")
-
+    logger.debug(s"DD Starting Pipeline ${spipeline.getAbsoluteName}")
     // Current Pipelines for recusrive stack
     var pipelinesStack = scala.collection.mutable.Stack[(wpackageTraitpipeline, Option[wpackageTraitpipelineTraitstep])]()
     pipelinesStack.addOne((spipeline, None))

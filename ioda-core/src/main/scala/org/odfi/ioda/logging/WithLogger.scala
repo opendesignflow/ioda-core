@@ -20,8 +20,11 @@ trait WithLogger {
     case Some(l) => l
     case None =>
       try {
+        LogManager.getLogger(getClass)
+        /*LogManager.getLogger(getClass.getName).atLevel)
         _logger = Some(LogManager.getLogger(getClass.getName))
-        _logger.get
+        _logger.get*/
+       // LogManager.getContext(true).getLogger(getClass.getName)
         /*println("Creatting logger")
         // Init Context
         //-------------------

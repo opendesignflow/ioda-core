@@ -1,21 +1,20 @@
 package org.odfi.ioda.data.protocols
 
-import org.apache.logging.log4j.Logger
+import org.apache.logging.log4j.{Level, LogManager, Logger}
 import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilderFactory
 import org.apache.logging.log4j.core.config.Configurator
 import org.apache.logging.log4j.core.appender.ConsoleAppender
-import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.core.LoggerContext
 import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilder
 import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration
 
 class ProcessingContext extends MetadataContainer {
 
-  var verbose = true
+  /*var verbose = true
   var verboseLevel = Level.INFO
 
   var loggerContext: Option[LoggerContext] = None
-  var builder: ConfigurationBuilder[BuiltConfiguration] = _
+  var builder: ConfigurationBuilder[BuiltConfiguration] = _*/
   var logger: Option[Logger] = None
 
 
@@ -24,10 +23,11 @@ class ProcessingContext extends MetadataContainer {
 
   def enterProtocol(p: Protocol) = {
 
+    this.logger = Some(LogManager.getLogger(p.getClass))
 
     // Init Context
     //-------------------
-    if (loggerContext.isEmpty) {
+    /*if (loggerContext.isEmpty) {
       sys.props.put("log4j.skipJansi", "false")
       sys.props.put("log4j.debug", "false")
 
@@ -49,14 +49,14 @@ class ProcessingContext extends MetadataContainer {
       // builder.newLogger(p.getLoggerId).build()
 
       loggerContext = Some(Configurator.initialize(builder.build()))
-    }
+    }*/
 
     // Create Logger if needed
     //--------------------
     // println(s"LoggerCtx for ${p.getLoggerId}: " + loggerContext)
     //loggerContext.get.updateLoggers()
 
-    val protocolLogger = loggerContext.get.hasLogger(p.getLoggerId) match {
+    /*val protocolLogger = loggerContext.get.hasLogger(p.getLoggerId) match {
       case true =>
         loggerContext.get.getLogger(p.getLoggerId)
       case false =>
@@ -66,7 +66,7 @@ class ProcessingContext extends MetadataContainer {
                                   .add(builder.newAppenderRef("console"))
         loggerContext.get.setConfiguration(builder.build())
         loggerContext.get.getLogger(p.getLoggerId)
-    }
+    }*/
 
     /* loggerContext.get.getLogger(p.getId) match {
        case null =>
@@ -77,7 +77,7 @@ class ProcessingContext extends MetadataContainer {
          other
      }*/
 
-    this.logger = Some(protocolLogger)
+    //this.logger = Some(protocolLogger)
 
 
     // this.loggerImpl = Some(logctx.getLogger("ioda.core.protocol:" + getId))
