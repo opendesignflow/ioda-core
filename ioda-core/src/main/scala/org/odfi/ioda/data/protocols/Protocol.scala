@@ -47,7 +47,13 @@ trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[Commo
 
   this.acceptDown[DataMessage] {
     pm =>
-      !pm.drop
+      pm.drop match {
+        case true => false
+        case false if (pm.hasErrors) =>
+          pm.logWarn(s"Rejecting Message because a previous error exist (${pm.errors.head.getLocalizedMessage})")
+          false
+        case false => true
+      }
   }
 
   /**
@@ -186,6 +192,7 @@ trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[Commo
         case d: DT =>
           //println(s"On Quick Sub protocol")
           cl(d)
+        case other =>
       }
 
     }
