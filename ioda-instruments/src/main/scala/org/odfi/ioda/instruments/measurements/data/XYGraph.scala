@@ -304,6 +304,23 @@ class XYGraph extends XYGraphTrait with SwingUtilsTrait with SearchPredef {
 
     }
 
+    def fillRandomGaussianWithStart(count: Integer, start:Double, max: Double) = {
+
+
+        val r = new java.util.Random
+        val res = (0 until count).map {
+            i =>
+                start + (r.nextGaussian() * max) % max
+            //Random.nextGaussian()
+
+        }.toArray
+
+        setYValues(res)
+
+        this
+
+    }
+
     // Main Points API
     //---------------------
 
@@ -881,6 +898,7 @@ class XYGraph extends XYGraphTrait with SwingUtilsTrait with SearchPredef {
     }
 
     def toJreeChartXYDataSet = {
+        assert(name!=null,"""XYGraph name should be set (graph.name="...")  """)
         var xydataset = new DefaultXYDataset()
         xydataset.addSeries(name, toJFreeChartSeriesValues)
 
