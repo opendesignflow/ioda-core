@@ -399,7 +399,7 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
   def addMetadataFromStep(context: MetadataContainer, pipeline: wpackageTraitpipeline, step: wpackageTraitpipelineTraitstep) = {
     step.metadatasAsScala.foreach {
       case m if (m.value != null) =>
-        context.addMetadata(m.id, pipeline.wpackage.resolveValue(m.value))
+        context.addMetadata(m.id, pipeline.wpackage.resolveValue(context,m.value))
       case other =>
         context.addMetadata(other.id, true)
 

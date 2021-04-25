@@ -2,6 +2,7 @@ package org.odfi.ioda.uwisk
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import org.odfi.ioda.data.protocols.MetadataContainer
 
 import java.io.{File, FileInputStream, InputStream, InputStreamReader}
 import java.net.URL
@@ -117,7 +118,7 @@ class wpackage extends wpackageTrait {
   //------------------
   val valRegexp = """\$\{?([\w:_\-\.]+)\}?""".r
 
-  def resolveValue(str: String): String = {
+  def resolveValue(context: MetadataContainer,str: String): String = {
 
     var resStr = str
 
@@ -144,7 +145,7 @@ class wpackage extends wpackageTrait {
             case other =>
               sys.error(s"Variable definition incorrect: ${matchRes.matched}")
           }
-          val resolved = findEnvironmentValue(envName, varName)
+          val resolved = findEnvironmentValue(context,envName, varName)
 
           // Replace
           resStr = resStr.replace(matchRes.matched, resolved)
@@ -156,9 +157,16 @@ class wpackage extends wpackageTrait {
 
   }
 
-  def findEnvironmentValue(env: String, varName: String): String = {
+  /**
+   * Search ${ENV:VARNAME} formats in environemnt or fallback to metadata
+   * @param env
+   * @param varName
+   * @return
+   */
+  def findEnvironmentValue(context: MetadataContainer,env: String, varName: String): String = {
 
     this.environmentsAsScala.find(_.id == env) match {
+        // Found env
       case Some(renv) =>
         renv.metadatasAsScala.find(_.id == varName) match {
           case Some(rvar) if (rvar.value != null && rvar.value.contains(varName)) =>
@@ -166,11 +174,19 @@ class wpackage extends wpackageTrait {
           case Some(rvar) if (rvar.value == null) =>
             sys.error(s"Variable value $env:$varName not defined")
           case Some(rvar) =>
-            resolveValue(rvar.value)
+            resolveValue(context,rvar.value)
           case None =>
             sys.error(s"Value $env:$varName not found in environment $env")
         }
-      case None => sys.error(s"Could not find environment $env for $env:$varName")
+        // NoEenv -> Metadata
+      case None =>
+        context.getMetadata(varName) match {
+          case Some(metadata) =>
+            metadata.asString
+          case None =>
+            sys.error(s"Could not find environment $env for $env:$varName, or metadata for $varName")
+        }
+
     }
 
   }
