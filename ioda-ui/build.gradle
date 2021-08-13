@@ -12,7 +12,7 @@ plugins {
     id 'scala'
 
     // JFX
-    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 
 }
 
@@ -37,7 +37,7 @@ javadoc {
 //----------------------
 
 javafx {
-    version = "17-ea+6"
+    version = "18-ea+1"
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics' , 'javafx.media','javafx.web','javafx.swing']
 }
 

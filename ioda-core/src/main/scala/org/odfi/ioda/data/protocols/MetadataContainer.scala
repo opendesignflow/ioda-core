@@ -102,4 +102,25 @@ trait MetadataContainer {
         None
     }
   }
+  def getMetadataLong(name: String): Option[Long] = {
+    this.metadata.get(name) match {
+      case Some(m) if (m.isLong) =>
+        Some(m.asLong)
+      case Some(m) if (m.isString) =>
+        Some(m.toLong)
+      case other =>
+        None
+    }
+  }
+
+  def getMetadataInteger(name: String): Option[Integer] = {
+    this.metadata.get(name) match {
+      case Some(m) if (m.isInt) =>
+        Some(m.asInt)
+      case Some(m) if (m.isString) =>
+        Some(m.toInt)
+      case other =>
+        None
+    }
+  }
 }

@@ -27,6 +27,13 @@ class ParamValue(var value: Any) {
   def isInt = this.value.isInstanceOf[Int]
   def asInt = this.value.asInstanceOf[Int]
 
+  def toLong = {
+    this.value = this.value.toString.toLong
+    this.asLong
+  }
+  def isLong = this.value.isInstanceOf[Long]
+  def asLong = this.value.asInstanceOf[Long]
+
   def toDouble = {
     this.value = this.value.toString.toDouble
     this.asDouble
