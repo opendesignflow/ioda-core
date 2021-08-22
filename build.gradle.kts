@@ -10,3 +10,29 @@ var branch by extra {System.getenv("BRANCH_NAME")}
 if (System.getenv().getOrDefault("BRANCH_NAME","dev")=="release") {
     lib_version = lib_version.replace("-SNAPSHOT","")
 }
+
+allprojects {
+
+    repositories {
+
+        mavenLocal()
+        mavenCentral()
+        maven {
+            name = "Sonatype Nexus Snapshots"
+            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+        }
+        maven {
+            name = "ODFI Releases"
+            url = uri("https://www.opendesignflow.org/maven/repository/internal/")
+        }
+        maven {
+            name = "ODFI Snapshots"
+            url = uri("https://www.opendesignflow.org/maven/repository/snapshots/")
+        }
+        maven {
+            url = uri("https://repo.triplequote.com/libs-release/")
+        }
+        google()
+    }
+
+}

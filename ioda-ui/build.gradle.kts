@@ -1,15 +1,6 @@
 
 
-buildscript {
-    dependencies {
-        classpath("org.odfi.indesign:indesign-core:1.3.3")
-        // classpath ("org.odfi.indesign:indesign-core:$indesign_version")
-        classpath("org.odfi.ubroker:ubroker-core:1.1.0")
-    }
-}
-
 plugins {
-
     id("java-library")
 
     // OOXOO
@@ -19,8 +10,9 @@ plugins {
     id("maven-publish")
 
 
-    // Scala
     id("scala")
+    // JFX
+    id("org.openjfx.javafxplugin") version ("0.0.10")
 
 }
 
@@ -28,20 +20,7 @@ var lib_version : String by rootProject.extra
 println("V: $lib_version")
 version = lib_version
 group = "org.odfi.ioda"
-//version = gradle.ext.has("version") ? gradle.ext.version : "dev"
 
-// Sources
-//-------------------
-sourceSets {
-    main {
-        scala {
-            // Generated from ooxoo
-            srcDir(File(buildDir, "generated-sources/scala"))
-            //srcDir new java.io.File(getBuildDir(), "generated-sources/scala")
-        }
-    }
-
-}
 
 java {
     toolchain {
@@ -50,76 +29,52 @@ java {
     withJavadocJar()
     withSourcesJar()
 }
-
 tasks.javadoc {
     if (JavaVersion.current().isJava9Compatible) {
         (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
     }
 }
 
-// Dependencies
-//-------------------
 
-var indesign_version = "1.3.3"
+// Dependencies
+//----------------------
+javafx {
+    version = "18-ea+1"
+    modules(
+        "javafx.controls",
+        "javafx.fxml",
+        "javafx.graphics",
+        "javafx.media", "javafx.web", "javafx.swing")
+}
+
 val scala_major : String by rootProject.extra
 val scala_minor : String by rootProject.extra
 val scala_version : String by extra("$scala_major.$scala_minor")
 
-//var indesign_version = "1.3.3"
-var ubroker_version = "1.1.0"
-
-//var scala_version = gradle.ext.has("scala_version") ? gradle.ext.scala_version : "$scala_major.6"
 dependencies {
 
+//    compile project(":fwapp")
+    api (project(":ioda-core"))
+    api (project(":ioda-instruments"))
 
-    // ODFI
-    //----------
+    //api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
+    api ("org.controlsfx:controlsfx:11.1.0")
 
-    // Dependencies that can be build alongside the project
-    if (findProject(":ubroker-core") != null) {
-        api(project(":ubroker-core"))
+    api ("net.mahdilamb:colormap:0.9.45")
 
-    } else {
-        api("org.odfi.ubroker:ubroker-core:$ubroker_version")
-    }
-    if (findProject(":indesign-core") != null) {
-        api(project(":indesign-core"))
-    } else {
-        api("org.odfi.indesign:indesign-core:$indesign_version")
-
-        //api "org.odfi.ioda.instruments:instruments-core:$instruments_version"
-    }
-
-
-    // External dependencies
-    //-------------
-    api("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.12.0")
-    api("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.0")
-    api("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.0")
-
-    api("org.jmdns:jmdns:3.5.6")
-
-    api("org.apache.logging.log4j:log4j-api:2.14.1")
-    api("org.apache.logging.log4j:log4j-core:2.14.1")
-    api("org.apache.logging.log4j:log4j-api-scala_$scala_major:12.0")
-    api("org.fusesource.jansi:jansi:2.1.1")
-
-    api("org.apache.httpcomponents:fluent-hc:4.5.13")
-
-    // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    // api group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+    // https://mvnrepository.com/artifact/org.graalvm.js/js
+    //api group: 'org.graalvm.js', name: 'js', version: '20.3.0'
+    //api group: 'org.graalvm.js', name: 'js-scriptengine', version: '20.3.0'
 
     api("org.scala-lang:scala-library:$scala_version")
+   // api("org.scala-lang:scala3-library_3.0.0-M2:3.0.0-M2")
+
 }
-
-
-
-
 publishing {
     publications {
 
         create<MavenPublication>("maven") {
-            artifactId = "ioda-core"
+            artifactId = "ioda-ui"
             from(components["java"])
 
             pom {
@@ -160,3 +115,4 @@ publishing {
         }
     }
 }
+

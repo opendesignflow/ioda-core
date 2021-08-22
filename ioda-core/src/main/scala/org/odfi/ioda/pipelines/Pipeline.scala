@@ -10,6 +10,7 @@ import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 
 trait Pipeline extends Protocol with CommonConfig {
 
+  @xattribute(name="environment")
   var _environment : XSDStringBuffer = null
   
   def environment = _environment match {
