@@ -25,8 +25,8 @@ trait OSCIDevice extends MeasurementDevice {
    * Sets up acquisition for waveform to a certain channel with number of points
    * The implementation should setup the device in a generic way, functional for most usage
    */
-  def setupAcquire(channel: Int, points: Int)
-  def selectChannel(channel: Int)
+  def setupAcquire(channel: Int, points: Int) : Unit
+  def selectChannel(channel: Int) : Unit
 
   def enableSingle: Unit
   def enableRun: Unit

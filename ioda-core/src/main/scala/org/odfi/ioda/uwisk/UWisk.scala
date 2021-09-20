@@ -1,7 +1,7 @@
 package org.odfi.ioda.uwisk
 
 import org.odfi.indesign.core.harvest.HarvestedResource
-import org.odfi.ioda.data.protocols.{MetadataContainer, ProcessingContext}
+import org.odfi.ioda.data.protocols.{PMetadataContainer, ProcessingContext}
 import org.odfi.ioda.data.types.DataMessage
 import org.odfi.ioda.logging.WithLogger
 import org.odfi.ioda.uwisk.local.{LWisk, LWiskTrait}
@@ -213,7 +213,6 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
 
         // trace
         val tPipeline = trace.addPipelineTrace(pipeline)
-        tPipeline
 
         // Run Pipelines
         (pipeline, step) match {
@@ -396,10 +395,10 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
   //------------
   def instanciatePipeline(cl: Class[_]) = this.wiskImpl.instantiator.newInstance(cl)
 
-  def addMetadataFromStep(context: MetadataContainer, pipeline: wpackageTraitpipeline, step: wpackageTraitpipelineTraitstep) = {
+  def addMetadataFromStep(context: PMetadataContainer, pipeline: wpackageTraitpipeline, step: wpackageTraitpipelineTraitstep) = {
     step.metadatasAsScala.foreach {
       case m if (m.value != null) =>
-        context.addMetadata(m.id, pipeline.wpackage.resolveValue(context,m.value))
+        context.addMetadata(m.id, pipeline.wpackage.resolveValue(context,m.toString))
       case other =>
         context.addMetadata(other.id, true)
 

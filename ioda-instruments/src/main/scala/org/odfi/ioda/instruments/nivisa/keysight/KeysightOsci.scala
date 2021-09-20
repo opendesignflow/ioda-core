@@ -86,11 +86,11 @@ class KeysightOsci(baseDevice: VISADevice) extends VISAOsciDevice(baseDevice) wi
     xwaveform.data =  data.getData.map { b => b.toInt }
     xwaveform.points = preamble.points
     xwaveform.xIncrement= preamble.dblXIncrement
-    xwaveform.xReference = preamble.lngXReference
+    xwaveform.xReference = preamble.lngXReference.toDouble
     xwaveform.xOrigin= preamble.dblXOrigin
     xwaveform.yIncrement=preamble.sngYIncrement
     xwaveform.yOrigin= preamble.sngYOrigin
-    xwaveform.yReference= preamble.lngYReference
+    xwaveform.yReference= preamble.lngYReference.toDouble
 
     //println(s"Done waveform")
 

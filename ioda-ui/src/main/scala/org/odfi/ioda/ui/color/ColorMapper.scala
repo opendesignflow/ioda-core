@@ -58,7 +58,7 @@ class ColorMapper {
    // var opacity = if (valueRatioToMax>minOpacity) valueRatioToMax else minOpacity
 
     // Map
-    val c = new Color(color.red(),color.green(),color.blue(),color.alpha())
+    val c = new Color(color.getRed,color.getGreen,color.getBlue,color.getAlpha)
 
     c
 

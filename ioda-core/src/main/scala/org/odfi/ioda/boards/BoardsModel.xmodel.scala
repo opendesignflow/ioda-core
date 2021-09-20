@@ -10,9 +10,8 @@ import org.odfi.indesign.core.harvest.HarvestedResource
 
 
 @producers(Array(
-  new producer(value = classOf[ScalaProducer]),
-  new producer(value = classOf[MDProducer])))
-object BoardsModel extends ModelBuilder {
+  new producer(value = classOf[ScalaProducer])))
+class BoardsModel extends ModelBuilder {
   
   "Board" is {
     isTrait

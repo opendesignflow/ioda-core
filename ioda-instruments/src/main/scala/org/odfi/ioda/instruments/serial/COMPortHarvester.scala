@@ -12,7 +12,7 @@ object COMPortHarvester extends Harvester {
   override def doHarvest = {
     
     println(s"harvesting com ports")
-    SerialPort.getCommPorts().foreach {
+    SerialPort.getCommPorts.foreach {
       port => 
         gather(new COMPort(port))
     }

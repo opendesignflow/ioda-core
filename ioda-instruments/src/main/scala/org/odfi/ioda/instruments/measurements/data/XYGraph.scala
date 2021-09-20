@@ -1,51 +1,27 @@
 package org.odfi.ioda.instruments.measurements.data
 
-import javafx.scene.Group
-import javafx.scene.Scene
-import javafx.scene.chart.LineChart
-import javafx.scene.chart.XYChart
-import javafx.stage.Stage
-
-import javax.swing.{BorderFactory, BoxLayout, JButton, JCheckBox, JFileChooser, JFrame, JLabel, JPanel, SwingUtilities, WindowConstants}
-import org.jfree.chart.ChartPanel
-import org.jfree.data.category.DefaultCategoryDataset
-import org.jfree.chart.plot.PlotOrientation
-import org.jfree.ui.RefineryUtilities
-import org.jfree.chart.ChartFactory
-import org.jfree.data.xy.DefaultXYDataset
-import org.jfree.data.xy.XYSeries
-import org.jfree.data.xy.DefaultTableXYDataset
-
-import javax.swing.filechooser.FileFilter
-import org.jfree.graphics2d.svg.SVGGraphics2D
-import org.jfree.graphics2d.svg.SVGUtils
-import com.idyria.osi.ooxoo.core.buffers.datatypes.DoubleBinaryBuffer
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
-import org.odfi.tea.io.TeaIOUtils
-import org.odfi.indesign.core.module.jfx.JFXRun
-import com.idyria.osi.ooxoo.core.buffers.structural.DataUnit
-import com.idyria.osi.ooxoo.core.buffers.structural.XList
-
-import scala.collection.mutable.ArraySeq
-import org.odfi.indesign.core.module.swing.SwingUtilsTrait
-import biz.source_code.dsp.filter.IirFilterDesignFisher
-import biz.source_code.dsp.filter.FilterPassType
-import biz.source_code.dsp.filter.FilterCharacteristicsType
-import biz.source_code.dsp.filter.IirFilter
-import org.odfi.tea.logging.TLogSource
-
-import scala.util.Random
-import org.odfi.tea.SearchPredef
-import org.jfree.chart.plot.XYPlot
-import org.jfree.chart.renderer.xy.XYSplineRenderer
+import biz.source_code.dsp.filter.{FilterCharacteristicsType, FilterPassType, IirFilter, IirFilterDesignFisher}
+import com.idyria.osi.ooxoo.core.buffers.structural.{DataUnit, xelement}
+import org.jfree.chart.{ChartFactory, ChartPanel}
 import org.jfree.chart.axis.NumberAxis
+import org.jfree.chart.plot.{PlotOrientation, XYPlot}
+import org.jfree.chart.renderer.xy.XYSplineRenderer
+import org.jfree.data.xy.DefaultXYDataset
+import org.jfree.graphics2d.svg.{SVGGraphics2D, SVGUtils}
+import org.jfree.ui.RefineryUtilities
+import org.odfi.indesign.core.module.swing.SwingUtilsTrait
 import org.odfi.ioda.instruments.data.XWaveform
+import org.odfi.tea.SearchPredef
+import org.odfi.tea.io.TeaIOUtils
+import org.odfi.tea.logging.TLogSource
 
 import java.awt.event.{ActionEvent, ActionListener}
 import java.awt.{BorderLayout, GridBagConstraints, GridBagLayout, Rectangle}
 import java.io.File
 import java.text.{DecimalFormat, DecimalFormatSymbols}
 import java.util.Locale
+import javax.swing.filechooser.FileFilter
+import javax.swing._
 import scala.collection.parallel.CollectionConverters._
 
 @xelement(name = "XYGraph")
@@ -171,7 +147,7 @@ class XYGraph extends XYGraphTrait with SwingUtilsTrait with SearchPredef {
      */
     def pointsYToRawValues = {
         this.rawValues = this.getYValues
-        this.points.clear
+        this.points.clear()
     }
 
     /**
@@ -183,7 +159,7 @@ class XYGraph extends XYGraphTrait with SwingUtilsTrait with SearchPredef {
             multigraph.saveDoublesToArchive(name + "-values.bin", getYValues)
             externalFile = name + "-values.bin"
             externalType = "raw-values"
-            this.points.clear
+            this.points.clear()
         case None =>
             sys.error("Cannot Save Points to an external Value, this feature is supported only if the Graph has been added to a MultiGraph instance")
 
@@ -811,7 +787,7 @@ class XYGraph extends XYGraphTrait with SwingUtilsTrait with SearchPredef {
                 println("Found X increment on waveform")
                 1 / multiGraph.get.waveformParameters.xIncrement.data
 
-            case null => samplingRate
+            case null => samplingRate.toDouble
 
             case wf =>
                 1 / wf.xIncrement
@@ -1174,7 +1150,7 @@ class XYGraph extends XYGraphTrait with SwingUtilsTrait with SearchPredef {
             val point = this.points.toList
             this.rawPoints = null
             this.rawValues = null
-            this.points.clear
+            this.points.clear()
             try {
                 super.streamOut(du)
             } finally {

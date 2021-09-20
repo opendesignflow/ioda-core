@@ -9,9 +9,8 @@ import org.odfi.ubroker.core.message.XMLDataMessage
 import org.odfi.ubroker.core.broker.tree.single.SingleMessage
 
 @producers(Array(
-  new producer(value = classOf[ScalaProducer]),
-  new producer(value = classOf[MDProducer])))
-object DataTypesModel extends ModelBuilder {
+  new producer(value = classOf[ScalaProducer])))
+class DataTypesModel extends ModelBuilder {
 
   val dm = "DataMessage" is {
     withTrait[XMLDataMessage]

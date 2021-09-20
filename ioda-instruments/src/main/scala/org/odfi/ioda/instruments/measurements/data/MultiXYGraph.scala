@@ -104,7 +104,7 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
 
     getGraphPopulated(g) match {
       case Some(g) => g.mapAndPlotBoth(f)
-      case None    => sys.error(s"Cannot map and plot index $g")
+      case None => sys.error(s"Cannot map and plot index $g")
     }
   }
 
@@ -187,13 +187,13 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
 
     // Get collection
     val collection = parallel match {
-      case true  => xYGraphs
+      case true => xYGraphs
       case false => (xYGraphs).par.toParArray
     }
     //populateAllXYGraph
     val total = this.xYGraphs.size
     var current = 0
-    collection.foreach {
+    collection.iterator.foreach {
       case g =>
 
         mg.updateArchiveWith(g.name + ".csv", g.toCSVString(sep = ";", precision = precision).getBytes)
@@ -210,39 +210,38 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
 
   /**
    * Save all Graphs to a single YLine File, each file has one column
-   * 
+   *
    * If graphs have different sizes, use the smaller one
    */
-  def saveAllToYLinesFile(outputFile: File, precision: Int = 6,sep:String= ",",locale: Locale = Locale.getDefault) = {
-    
+  def saveAllToYLinesFile(outputFile: File, precision: Int = 6, sep: String = ",", locale: Locale = Locale.getDefault) = {
+
     val graphsAsYStrings = xYGraphs.map {
-      graph => 
-        graph.toYTextLinesList(precision,locale)
+      graph =>
+        graph.toYTextLinesList(precision, locale)
     }
-    
+
     // Map each point index to a list of the values for all the graphs at this index
     // (zip operation)
     val pointsCount = graphsAsYStrings.map(_.size).min
-    
+
     val zippedLines = (0 until pointsCount).map {
-      i => 
+      i =>
         // Take values for first line
         graphsAsYStrings.map {
           values => values(i)
         }.toList.mkString(sep)
     }
-    
+
     val textLines = zippedLines.mkString("\n")
-    
+
     // Save to File
-    TeaIOUtils.writeToFile(outputFile,textLines)
+    TeaIOUtils.writeToFile(outputFile, textLines)
     //Locale
     //graphsAsYStrings.zipAll
-    
-    
-    
+
+
   }
-  
+
   /**
    * Save All Graphs each to one YLines file, and all the files in an archive
    */
@@ -259,14 +258,14 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
     // Get collection
     //----------
     val collection = parallel match {
-      case true  => xYGraphs
+      case true => xYGraphs
       case false => xYGraphs.par.toParArray
     }
 
     // Converstion loop with progress
     val total = this.xYGraphs.size
     var current = 0
-    collection.foreach {
+    collection.iterator.foreach {
       case g =>
 
         mg.updateArchiveWith(g.name + ".csv", g.toYTextLinesString(precision).getBytes)
@@ -336,17 +335,17 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
 
         xYGraphs.drop(1).foreach {
           g =>
-           
-        
-            onSwingThreadLater {
-              dataset.addSeries(g.name,g.toJFreeChartSeriesValues)
-            }
-            
-            /*var mappedData = Array[Array[Double]]((0 until g.getYValues.size).map(_.toDouble).toArray, g.getYValues.toArray)
+
 
             onSwingThreadLater {
-              dataset.addSeries(g.name, mappedData)
-            }*/
+              dataset.addSeries(g.name, g.toJFreeChartSeriesValues)
+            }
+
+          /*var mappedData = Array[Array[Double]]((0 until g.getYValues.size).map(_.toDouble).toArray, g.getYValues.toArray)
+
+          onSwingThreadLater {
+            dataset.addSeries(g.name, mappedData)
+          }*/
         }
 
       case None =>
@@ -357,17 +356,17 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
   /**
    * Plot all the graphs as sub plots
    */
-  def plotJFreeChartAllGraphsSubplots(binary:Boolean=false) = {
+  def plotJFreeChartAllGraphsSubplots(binary: Boolean = false) = {
 
     // Map all graphs to XYPlot
     val plots = xYGraphs.sortBy(g => g.name.toString).map {
       g =>
         g.toJreeChartXYPlot match {
-          case p if (binary) => 
-            
+          case p if (binary) =>
+
             p.setRenderer(new XYStepRenderer)
             p
-          case p => p 
+          case p => p
         }
     }
 
@@ -428,6 +427,7 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
         fc.setCurrentDirectory(new File("").getCanonicalFile)
         fc.addChoosableFileFilter(new FileFilter {
           def accept(f: File) = f.getName.endsWith(".svg")
+
           def getDescription = "SVG Filter"
         })
         fc.showSaveDialog(frame) match {
@@ -476,40 +476,40 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
 
   // RFG interface
   //----------------
-/*
-  /**
-   * Import all the values as values of the single fields of the register
-   */
-  def importRegisterFieldsValues(register: Register, values: Array[Long]) = {
+  /*
+    /**
+     * Import all the values as values of the single fields of the register
+     */
+    def importRegisterFieldsValues(register: Register, values: Array[Long]) = {
 
-    // Map values
-    val mappedByField = values.map {
-      value =>
+      // Map values
+      val mappedByField = values.map {
+        value =>
 
-        register.setMemory(value)
-        register.fields.map {
-          f =>
+          register.setMemory(value)
+          register.fields.map {
+            f =>
 
-            (f.name, f.memoryValue)
-        }
+              (f.name, f.memoryValue)
+          }
 
-    }.flatten
+      }.flatten
 
-    val groupedByField = mappedByField.groupBy(_._1).map { case (name, values) => (name, values.map(e => e._2)) }
+      val groupedByField = mappedByField.groupBy(_._1).map { case (name, values) => (name, values.map(e => e._2)) }
 
-    //val groupedByField = mappedByField.toMap
+      //val groupedByField = mappedByField.toMap
 
-    // Create graphs
-    groupedByField.foreach {
-      case (name, values) =>
+      // Create graphs
+      groupedByField.foreach {
+        case (name, values) =>
 
-        val g = this.createXYGraph(name)
-        g.setYValues(values.map(_.toDouble))
+          val g = this.createXYGraph(name)
+          g.setYValues(values.map(_.toDouble))
+
+      }
 
     }
-
-  }
-*/
+  */
   // XY Graph
   //-------------
 
@@ -545,7 +545,7 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
   def getXYGraph(name: String) = {
     this.xYGraphs.find(_.name.toString == name)
   }
-  
+
   def clearAllXYGraphs = {
     this.xYGraphs.clear()
   }
@@ -679,9 +679,6 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
             }
         }
 
-      //-- If none , splitting does not make sense
-      case None =>
-
     }
 
   }
@@ -726,7 +723,7 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
 
   def getTargetArchiveStream = targetArchiveInfo match {
     case Some((file, stream)) => stream
-    case None                 =>
+    case None =>
   }
 
   def openArchive(archiveFile: File) = {

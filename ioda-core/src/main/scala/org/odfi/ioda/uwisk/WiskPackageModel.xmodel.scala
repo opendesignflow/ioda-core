@@ -5,18 +5,28 @@ import com.idyria.osi.ooxoo.model.out.scala.JSONBProducer
 import com.idyria.osi.ooxoo.model.{Element, ModelBuilder, producer, producers}
 
 @producers(Array(
-  new producer(value = classOf[JSONBProducer]),
-  new producer(value = classOf[MDProducer])))
-object WiskPackageModel extends ModelBuilder {
+  new producer(value = classOf[JSONBProducer])))
+class WiskPackageModel extends ModelBuilder {
+
+  val wiskMetadata = "MetadataContainer" is {
+    makeTraitAndUseCustomImplementation
+
+    "metadata" multiple {
+      makeTraitAndUseCustomImplementation
+      attribute("id")
+      attribute("value") ofType ("jsonvalue")
+      attribute("type")
+      attribute("unit")
+      attribute("json") ofType ("json")
+    }
+  }
 
   // Common Pipeline ref
   val idAndMetadata = "MetadataAndId" is {
     isTrait
     attribute("id")
-    "metadata" multiple {
-      attribute("id")
-      attribute("value")
-    }
+    withTrait(wiskMetadata)
+
   }
 
   val pipelineRef = "PipelineRefTrait" is {
@@ -55,6 +65,7 @@ object WiskPackageModel extends ModelBuilder {
       makeTraitAndUseCustomImplementation
 
       attribute("id")
+      attribute("env")
       attribute("ignore") ofType ("boolean") default ("false")
 
       "pre" multiple {

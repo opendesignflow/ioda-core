@@ -1,5 +1,3 @@
-
-
 plugins {
     id("java-library")
 
@@ -11,24 +9,43 @@ plugins {
 
 
     id("scala")
+
     // JFX
     id("org.openjfx.javafxplugin") version ("0.0.10")
 
+    id("org.odfi.anarres.jnaerator") version ("1.0.0")
+
 }
 
-var lib_version : String by rootProject.extra
-println("V: $lib_version")
-version = lib_version
-group = "org.odfi.ioda"
 
 // Sources
 //-------------------
+tasks.jnaerator {
+    libraryName = "visa"
+    packageName = "org.odfi.ioda.instruments.nivisa"
+    runtimeMode = com.ochafik.lang.jnaerator.JNAeratorConfig.Runtime.BridJ
+    headerFiles(
+        "src/main/jnaerator/fixes.h",
+        "src/main/jnaerator/external/visa.h",
+        "src/main/jnaerator/external/visatype.h",
+        "src/main/jnaerator/external/vpptype.h"
+    )
+
+}
+
 sourceSets {
     main {
         scala {
             // Generated from ooxoo
             srcDir(File(buildDir, "generated-sources/scala"))
-            //srcDir new java.io.File(getBuildDir(), "generated-sources/scala")
+            srcDir(File(buildDir, "generated-sources/jnaerator"))
+        }
+    }
+    main {
+        // No sources in java folder so that only scala phase compiles
+        java.srcDirs.clear()
+        java {
+
         }
     }
 
@@ -39,18 +56,23 @@ java {
         languageVersion.set(JavaLanguageVersion.of(11))
     }
     withJavadocJar()
-    withSourcesJar()
+    //withSourcesJar()
 }
+tasks.jar.configure {
+    this.duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
 tasks.javadoc {
     if (JavaVersion.current().isJava9Compatible) {
         (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
     }
 }
-
 // Scala compilation options
 tasks.withType<ScalaCompile>().configureEach {
     scalaCompileOptions.additionalParameters = listOf("-rewrite", "-source", "3.0-migration")
 }
+
+
 
 // Dependencies
 //----------------------
@@ -60,37 +82,51 @@ javafx {
         "javafx.controls",
         "javafx.fxml",
         "javafx.graphics",
-        "javafx.media", "javafx.web", "javafx.swing")
+        "javafx.media", "javafx.web", "javafx.swing"
+    )
 }
 
 val ooxooVersion: String by rootProject.extra
 val indesignVersion: String by rootProject.extra
 val ubrokerVersion: String by rootProject.extra
+val scalaMajorVersion: String by rootProject.extra
 
 dependencies {
 
 //    compile project(":fwapp")
-    api (project(":ioda-core"))
-    api (project(":ioda-instruments"))
+    api(project(":ioda-core"))
+    // Dependencies
+    //-------------------
+    api("org.apache.commons:commons-compress:1.20")
+    api("com.nativelibs4java:bridj:0.7.0")
+    api("org.jfree:jfreechart:1.5.3")
+    api("org.jfree:jfreesvg:3.4")
+    api("org.jfree:jcommon:1.0.24")
 
-    //api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
-    api ("org.controlsfx:controlsfx:11.1.0")
+    api("net.java.dev.jna:jna:4.2.0")
+    api("org.apache.poi:poi:5.0.0")
+    api("org.apache.poi:poi-ooxml:5.0.0")
+    api("org.apache.jackrabbit:jackrabbit-webdav:2.21.5")
 
-    api ("net.mahdilamb:colormap:0.9.511")
 
-    // https://mvnrepository.com/artifact/org.graalvm.js/js
-    //api group: 'org.graalvm.js', name: 'js', version: '20.3.0'
-    //api group: 'org.graalvm.js', name: 'js-scriptengine', version: '20.3.0'
+    //-- Serial
+    api("com.fazecast:jSerialComm:2.6.2")
+    api("org.scream3r:jssc:2.8.0")
+    api("dk.thibaut:jserial:1.0.3")
 
+    api("org.scala-lang.modules:scala-parallel-collections_$scalaMajorVersion:1.0.3")
     //api("org.scala-lang:scala-library:$scala_version")
-   // api("org.scala-lang:scala3-library_3.0.0-M2:3.0.0-M2")
+    testImplementation("org.scala-lang.modules:scala-xml_$scalaMajorVersion:2.0.1")
+    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.9")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.9")
+    testImplementation("com.vladsch.flexmark:flexmark-all:0.35.10")
 
 }
 publishing {
     publications {
 
         create<MavenPublication>("maven") {
-            artifactId = "ioda-ui"
+            artifactId = "ioda-instruments"
             from(components["java"])
 
             pom {
@@ -126,7 +162,7 @@ publishing {
             //-------------
             credentials {
                 username = System.getenv("PUBLISH_USERNAME")
-                password = System.getenv ("PUBLISH_PASSWORD")
+                password = System.getenv("PUBLISH_PASSWORD")
             }
         }
     }

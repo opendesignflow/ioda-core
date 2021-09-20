@@ -50,7 +50,7 @@ trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[Commo
       pm.drop match {
         case true => false
         case false if (pm.hasErrors) =>
-          pm.logWarn(s"Rejecting Message because a previous error exist (${pm.errors.head.getLocalizedMessage})")
+          pm.logWarn[Protocol](s"Rejecting Message because a previous error exist (${pm.errors.head.getLocalizedMessage})")
           false
         case false => true
       }

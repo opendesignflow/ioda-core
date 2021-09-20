@@ -21,11 +21,11 @@ class EnvironmentTraitDataPath extends EnvironmentTraitDataPathTrait {
     this.protocolStack.protocols.reverse.zipWithIndex.foreach {
       case (p, i) =>
         p.implementationInstance match {
-          case Some(i) if (i == 0 && !i.isInstanceOf[Level0Protocol[_]]) =>
+          case Some(p) if (i == 0 && !p.isInstanceOf[Level0Protocol[_]]) =>
             addImmediateError("Lowest Level of Protocol must be Level0 Protocol")
-          case Some(i) if (i == 0 && i.asInstanceOf[Level0Protocol[_]].connectedPhy.isEmpty) =>
+          case Some(p) if (i == 0 && p.asInstanceOf[Level0Protocol[_]].connectedPhy.isEmpty) =>
             addImmediateError("Level 0 Protocol has no connected Phy")
-          case Some(i) =>
+          case Some(p) =>
           case None =>
             addImmediateError("Protocol is missing implementation instance")
         }
@@ -62,29 +62,7 @@ class EnvironmentTraitDataPath extends EnvironmentTraitDataPathTrait {
     this.protocolStack.protocols.reverse.headOption match {
       case Some(lp) =>
         lp.getImplementation match {
-          case zero: Level0Protocol[PhysicalInterface] =>
-
-          /*val dataSource = dataSourceReference.getReferencedBuffer.get
-            
-            dataSource.selectPhy match {
-              case Some(phy) =>
-                zero.connect(phy)
-              case None => 
-                logWarn("No PHY found to connect to : "+zero.getId)
-            }*/
-
-          /*parentReference.get.boards.find {
-              b =>
-                b.boardId.toString == this.boardRef.boardId.toString
-            } match {
-              case Some(b) if (b.getPhy.isDefined) =>
-
-                zero.connect(b.getPhy.get)
-
-              case other =>
-
-            }*/
-
+          case zero: Level0Protocol[_] =>
           case other                                   =>
         }
       case None =>
@@ -111,7 +89,7 @@ class EnvironmentTraitDataPath extends EnvironmentTraitDataPathTrait {
        //println("Pushing on: "+p.getImplementation)
        p.getImplementation.down(dm)
       case other =>
-        logError("Pushing to DataPath with no protocols containing a defined implementation, make sure the global setup has no errors, call repairErrors")
+        logError[EnvironmentTraitDataPath]("Pushing to DataPath with no protocols containing a defined implementation, make sure the global setup has no errors, call repairErrors")
         println("Can't Push")
     }
 

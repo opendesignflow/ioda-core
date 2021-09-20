@@ -4,14 +4,14 @@ import com.idyria.osi.ooxoo.core.buffers.structural.xelement
 
 import scala.language.implicitConversions
 import org.odfi.ioda.data.protocols.params.ParamValue
-import org.odfi.ioda.data.protocols.{MetadataContainer, ProcessingContext}
+import org.odfi.ioda.data.protocols.{PMetadataContainer, ProcessingContext}
 
 import scala.reflect.ClassTag
 import org.odfi.tea.listeners.ListeningSupport
 import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 
 @xelement(name = "DataMessage")
-trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedResourceDefaultId with MetadataContainer {
+trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedResourceDefaultId with PMetadataContainer {
 
 
   this.metadata = Map()

@@ -15,7 +15,7 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
   }
   var lineIgnorePrefix: Option[String] = None
 
-  def pollValue
+  def pollValue  : Unit
 
   /**
    * If LineIgnore is set, ignore all lines starting with prefix
@@ -144,12 +144,12 @@ trait LineSupportPhy extends TextSupportPhy with ManagedOpenClosePhy {
 
                 // Ignore line if starting with prefix
                 case Some(prefix) if (line != null && line.startsWith(prefix)) =>
-                  println("Ignoring Line: "+line)
-                  logInfo("Ignoring Line: "+line)
+                  //println("Ignoring Line: "+line)
+                  logInfo[LineSupportPhy]("Ignoring Line: "+line)
                 // br.reset
                 case _ =>
                   // Finished
-                  println("Got Line: "+println("Got null line"))
+                  logInfo[LineSupportPhy]("Got Line: "+println("Got null line"))
                   eofLoop = true
               }
 

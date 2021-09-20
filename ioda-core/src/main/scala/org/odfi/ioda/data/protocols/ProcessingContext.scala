@@ -8,22 +8,27 @@ import org.apache.logging.log4j.core.LoggerContext
 import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilder
 import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration
 
-class ProcessingContext extends MetadataContainer {
+class ProcessingContext extends PMetadataContainer {
 
   /*var verbose = true
   var verboseLevel = Level.INFO
 
   var loggerContext: Option[LoggerContext] = None
   var builder: ConfigurationBuilder[BuiltConfiguration] = _*/
-  var logger: Option[Logger] = None
-
+  var _logger: Option[Logger] = None
+  def logger = _logger match {
+    case Some(l) => Some(l)
+    case None =>
+      this._logger = Some(LogManager.getLogger(getClass))
+      this._logger
+  }
 
   // Logging
   //--------------
 
   def enterProtocol(p: Protocol) = {
 
-    this.logger = Some(LogManager.getLogger(p.getClass))
+    this._logger = Some(LogManager.getLogger(p.getClass))
 
     // Init Context
     //-------------------

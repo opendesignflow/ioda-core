@@ -17,9 +17,8 @@ import com.idyria.osi.ooxoo.lib.json.JSonUtilTrait
 import org.odfi.tea.errors.{ErrorRepairSupport, ErrorSupport}
 
 @producers(Array(
-  new producer(value = classOf[ScalaProducer]),
-  new producer(value = classOf[MDProducer])))
-object IODAEnvironmentModel extends IdAndRefIdModelBuilder {
+  new producer(value = classOf[ScalaProducer])))
+class IODAEnvironmentModel extends IdAndRefIdModelBuilder {
 
   //this.defaultElementBufferClass = classOf[ElementBuffer]
 

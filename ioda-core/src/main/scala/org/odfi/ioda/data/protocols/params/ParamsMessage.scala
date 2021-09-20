@@ -79,8 +79,8 @@ object ParamValue {
   }
 
   def apply(pv:ParamValue) = {
-    val v = new ParamValue()
-    v.value = pv.value
+    val v =  new ParamValue(pv)
+    //v.value = pv.value
     v
   }
 

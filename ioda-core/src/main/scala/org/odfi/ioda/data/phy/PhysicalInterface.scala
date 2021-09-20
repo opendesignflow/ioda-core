@@ -70,7 +70,7 @@ trait ManagedOpenClosePhy extends PhysicalInterface {
         } catch {
           case err: Throwable =>
             this.openError = Some(err)
-            logWarn("Error while opening PHY : " + getId)
+            logWarn[ManagedOpenClosePhy]("Error while opening PHY : " + getId)
             false
         }
 
@@ -83,12 +83,12 @@ trait ManagedOpenClosePhy extends PhysicalInterface {
   /**
    * This will try to open if not opened yet, the open function will catch errors and keep them here
    */
-  override def isOpenedNoErrors = openError match {
+  override def isOpenedNoErrors : Boolean = openError match {
     case Some(err) =>
       false
-    case None if (isOpened == false) =>
-      open
-    case None if (isOpened == true) =>
+    case None if (!isOpened) =>
+      this.open
+    case None  =>
       true
 
   }

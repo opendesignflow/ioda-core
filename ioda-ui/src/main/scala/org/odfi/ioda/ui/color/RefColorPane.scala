@@ -93,7 +93,7 @@ class RefColorPane extends HBox with JavaFXUtilsTrait {
 
 
        // gc.clearRect(x, y, width, height)
-        val jfxColor = new Color(color.red(), color.green(), color.blue(), color.alpha())
+        val jfxColor = new Color(color.getRed, color.getGreen, color.getBlue, color.getAlpha)
         gc.setFill(jfxColor)
         /*if (i%2==0) {
           gc.setFill(Color.RED)

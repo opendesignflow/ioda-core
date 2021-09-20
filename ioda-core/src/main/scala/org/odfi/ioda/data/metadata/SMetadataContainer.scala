@@ -17,6 +17,8 @@ trait SMetadataContainer {
   @SerializedName("metadatas")
   var metadata = new util.ArrayList[SMetadataValue]()
 
+
+
   /*
   def addMetadata(name: String, value: SMetadataValue): SMetadataValue = {
 

@@ -2,7 +2,7 @@ package org.odfi.ioda.uwisk
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import org.odfi.ioda.data.protocols.MetadataContainer
+import org.odfi.ioda.data.protocols.PMetadataContainer
 
 import java.io.{File, FileInputStream, InputStream, InputStreamReader}
 import java.net.URL
@@ -12,7 +12,7 @@ class wpackage extends wpackageTrait {
 
   var uwisk: UWisk = _
 
-  var sourceYAML : Option[URL] = None
+  var sourceYAML: Option[URL] = None
 
   def duplicate = {
 
@@ -24,7 +24,7 @@ class wpackage extends wpackageTrait {
         sys.error("Cannot duplicate package without source URL")
     }
 
-   p
+    p
   }
 
   def check = {
@@ -54,7 +54,7 @@ class wpackage extends wpackageTrait {
 
   }
 
-  def gatherPipelinesForTrigger(fullName:String,action: String) = {
+  def gatherPipelinesForTrigger(fullName: String, action: String) = {
 
     this.pipelinesAsScala.filter {
       p =>
@@ -118,7 +118,7 @@ class wpackage extends wpackageTrait {
   //------------------
   val valRegexp = """\$\{?([\w:_\-\.]+)\}?""".r
 
-  def resolveValue(context: MetadataContainer,str: String): String = {
+  def resolveValue(context: PMetadataContainer, str: String): String = {
 
     var resStr = str
 
@@ -131,21 +131,21 @@ class wpackage extends wpackageTrait {
           //----------
           val (envName, varName) = matchRes.group(1).split(":") match {
 
-              // If Environment is provided; use it
+            // If Environment is provided; use it
             case envName if (envName.size == 2) =>
               (envName(0), envName(1))
 
-              // If only variable name, lookup environment
-            case other if (other.size==1) =>
+            // If only variable name, lookup environment
+            case other if (other.size == 1) =>
 
               //  Use currently defined environment
-              (uwisk.selectedEnvironment,other(0))
+              (uwisk.selectedEnvironment, other(0))
 
 
             case other =>
               sys.error(s"Variable definition incorrect: ${matchRes.matched}")
           }
-          val resolved = findEnvironmentValue(context,envName, varName)
+          val resolved = findEnvironmentValue(context, envName, varName)
 
           // Replace
           resStr = resStr.replace(matchRes.matched, resolved)
@@ -159,26 +159,27 @@ class wpackage extends wpackageTrait {
 
   /**
    * Search ${ENV:VARNAME} formats in environemnt or fallback to metadata
+   *
    * @param env
    * @param varName
    * @return
    */
-  def findEnvironmentValue(context: MetadataContainer,env: String, varName: String): String = {
+  def findEnvironmentValue(context: PMetadataContainer, env: String, varName: String): String = {
 
     this.environmentsAsScala.find(_.id == env) match {
-        // Found env
+      // Found env
       case Some(renv) =>
         renv.metadatasAsScala.find(_.id == varName) match {
-          case Some(rvar) if (rvar.value != null && rvar.value.contains(varName)) =>
+          case Some(rvar) if (rvar.value != null && rvar.value.toString.contains(varName)) =>
             sys.error("Variable value $env:$varName would recurse")
           case Some(rvar) if (rvar.value == null) =>
             sys.error(s"Variable value $env:$varName not defined")
           case Some(rvar) =>
-            resolveValue(context,rvar.value)
+            resolveValue(context, rvar.value.toString)
           case None =>
             sys.error(s"Value $env:$varName not found in environment $env")
         }
-        // NoEenv -> Metadata
+      // NoEenv -> Metadata
       case None =>
         context.getMetadata(varName) match {
           case Some(metadata) =>
@@ -206,7 +207,7 @@ object wpackage {
   def apply(u: URL): wpackage = {
     val is = u.openStream()
     try {
-      val p =  apply(is)
+      val p = apply(is)
       p.sourceYAML = Some(u)
       p
     } catch {

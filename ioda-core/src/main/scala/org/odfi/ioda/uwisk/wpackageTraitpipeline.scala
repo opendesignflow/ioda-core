@@ -1,5 +1,6 @@
 package org.odfi.ioda.uwisk
 import org.odfi.ioda.pipelines.DefaultPipeline
+import org.odfi.ioda.uwisk.pipeline.PipelinesRegistry
 class wpackageTraitpipeline extends wpackageTraitpipelineTrait {
 
   var wpackage : wpackage = _
@@ -47,10 +48,23 @@ class wpackageTraitpipeline extends wpackageTraitpipelineTrait {
 
   }
 
-  def createWPipelineForStep(step:wpackageTraitpipelineTraitstep) = step.isJavaPipeline match {
-    case false => None
-    case true =>
-      Some(wpackage.uwisk.wiskImpl.instantiator.newInstanceFromString(step.getJavaClass))
+  def createWPipelineForStep(step:wpackageTraitpipelineTraitstep) ={
+
+    val res = step match {
+
+      case jPipeline if (jPipeline.isJavaPipeline) =>  Some(wpackage.uwisk.wiskImpl.instantiator.newInstanceFromString(step.getJavaClass))
+      case rPipeline if (rPipeline.isPipelineRegistryReference) => Some(PipelinesRegistry.loadPipeline(rPipeline.id))
+      case other => None
+
+    }
+
+    res match {
+      case Some(metadatapipeline : MetadataContainer) =>
+        metadatapipeline.metadatas = step.metadatas
+      case other => other
+    }
+
+    res
   }
 
   def resolvePipeline(id:String) = {

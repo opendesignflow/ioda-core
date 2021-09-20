@@ -1,17 +1,31 @@
-
 // Common Properties
 //----------------
 
-var scala_major by extra("2.13")
-var scala_minor by extra("6")
-var lib_version by extra("1.1.2-SNAPSHOT")
-var branch by extra {System.getenv("BRANCH_NAME")}
-
-if (System.getenv().getOrDefault("BRANCH_NAME","dev").contains("release")) {
-    lib_version = lib_version.replace("-SNAPSHOT","")
+var scalaMajorVersion by extra("3")
+var scalaMinorVersion by extra("0.2")
+val scalaVersion by extra {
+    "$scalaMajorVersion.$scalaMinorVersion"
 }
 
+var ooxooVersion by extra("4.0.1")
+var indesignVersion by extra("2.0.0")
+var ubrokerVersion by extra("2.0.0")
+
+
+// Project version
+var lib_version by extra("2.0.0-SNAPSHOT")
+var branch by extra { System.getenv("BRANCH_NAME") }
+
+if (System.getenv().getOrDefault("BRANCH_NAME", "dev").contains("release")) {
+    lib_version = lib_version.replace("-SNAPSHOT", "")
+}
+println("V: $lib_version")
+
 allprojects {
+
+    // Name + version
+    group = "org.odfi.ioda"
+    version = lib_version
 
     repositories {
 

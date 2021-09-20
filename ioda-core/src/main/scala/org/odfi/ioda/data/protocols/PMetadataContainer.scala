@@ -5,12 +5,14 @@ import org.odfi.ioda.data.protocols.params.ParamValue
 import javax.json.{JsonNumber, JsonString, JsonValue}
 import scala.reflect.ClassTag
 
-trait MetadataContainer {
+trait PMetadataContainer {
   // Metadata
   //--------------
   var metadata = Map[String, ParamValue]()
 
-  def importJsonValue(name: String, value: JsonValue) : Unit = {
+  def metadataAsScala = metadata.toList
+
+  def importJsonValue(name: String, value: JsonValue): Unit = {
 
     value.getValueType match {
       case JsonValue.ValueType.NULL =>
@@ -22,7 +24,7 @@ trait MetadataContainer {
         (0 until arr.size()).foreach {
           i =>
             val obj = arr.get(i)
-            importJsonValue(name+"_"+i,obj)
+            importJsonValue(name + "_" + i, obj)
         }
 
       case JsonValue.ValueType.NUMBER =>
