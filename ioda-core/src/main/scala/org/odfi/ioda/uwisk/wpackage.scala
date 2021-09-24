@@ -1,11 +1,15 @@
 package org.odfi.ioda.uwisk
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.core.JsonParser
+import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.databind.{DeserializationContext, ObjectMapper}
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.idyria.osi.ooxoo.lib.json.model.JSONHelper
 import org.odfi.ioda.data.protocols.PMetadataContainer
 
 import java.io.{File, FileInputStream, InputStream, InputStreamReader}
 import java.net.URL
+import javax.json.{JsonString, JsonValue}
 
 
 class wpackage extends wpackageTrait {
@@ -170,12 +174,12 @@ class wpackage extends wpackageTrait {
       // Found env
       case Some(renv) =>
         renv.metadatasAsScala.find(_.id == varName) match {
-          case Some(rvar) if (rvar.value != null && rvar.value.toString.contains(varName)) =>
+          case Some(rvar) if (rvar.value != null && rvar.toString.contains(varName)) =>
             sys.error("Variable value $env:$varName would recurse")
           case Some(rvar) if (rvar.value == null) =>
             sys.error(s"Variable value $env:$varName not defined")
           case Some(rvar) =>
-            resolveValue(context, rvar.value.toString)
+            resolveValue(context, rvar.toString)
           case None =>
             sys.error(s"Value $env:$varName not found in environment $env")
         }
@@ -222,9 +226,24 @@ object wpackage {
   }
 
   def apply(is: InputStream): wpackage = {
+
+    JSONHelper.fromYAML[wpackage](new InputStreamReader(is))
+    /*// Create Mapper
     val mapper = new ObjectMapper(new YAMLFactory)
     mapper.findAndRegisterModules()
 
-    mapper.readValue(new InputStreamReader(is), classOf[wpackage])
+    val m = new SimpleModule()
+    m.addDeserializer(classOf[JsonValue], new JsonValueDesierualiser)
+    mapper.registerModule(m)
+
+    mapper.readValue(new InputStreamReader(is), classOf[wpackage])*/
+  }
+
+  class JsonValueDesierualiser extends com.fasterxml.jackson.databind.JsonDeserializer[JsonValue] {
+    override def deserialize(p: JsonParser, ctxt: DeserializationContext): JsonValue = {
+      println("IN DESER")
+      javax.json.Json.createValue("OK")
+      // new JsonString("OK")
+    }
   }
 }
