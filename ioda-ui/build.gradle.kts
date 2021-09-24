@@ -4,7 +4,7 @@ plugins {
     id("java-library")
 
     // OOXOO
-    id("org.odfi.ooxoo") version "4.0.2"
+    id("org.odfi.ooxoo") version "4.0.5-SNAPSHOT"
 
     // Publish
     id("maven-publish")
@@ -15,11 +15,6 @@ plugins {
     id("org.openjfx.javafxplugin") version ("0.0.10")
 
 }
-/*
-var lib_version : String by rootProject.extra
-println("V: $lib_version")
-version = lib_version
-group = "org.odfi.ioda"*/
 
 // Sources
 //-------------------

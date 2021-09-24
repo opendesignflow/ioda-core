@@ -2,7 +2,7 @@ plugins {
     id("java-library")
 
     // OOXOO
-    id("org.odfi.ooxoo") version "4.0.2"
+    id("org.odfi.ooxoo") version "4.0.5-SNAPSHOT"
 
     // Publish
     id("maven-publish")
