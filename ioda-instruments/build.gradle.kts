@@ -1,4 +1,5 @@
 plugins {
+    id("scala")
     id("java-library")
 
     // OOXOO
@@ -6,9 +7,6 @@ plugins {
 
     // Publish
     id("maven-publish")
-
-
-    id("scala")
 
     // JFX
     id("org.openjfx.javafxplugin") version ("0.0.10")
@@ -73,7 +71,6 @@ tasks.withType<ScalaCompile>().configureEach {
 }
 
 
-
 // Dependencies
 //----------------------
 javafx {
@@ -97,20 +94,20 @@ dependencies {
     api(project(":ioda-core"))
     // Dependencies
     //-------------------
-    api("org.apache.commons:commons-compress:1.20")
+    api("org.apache.commons:commons-compress:1.21")
     api("com.nativelibs4java:bridj:0.7.0")
     api("org.jfree:jfreechart:1.5.3")
-    api("org.jfree:jfreesvg:3.4")
+    api("org.jfree:jfreesvg:3.4.1")
     api("org.jfree:jcommon:1.0.24")
 
     api("net.java.dev.jna:jna:4.2.0")
     api("org.apache.poi:poi:5.0.0")
     api("org.apache.poi:poi-ooxml:5.0.0")
-    api("org.apache.jackrabbit:jackrabbit-webdav:2.21.5")
+    api("org.apache.jackrabbit:jackrabbit-webdav:2.21.7")
 
 
     //-- Serial
-    api("com.fazecast:jSerialComm:2.6.2")
+    api("com.fazecast:jSerialComm:2.7.0")
     api("org.scream3r:jssc:2.8.0")
     api("dk.thibaut:jserial:1.0.3")
 
