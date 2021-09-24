@@ -2,7 +2,7 @@ plugins {
     id("java-library")
 
     // OOXOO
-    id("org.odfi.ooxoo") version "4.0.1"
+    id("org.odfi.ooxoo") version "4.0.2"
 
     // Publish
     id("maven-publish")
@@ -69,7 +69,7 @@ tasks.javadoc {
 }
 // Scala compilation options
 tasks.withType<ScalaCompile>().configureEach {
-    scalaCompileOptions.additionalParameters = listOf("-rewrite", "-source", "3.0-migration")
+    //scalaCompileOptions.additionalParameters = listOf("-rewrite", "-source", "3.0-migration")
 }
 
 
@@ -117,9 +117,9 @@ dependencies {
     api("org.scala-lang.modules:scala-parallel-collections_$scalaMajorVersion:1.0.3")
     //api("org.scala-lang:scala-library:$scala_version")
     testImplementation("org.scala-lang.modules:scala-xml_$scalaMajorVersion:2.0.1")
-    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.9")
-    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.9")
-    testImplementation("com.vladsch.flexmark:flexmark-all:0.35.10")
+    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.10")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.10")
+    //testImplementation("com.vladsch.flexmark:flexmark-all:0.35.10")
 
 }
 publishing {
