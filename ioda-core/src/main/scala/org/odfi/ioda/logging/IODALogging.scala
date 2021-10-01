@@ -10,6 +10,50 @@ import java.net.URI
 
 object IODALogging {
 
+
+  def setClassLoggerLevel(cl: Class[_], level: Level): Unit = {
+    Configurator.setAllLevels(
+      LogManager
+        .getLogger(
+          cl
+        )
+        .getName,
+      level
+    )
+  }
+
+  def setClassLoggerLevel(cl: Class[_], level: String): Unit = {
+    setClassLoggerLevel(cl, Level.getLevel(level))
+  }
+
+  def setClassLoggerInfo(cl: Class[_]): Unit = {
+    setClassLoggerLevel(cl, Level.INFO)
+  }
+
+  def setClassLoggerError(cl: Class[_]): Unit = {
+    setClassLoggerLevel(cl, Level.ERROR)
+  }
+
+  def setClassLoggerWarn(cl: Class[_]): Unit = {
+    setClassLoggerLevel(cl, Level.WARN)
+  }
+
+  def setClassLoggerTrace(cl: Class[_]): Unit = {
+    setClassLoggerLevel(cl, Level.TRACE)
+  }
+
+  def setClassLoggerDebug(cl: Class[_]): Unit = {
+    setClassLoggerLevel(cl, Level.DEBUG)
+  }
+
+  def setClassLoggerAll(cl: Class[_]): Unit = {
+    setClassLoggerLevel(cl, Level.ALL)
+  }
+
+  def setClassLoggerOff(cl: Class[_]): Unit = {
+    setClassLoggerLevel(cl, Level.OFF)
+  }
+
   def configureDefaultColoredLogging = {
 
     sys.props.put("log4j.skipJansi", "false")
@@ -40,19 +84,19 @@ object IODALogging {
     val config = builder.build()
     //val topContext = Configurator.initialize(builder.build())
     Configurator.reconfigure(config)
-   /* LogManager.setFactory(new LoggerContextFactory {
-      override def getContext(fqcn: String, loader: ClassLoader, externalContext: Any, currentContext: Boolean): LoggerContext = {
-        topContext
-      }
+    /* LogManager.setFactory(new LoggerContextFactory {
+       override def getContext(fqcn: String, loader: ClassLoader, externalContext: Any, currentContext: Boolean): LoggerContext = {
+         topContext
+       }
 
-      override def getContext(fqcn: String, loader: ClassLoader, externalContext: Any, currentContext: Boolean, configLocation: URI, name: String): LoggerContext =  {
-        topContext
-      }
+       override def getContext(fqcn: String, loader: ClassLoader, externalContext: Any, currentContext: Boolean, configLocation: URI, name: String): LoggerContext =  {
+         topContext
+       }
 
-      override def removeContext(context: LoggerContext): Unit = {
+       override def removeContext(context: LoggerContext): Unit = {
 
-      }
-    })*/
+       }
+     })*/
 
   }
 
