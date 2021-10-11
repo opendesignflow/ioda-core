@@ -1,8 +1,8 @@
 buildscript {
     dependencies {
-        classpath("org.odfi.indesign:indesign-core:2.0.1-SNAPSHOT")
+        classpath("org.odfi.indesign:indesign-core:2.0.1")
         // classpath ("org.odfi.indesign:indesign-core:$indesign_version")
-        classpath("org.odfi.ubroker:ubroker-core:2.0.1-SNAPSHOT")
+        classpath("org.odfi.ubroker:ubroker-core:2.0.1")
     }
 }
 
@@ -12,7 +12,7 @@ plugins {
     id("scala")
 
     // OOXOO
-    id("org.odfi.ooxoo") version "4.0.5-SNAPSHOT"
+    id("org.odfi.ooxoo") version "4.0.5"
 
     // Publish
     id("maven-publish")
@@ -85,6 +85,9 @@ dependencies {
 
     api("org.apache.logging.log4j:log4j-api:2.14.1")
     api("org.apache.logging.log4j:log4j-core:2.14.1")
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala
+    api("org.apache.logging.log4j:log4j-api-scala_$scalaMajorVersion:12.0")
+
     //api("org.apache.logging.log4j:log4j-api-scala_$scalaMajor:12.0")
     api("org.fusesource.jansi:jansi:2.3.4")
 

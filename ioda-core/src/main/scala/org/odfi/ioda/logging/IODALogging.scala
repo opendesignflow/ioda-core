@@ -79,10 +79,12 @@ object IODALogging {
     builder.add(builder.newRootLogger(Level.INFO).add(builder.newAppenderRef("console")).addAttribute("additivity", true))
 
 
+
     // Create new Top Context
     //-----------
     val config = builder.build()
     //val topContext = Configurator.initialize(builder.build())
+    Configurator.initialize(config)
     Configurator.reconfigure(config)
     /* LogManager.setFactory(new LoggerContextFactory {
        override def getContext(fqcn: String, loader: ClassLoader, externalContext: Any, currentContext: Boolean): LoggerContext = {
