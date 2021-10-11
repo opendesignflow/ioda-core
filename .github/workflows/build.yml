@@ -27,7 +27,7 @@ jobs:
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Generate OOXOO
-        run: chmod +x gradlew && ./gradlew generateOOXOO jnaerator --no-daemon
+        run: chmod +x gradlew && ./gradlew ooxooGenerate jnaerator --no-daemon
 
       - name: Build with Gradle
         run: chmod +x gradlew && ./gradlew  build
