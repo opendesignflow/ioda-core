@@ -11,6 +11,10 @@ import java.net.URI
 object IODALogging {
 
 
+  def getClassLogger(cl:Class[_]) = {
+    org.apache.logging.log4j.scala.Logger(cl)
+  }
+
   def setClassLoggerLevel(cl: Class[_], level: Level): Unit = {
     Configurator.setAllLevels(
       LogManager
