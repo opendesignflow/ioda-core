@@ -7,7 +7,7 @@ val scalaVersion by extra {
     "$scalaMajorVersion.$scalaMinorVersion"
 }
 
-var ooxooVersion by extra("4.0.5")
+var ooxooVersion by extra("4.0.6-SNAPSHOT")
 var indesignVersion by extra("2.0.1")
 var ubrokerVersion by extra("2.0.1")
 
