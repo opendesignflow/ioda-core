@@ -44,7 +44,7 @@ trait PMetadataContainer {
 
   def addMetadata(name: String, value: ParamValue): ParamValue = {
 
-    val v = ParamValue(value)
+    val v = ParamValue(value.value)
     metadata = metadata + (name -> v)
 
     v
@@ -122,6 +122,8 @@ trait PMetadataContainer {
     this.metadata.get(name) match {
       case Some(m) if (m.isString) =>
         Some(m.asString)
+      case Some(m) =>
+        Some(m.value.toString)
       case other =>
         None
     }
