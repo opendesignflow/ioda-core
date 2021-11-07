@@ -120,7 +120,7 @@ class wpackage extends wpackageTrait {
 
   // Value resolution
   //------------------
-  val valRegexp = """\$\{?([\w:_\-\.]+)\}?""".r
+  val valRegexp = """\$\{?([\w\/:_\-\.]+)\}?""".r
 
   def resolveValue(context: PMetadataContainer, str: String): String = {
 
@@ -164,35 +164,54 @@ class wpackage extends wpackageTrait {
   /**
    * Search ${ENV:VARNAME} formats in environemnt or fallback to metadata
    *
-   * @param env
+   *
+   *
+   * @param env , special names: env to search system environment, resources to search for resources
    * @param varName
    * @return
    */
   def findEnvironmentValue(context: PMetadataContainer, env: String, varName: String): String = {
 
-    this.environmentsAsScala.find(_.id == env) match {
-      // Found env
-      case Some(renv) =>
-        renv.metadatasAsScala.find(_.id == varName) match {
-          case Some(rvar) if (rvar.value != null && rvar.toString.contains(varName)) =>
-            sys.error("Variable value $env:$varName would recurse")
-          case Some(rvar) if (rvar.value == null) =>
-            sys.error(s"Variable value $env:$varName not defined")
-          case Some(rvar) =>
-            resolveValue(context, rvar.toString)
-          case None =>
-            sys.error(s"Value $env:$varName not found in environment $env")
+    env match {
+      case "env" =>
+        sys.env.get(varName) match {
+          case Some(value) => value
+          case None => sys.error(s"Cannot find value for Environment variable $varName")
         }
-      // NoEenv -> Metadata
-      case None =>
-        context.getMetadata(varName) match {
-          case Some(metadata) =>
-            metadata.asString
+      case "resources" =>
+        uwisk.getWisk.loadResourceAsString(varName) match {
+          case Some(string) => string
           case None =>
-            sys.error(s"Could not find environment $env for $env:$varName, or metadata for $varName")
+            sys.error(s"Cannot load resource with name $varName")
         }
+      case other =>
 
+        this.environmentsAsScala.find(_.id == env) match {
+          // Found env
+          case Some(renv) =>
+            renv.metadatasAsScala.find(_.id == varName) match {
+              case Some(rvar) if (rvar.value != null && rvar.toString.contains(varName)) =>
+                sys.error("Variable value $env:$varName would recurse")
+              case Some(rvar) if (rvar.value == null) =>
+                sys.error(s"Variable value $env:$varName not defined")
+              case Some(rvar) =>
+                resolveValue(context, rvar.toString)
+              case None =>
+                sys.error(s"Value $env:$varName not found in environment $env")
+            }
+          // NoEenv -> Metadata
+          case None =>
+            context.getMetadata(varName) match {
+              case Some(metadata) =>
+                metadata.asString
+              case None =>
+                sys.error(s"Could not find environment $env for $env:$varName, or metadata for $varName")
+            }
+
+        }
     }
+
+
 
   }
 }
