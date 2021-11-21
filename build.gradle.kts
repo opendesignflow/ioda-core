@@ -13,7 +13,7 @@ var ubrokerVersion by extra("2.0.1")
 
 
 // Project version
-var lib_version by extra("2.0.2-SNAPSHOT")
+var lib_version by extra("2.0.3-SNAPSHOT")
 var branch by extra { System.getenv("BRANCH_NAME") }
 
 if (System.getenv().getOrDefault("BRANCH_NAME", "dev").contains("release")) {
