@@ -1,6 +1,7 @@
 package org.odfi.ioda.json
 
 
+import javax.json.JsonValue.ValueType
 import javax.json.{JsonNumber, JsonString, JsonValue}
 
 object JsonExtensions {
@@ -29,11 +30,19 @@ object JsonExtensions {
     }
 
     def isPrimitive = {
-      println("Jsvalue type: "+value.getValueType)
+     // println("Jsvalue type: "+value.getValueType)
       !isNotPrimitive
     }
 
     def isNotPrimitive = value.getValueType == JsonValue.ValueType.ARRAY || value.getValueType == JsonValue.ValueType.OBJECT
+
+    def isBoolean = {
+      isPrimitive && (value.getValueType == ValueType.TRUE || value.getValueType == ValueType.FALSE)
+    }
+
+    def isNumber = {
+      isPrimitive && value.getValueType== ValueType.NUMBER
+    }
 
     def asString = {
       assert(isPrimitive)
@@ -45,6 +54,34 @@ object JsonExtensions {
         case JsonValue.ValueType.NULL => "null"
       }
     }
+
+    def asBoolean = {
+      assert(isBoolean)
+      value.getValueType match {
+        case JsonValue.ValueType.TRUE => true
+        case JsonValue.ValueType.FALSE => false
+        case other => throw new IllegalStateException()
+
+      }
+    }
+
+    def asDouble = {
+      assert(isNumber)
+      value.asInstanceOf[JsonNumber].doubleValue()
+    }
+
+    def asInt = {
+      assert(isNumber)
+      value.asInstanceOf[JsonNumber].intValue()
+    }
+
+    def asLong = {
+      assert(isNumber)
+      value.asInstanceOf[JsonNumber].longValue()
+    }
+
+
+
 
   }
 
