@@ -78,7 +78,7 @@ trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[Commo
         // Processing Context Update
         //-------------------
         selectedMessage.processingContext.enterProtocol(this)
-        selectedMessage.processingContext.logDebug("Entering Protocol Processing")
+        selectedMessage.processingContext.logTrace("Entering Protocol Processing")
 
         // Filtering
         //------------------
@@ -116,7 +116,7 @@ trait Protocol extends MessageIntermediary[DataMessage] with ConfigInModel[Commo
 
           // Accept Message
           case true =>
-            selectedMessage.processingContext.logDebug("Processing Message")
+            selectedMessage.processingContext.logTrace("Processing Message")
 
             super.down(selectedMessage)
           // pass this protocol
