@@ -76,20 +76,20 @@ dependencies {
 
     // External dependencies
     //-------------
-    val jacksonVersion = "2.12.5"
+    val jacksonVersion = "2.13.0"
     api("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
     api("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
     api("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
 
     api("org.jmdns:jmdns:3.5.7")
 
-    api("org.apache.logging.log4j:log4j-api:2.14.1")
-    api("org.apache.logging.log4j:log4j-core:2.14.1")
+    api("org.apache.logging.log4j:log4j-api:2.15.0")
+    api("org.apache.logging.log4j:log4j-core:2.15.0")
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala
     api("org.apache.logging.log4j:log4j-api-scala_$scalaMajorVersion:12.0")
 
     //api("org.apache.logging.log4j:log4j-api-scala_$scalaMajor:12.0")
-    api("org.fusesource.jansi:jansi:2.3.4")
+    api("org.fusesource.jansi:jansi:2.4.0")
 
     api("org.apache.httpcomponents:fluent-hc:4.5.13")
 
