@@ -2,6 +2,8 @@ package org.odfi.ioda.data.protocols.params
 
 import org.odfi.ioda.data.types.DataMessage
 import org.odfi.ubroker.core.broker.tree.single.SingleMessage
+
+import javax.json.JsonObject
 import scala.collection.immutable.TreeMap
 import scala.reflect.ClassTag
 
@@ -63,6 +65,9 @@ class ParamValue(var value: Any) {
 
   def isString = this.value.isInstanceOf[String]
   def asString = this.value.asInstanceOf[String]
+
+  def isJsonObject = this.isOfType[JsonObject]
+  def asJsonObject = this.asType[JsonObject]
   
   def isOfType[T](implicit tag: ClassTag[T]) = {
     tag.runtimeClass.isAssignableFrom(value.getClass())

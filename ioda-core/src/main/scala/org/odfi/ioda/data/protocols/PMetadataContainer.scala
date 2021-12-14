@@ -2,7 +2,7 @@ package org.odfi.ioda.data.protocols
 
 import org.odfi.ioda.data.protocols.params.ParamValue
 
-import javax.json.{JsonNumber, JsonString, JsonValue}
+import javax.json.{JsonNumber, JsonObject, JsonString, JsonValue}
 import scala.reflect.ClassTag
 
 trait PMetadataContainer {
@@ -98,6 +98,13 @@ trait PMetadataContainer {
     pv
   }
 
+  def addMetadataObject(name: String, value: JsonObject): ParamValue = {
+    val pv = ParamValue(value)
+    metadata = metadata + (name -> pv)
+
+    pv
+  }
+
   def getMetadata(name: String): Option[ParamValue] = {
     this.metadata.get(name)
   }
@@ -165,6 +172,15 @@ trait PMetadataContainer {
         Some(m.asInt)
       case Some(m) if (m.isString) =>
         Some(m.toInt)
+      case other =>
+        None
+    }
+  }
+
+  def getMetadataJsonObject(name: String): Option[JsonObject] = {
+    this.metadata.get(name) match {
+      case Some(m) if (m.isJsonObject) =>
+        Some(m.asJsonObject)
       case other =>
         None
     }
