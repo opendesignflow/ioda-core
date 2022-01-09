@@ -2,18 +2,18 @@
 //----------------
 
 var scalaMajorVersion by extra("2.13")
-var scalaMinorVersion by extra("6")
+var scalaMinorVersion by extra("7")
 val scalaVersion by extra {
     "$scalaMajorVersion.$scalaMinorVersion"
 }
 
-var ooxooVersion by extra("4.0.6")
-var indesignVersion by extra("2.0.1")
-var ubrokerVersion by extra("2.0.1")
-
+//var ooxooVersion by extra("5")
+var indesignVersion by extra("2.9.0-SNAPSHOT")
+var ubrokerVersion by extra("2.9.0-SNAPSHOT")
+var javafxVersion by extra("18-ea+8")
 
 // Project version
-var lib_version by extra("2.0.3-SNAPSHOT")
+var lib_version by extra("2.9.0-SNAPSHOT")
 var branch by extra { System.getenv("BRANCH_NAME") }
 
 if (System.getenv().getOrDefault("BRANCH_NAME", "dev").contains("release")) {

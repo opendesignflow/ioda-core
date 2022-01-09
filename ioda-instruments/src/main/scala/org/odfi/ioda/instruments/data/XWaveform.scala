@@ -1,6 +1,6 @@
 package org.odfi.ioda.instruments.data
 
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xelement
 
 @xelement(name = "XWaveform")
 class XWaveform extends XWaveformTrait {
@@ -29,7 +29,7 @@ object XWaveform {
     var res = new XWaveform
 
     // Set Stax Parser and streamIn
-    var io = com.idyria.osi.ooxoo.core.buffers.structural.io.sax.StAXIOBuffer(url)
+    var io = org.odfi.ooxoo.core.buffers.structural.io.sax.StAXIOBuffer(url)
     res.appendBuffer(io)
     io.streamIn
 

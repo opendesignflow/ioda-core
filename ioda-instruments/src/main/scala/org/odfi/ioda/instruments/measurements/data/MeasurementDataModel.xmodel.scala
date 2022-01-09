@@ -1,8 +1,8 @@
 package org.odfi.ioda.instruments.measurements.data
 
-import com.idyria.osi.ooxoo.model.{ModelBuilder, producer, producers}
-import com.idyria.osi.ooxoo.model.out.markdown.MDProducer
-import com.idyria.osi.ooxoo.model.out.scala.ScalaProducer
+import org.odfi.ooxoo.model.{ModelBuilder, producer, producers}
+import org.odfi.ooxoo.model.out.markdown.MDProducer
+import org.odfi.ooxoo.model.out.scala.ScalaProducer
 
 
 @producers(Array(

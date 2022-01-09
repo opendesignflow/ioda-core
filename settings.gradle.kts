@@ -1,5 +1,14 @@
 
 pluginManagement {
+
+    pluginManagement {
+        plugins {
+            id("org.odfi.ooxoo") version "4.9.0-SNAPSHOT"
+            id("org.openjfx.javafxplugin") version "0.0.10"
+            id("com.github.maiflai.scalatest") version "0.31"
+        }
+    }
+
     repositories {
         mavenLocal()
         gradlePluginPortal()

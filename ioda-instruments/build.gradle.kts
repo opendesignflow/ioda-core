@@ -1,9 +1,15 @@
+
+val javafxVersion: String by rootProject.extra
+val indesignVersion: String by rootProject.extra
+val ubrokerVersion: String by rootProject.extra
+val scalaMajorVersion: String by rootProject.extra
+
 plugins {
     id("scala")
     id("java-library")
 
     // OOXOO
-    id("org.odfi.ooxoo") version "4.0.5"
+    id("org.odfi.ooxoo")
 
     // Publish
     id("maven-publish")
@@ -74,7 +80,7 @@ tasks.withType<ScalaCompile>().configureEach {
 // Dependencies
 //----------------------
 javafx {
-    version = "18-ea+2"
+    version = javafxVersion
     modules(
         "javafx.controls",
         "javafx.fxml",
@@ -83,27 +89,25 @@ javafx {
     )
 }
 
-val ooxooVersion: String by rootProject.extra
-val indesignVersion: String by rootProject.extra
-val ubrokerVersion: String by rootProject.extra
-val scalaMajorVersion: String by rootProject.extra
 
 dependencies {
 
 //    compile project(":fwapp")
     api(project(":ioda-core"))
+    api("org.odfi.indesign:indesign-stdplatform:$indesignVersion")
+
     // Dependencies
     //-------------------
     api("org.apache.commons:commons-compress:1.21")
     api("com.nativelibs4java:bridj:0.7.0")
     api("org.jfree:jfreechart:1.5.3")
-    api("org.jfree:jfreesvg:3.4.1")
+    api("org.jfree:jfreesvg:3.4.2")
     api("org.jfree:jcommon:1.0.24")
 
     api("net.java.dev.jna:jna:4.2.0")
     api("org.apache.poi:poi:5.0.0")
     api("org.apache.poi:poi-ooxml:5.0.0")
-    api("org.apache.jackrabbit:jackrabbit-webdav:2.21.7")
+   //api("org.apache.jackrabbit:jackrabbit-webdav:2.21.9")
 
 
     //-- Serial
@@ -111,7 +115,7 @@ dependencies {
     api("org.scream3r:jssc:2.8.0")
     api("dk.thibaut:jserial:1.0.3")
 
-    api("org.scala-lang.modules:scala-parallel-collections_$scalaMajorVersion:1.0.3")
+    api("org.scala-lang.modules:scala-parallel-collections_3:1.0.4")
     //api("org.scala-lang:scala-library:$scala_version")
     testImplementation("org.scala-lang.modules:scala-xml_$scalaMajorVersion:2.0.1")
     testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.10")

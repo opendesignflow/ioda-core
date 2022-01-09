@@ -1,9 +1,9 @@
 package org.odfi.ioda.pipelines
 
-import com.idyria.osi.ooxoo.core.buffers.structural.ElementBuffer
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
-import com.idyria.osi.ooxoo.core.buffers.structural.io.sax.STAXSyncTrait
-import com.idyria.osi.ooxoo.core.buffers.structural.XList
+import org.odfi.ooxoo.core.buffers.structural.ElementBuffer
+import org.odfi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.io.sax.STAXSyncTrait
+import org.odfi.ooxoo.core.buffers.structural.XList
 
 /**
  * This is a wrapper to gather different pipelines from XML

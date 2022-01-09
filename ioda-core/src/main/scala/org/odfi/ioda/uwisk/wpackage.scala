@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.databind.{DeserializationContext, ObjectMapper}
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.idyria.osi.ooxoo.lib.json.model.JSONHelper
+import org.odfi.ooxoo.lib.json.model.JSONHelper
 import org.odfi.ioda.data.protocols.PMetadataContainer
 
 import java.io.{File, FileInputStream, InputStream, InputStreamReader}

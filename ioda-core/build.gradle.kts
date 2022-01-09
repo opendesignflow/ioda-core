@@ -1,8 +1,8 @@
 buildscript {
     dependencies {
-        classpath("org.odfi.indesign:indesign-core:2.0.1")
+        classpath("org.odfi.indesign:indesign-core:2.9.0-SNAPSHOT")
         // classpath ("org.odfi.indesign:indesign-core:$indesign_version")
-        classpath("org.odfi.ubroker:ubroker-core:2.0.1")
+        classpath("org.odfi.ubroker:ubroker-core:2.9.0-SNAPSHOT")
     }
 }
 
@@ -10,17 +10,14 @@ plugins {
 
     // Scala
     id("scala")
+    id("com.github.maiflai.scalatest")
 
     // OOXOO
-    id("org.odfi.ooxoo") version "4.0.5"
+    id("org.odfi.ooxoo")
 
     // Publish
     id("maven-publish")
-
     id("java-library")
-
-    id("com.github.maiflai.scalatest") version "0.31"
-
 
 }
 
@@ -61,7 +58,6 @@ tasks.withType<ScalaCompile>().configureEach {
 // Dependencies
 //-------------------
 val scalaMajorVersion: String by rootProject.extra
-val ooxooVersion: String by rootProject.extra
 val indesignVersion: String by rootProject.extra
 val ubrokerVersion: String by rootProject.extra
 
@@ -72,21 +68,21 @@ dependencies {
     // ODFI
     //----------
     api("org.odfi.ubroker:ubroker-core:$ubrokerVersion")
-    api("org.odfi.indesign:indesign-stdplatform:$indesignVersion")
+    api("org.odfi.indesign:indesign-core:$indesignVersion")
 
     // External dependencies
     //-------------
-    val jacksonVersion = "2.13.0"
+    val jacksonVersion = "2.13.1"
     api("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
     api("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
     api("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
 
     api("org.jmdns:jmdns:3.5.7")
 
-    api("org.apache.logging.log4j:log4j-api:2.16.0")
-    api("org.apache.logging.log4j:log4j-core:2.16.0")
+    api("org.apache.logging.log4j:log4j-api:2.17.1")
+    api("org.apache.logging.log4j:log4j-core:2.17.1")
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala
-    api("org.apache.logging.log4j:log4j-api-scala_$scalaMajorVersion:12.0")
+   // api("org.apache.logging.log4j:log4j-api-scala_2.13:12.0")
 
     //api("org.apache.logging.log4j:log4j-api-scala_$scalaMajor:12.0")
     api("org.fusesource.jansi:jansi:2.4.0")
@@ -98,6 +94,11 @@ dependencies {
 
     //api("org.scala-lang:scala-library:$scala_version")
 
+    //implementation("javax.persistence:javax.persistence-api:3.0.0")
+
+    // Test
+    //---------------------
+    testImplementation("commons-io:commons-io:2.11.0")
     testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.10")
     testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.10")
     testImplementation("com.vladsch.flexmark:flexmark-all:0.62.2")

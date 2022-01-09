@@ -1,7 +1,7 @@
 package org.odfi.ioda.simulation.lib.matrix
 
 import scala.util.Random
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xelement
 import org.odfi.ioda.data.protocols.matrix.{DoubleMatrixValueMessage, MatrixValueMessage}
 import org.odfi.ioda.simulation.SimulationGeneratorStep
 

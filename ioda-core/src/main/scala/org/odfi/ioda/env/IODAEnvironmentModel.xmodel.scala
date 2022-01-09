@@ -1,19 +1,19 @@
 package org.odfi.ioda.env
 
-import com.idyria.osi.ooxoo.model.ModelBuilder
-import com.idyria.osi.ooxoo.model.producers
-import com.idyria.osi.ooxoo.model.producer
-import com.idyria.osi.ooxoo.model.out.markdown.MDProducer
-import com.idyria.osi.ooxoo.model.out.scala.ScalaProducer
-import com.idyria.osi.ooxoo.core.buffers.structural.io.sax.STAXSyncTrait
+import org.odfi.ooxoo.model.ModelBuilder
+import org.odfi.ooxoo.model.producers
+import org.odfi.ooxoo.model.producer
+import org.odfi.ooxoo.model.out.markdown.MDProducer
+import org.odfi.ooxoo.model.out.scala.ScalaProducer
+import org.odfi.ooxoo.core.buffers.structural.io.sax.STAXSyncTrait
 import org.odfi.indesign.core.harvest.HarvestedResource
 import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 import org.odfi.indesign.core.config.Config
 import org.odfi.indesign.core.config.model.CommonConfig
 import org.odfi.indesign.core.config.ConfigModelWithImpl
-import com.idyria.osi.ooxoo.core.buffers.id.ElementWithID
-import com.idyria.osi.ooxoo.core.buffers.id.IdAndRefIdModelBuilder
-import com.idyria.osi.ooxoo.lib.json.JSonUtilTrait
+import org.odfi.ooxoo.core.buffers.id.ElementWithID
+import org.odfi.ooxoo.core.buffers.id.IdAndRefIdModelBuilder
+import org.odfi.ooxoo.lib.json.JSonUtilTrait
 import org.odfi.tea.errors.{ErrorRepairSupport, ErrorSupport}
 
 @producers(Array(

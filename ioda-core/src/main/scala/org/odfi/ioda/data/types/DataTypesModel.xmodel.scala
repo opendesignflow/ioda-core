@@ -1,10 +1,10 @@
 package org.odfi.ioda.data.types
 
-import com.idyria.osi.ooxoo.model.ModelBuilder
-import com.idyria.osi.ooxoo.model.producers
-import com.idyria.osi.ooxoo.model.producer
-import com.idyria.osi.ooxoo.model.out.markdown.MDProducer
-import com.idyria.osi.ooxoo.model.out.scala.ScalaProducer
+import org.odfi.ooxoo.model.ModelBuilder
+import org.odfi.ooxoo.model.producers
+import org.odfi.ooxoo.model.producer
+import org.odfi.ooxoo.model.out.markdown.MDProducer
+import org.odfi.ooxoo.model.out.scala.ScalaProducer
 import org.odfi.ubroker.core.message.XMLDataMessage
 import org.odfi.ubroker.core.broker.tree.single.SingleMessage
 

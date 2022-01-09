@@ -4,7 +4,6 @@ import org.odfi.ioda.data.protocols.ProcessingContext
 import org.odfi.ioda.data.types.{DataMapMessage, DataMessage}
 import org.odfi.ioda.pipelines.{Pipeline, PipelineWithId}
 import org.odfi.ubroker.core.message.Message
-
 import javax.persistence.Transient
 
 /**

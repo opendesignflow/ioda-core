@@ -1,9 +1,9 @@
 package org.odfi.ioda.env
 
-import com.idyria.osi.ooxoo.core.buffers.structural.xattribute
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xattribute
+import org.odfi.ooxoo.core.buffers.structural.xelement
 import scala.language.implicitConversions
-import com.idyria.osi.ooxoo.core.buffers.datatypes.DateTimeBuffer
+import org.odfi.ooxoo.core.buffers.datatypes.DateTimeBuffer
 import org.odfi.ioda.data.protocols.Level0Protocol
 import org.odfi.ioda.data.phy.PhysicalInterface
 import org.odfi.ioda.data.protocols.Protocol

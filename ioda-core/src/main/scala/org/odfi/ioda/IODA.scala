@@ -4,7 +4,7 @@ import org.odfi.indesign.core.module.IndesignModule
 import org.odfi.indesign.core.harvest.Harvest
 import org.odfi.ioda.env.EnvironmentHarvester
 import org.odfi.ioda.data.phy.PhysicalInterfaceHarvester
-import com.idyria.osi.ooxoo.core.buffers.structural.AnyXList
+import org.odfi.ooxoo.core.buffers.structural.AnyXList
 import org.odfi.ioda.env.Environment
 
 object IODA extends IndesignModule {

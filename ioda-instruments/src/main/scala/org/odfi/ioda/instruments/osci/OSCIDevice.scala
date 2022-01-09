@@ -1,6 +1,6 @@
 package org.odfi.ioda.instruments.osci
 
-import org.odfi.indesign.core.module.measurement.MeasurementDevice
+import org.odfi.ioda.data.phy.Device
 import org.odfi.indesign.core.harvest.Harvester
 import org.odfi.ioda.instruments.data.XWaveform
 
@@ -14,7 +14,7 @@ object OSCIDeviceHarvester extends Harvester {
 
 }
 
-trait OSCIDevice extends MeasurementDevice {
+trait OSCIDevice extends Device {
 
   var osciTriggerPollWaitMs = 10
 

@@ -1,7 +1,7 @@
 package org.odfi.ioda.instruments.measurements.data
 
 import org.apache.commons.compress.archivers.ArchiveStreamFactory
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xelement
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry
 import org.apache.commons.compress.archivers.ArchiveOutputStream
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry
@@ -12,9 +12,9 @@ import org.jfree.chart.ChartFactory
 import org.jfree.chart.plot.PlotOrientation
 import org.jfree.chart.JFreeChart
 import org.apache.commons.compress.archivers.zip.ZipFile
-import com.idyria.osi.ooxoo.core.buffers.structural.ElementBuffer
-import com.idyria.osi.ooxoo.core.buffers.structural.io.sax.STAXSyncTrait
-import com.idyria.osi.ooxoo.core.buffers.structural.DataUnit
+import org.odfi.ooxoo.core.buffers.structural.ElementBuffer
+import org.odfi.ooxoo.core.buffers.structural.io.sax.STAXSyncTrait
+import org.odfi.ooxoo.core.buffers.structural.DataUnit
 import org.odfi.ioda.instruments.data.WaveformParameters
 import org.odfi.tea.listeners.ListeningSupport
 import org.odfi.tea.progress.ProgressSupport
@@ -188,7 +188,7 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
     // Get collection
     val collection = parallel match {
       case true => xYGraphs
-      case false => (xYGraphs).par.toParArray
+      case false => (xYGraphs).par
     }
     //populateAllXYGraph
     val total = this.xYGraphs.size
@@ -259,7 +259,7 @@ class MultiXYGraph extends MultiXYGraphTrait with ProgressSupport with SwingUtil
     //----------
     val collection = parallel match {
       case true => xYGraphs
-      case false => xYGraphs.par.toParArray
+      case false => xYGraphs.par
     }
 
     // Converstion loop with progress

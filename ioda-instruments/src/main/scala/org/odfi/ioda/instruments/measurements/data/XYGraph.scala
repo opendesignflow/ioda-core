@@ -1,7 +1,7 @@
 package org.odfi.ioda.instruments.measurements.data
 
 import biz.source_code.dsp.filter.{FilterCharacteristicsType, FilterPassType, IirFilter, IirFilterDesignFisher}
-import com.idyria.osi.ooxoo.core.buffers.structural.{DataUnit, xelement}
+import org.odfi.ooxoo.core.buffers.structural.{DataUnit, xelement}
 import org.jfree.chart.{ChartFactory, ChartPanel}
 import org.jfree.chart.axis.NumberAxis
 import org.jfree.chart.plot.{PlotOrientation, XYPlot}
@@ -1217,7 +1217,7 @@ object XYGraph extends TLogSource {
         var res = new XYGraph
 
         // Set Stax Parser and streamIn
-        var io = com.idyria.osi.ooxoo.core.buffers.structural.io.sax.StAXIOBuffer(url)
+        var io = org.odfi.ooxoo.core.buffers.structural.io.sax.StAXIOBuffer(url)
         res.appendBuffer(io)
         io.streamIn
 
@@ -1232,7 +1232,7 @@ object XYGraph extends TLogSource {
         var res = new XYGraph
 
         // Set Stax Parser and streamIn
-        var io = com.idyria.osi.ooxoo.core.buffers.structural.io.sax.StAXIOBuffer(xml)
+        var io = org.odfi.ooxoo.core.buffers.structural.io.sax.StAXIOBuffer(xml)
         res.appendBuffer(io)
         io.streamIn
 

@@ -1,7 +1,12 @@
 package org.odfi.ioda.uwisk
 
-import org.codehaus.plexus.util.StringInputStream
+
+import org.apache.commons.io.Charsets
+import org.apache.commons.io.input.ReaderInputStream
 import org.scalatest.funsuite.AnyFunSuite
+
+import java.io.{InputStreamReader, StringReader}
+import java.nio.charset.StandardCharsets
 
 class WPackageTest extends AnyFunSuite {
 
@@ -31,7 +36,9 @@ class WPackageTest extends AnyFunSuite {
 
 
   test("T") {
-    val parsed = wpackage(new StringInputStream((testPackage)))
+    val reader = new StringReader(testPackage)
+    val is = new ReaderInputStream(reader,StandardCharsets.UTF_8)
+    val parsed = wpackage(is)
   }
 
 

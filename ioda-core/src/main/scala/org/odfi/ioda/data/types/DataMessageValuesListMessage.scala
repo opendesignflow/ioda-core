@@ -1,6 +1,6 @@
 package org.odfi.ioda.data.types
 
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xelement
 
 @xelement(name="ValuesListMessage")
 abstract class DataMessageValuesListMessage[DT] extends ValuesListMessageTrait {

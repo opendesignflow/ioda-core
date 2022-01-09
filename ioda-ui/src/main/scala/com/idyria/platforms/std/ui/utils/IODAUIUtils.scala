@@ -5,7 +5,7 @@ import org.odfi.ioda.IODA
 import org.odfi.wsb.fwapp.framework.FWAppTempBufferView
 import org.odfi.wsb.fwapp.lib.ooxoo.EntityBindBuffer
 import scala.reflect.ClassTag
-import com.idyria.osi.ooxoo.core.buffers.structural.XList
+import org.odfi.ooxoo.core.buffers.structural.XList
 
 trait IODAUIUtils extends OOXOOEntityBindView with FWAppTempBufferView {
  

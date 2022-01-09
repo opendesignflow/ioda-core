@@ -1,6 +1,6 @@
 package org.odfi.ioda.instruments.compress
 
-import com.idyria.osi.ooxoo.core.buffers.structural.io.sax.STAXSyncTrait
+import org.odfi.ooxoo.core.buffers.structural.io.sax.STAXSyncTrait
 import java.io.File
 
 trait XMLCompressOutput extends STAXSyncTrait {

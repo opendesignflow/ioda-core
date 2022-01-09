@@ -2,16 +2,16 @@ package org.odfi.ioda.instruments.nivisa
 
 import org.odfi.ioda.instruments.nivisa.VisaLibrary
 import org.bridj.Pointer
+import org.odfi.ioda.data.phy.Device
 
 import scala.io.Source
-import org.odfi.indesign.core.module.measurement.MeasurementDevice
 import org.odfi.ioda.instruments.ieee.IEEE4882BinaryBlock
 
 import java.io.ByteArrayOutputStream
 import java.text.{DecimalFormat, DecimalFormatSymbols}
 import java.util.Locale
 
-class VISADevice(val deviceString: String) extends MeasurementDevice {
+class VISADevice(val deviceString: String) extends Device {
 
   def this(d: VISADevice) = this(d.deviceString)
 

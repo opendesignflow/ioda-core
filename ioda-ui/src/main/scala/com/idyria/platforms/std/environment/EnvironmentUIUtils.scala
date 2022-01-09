@@ -3,7 +3,7 @@ package com.idyria.platforms.std.environment
 import org.odfi.wsb.fwapp.module.semantic.SemanticView
 import org.odfi.ioda.env.EnvironmentHarvester
 import org.odfi.ioda.env.Environment
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xelement
 
 trait EnvironmentUIUtils extends SemanticView {
 

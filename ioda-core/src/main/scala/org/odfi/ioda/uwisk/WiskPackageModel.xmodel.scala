@@ -1,8 +1,8 @@
 package org.odfi.ioda.uwisk
 
-import com.idyria.osi.ooxoo.model.out.markdown.MDProducer
-import com.idyria.osi.ooxoo.model.out.scala.JSONBProducer
-import com.idyria.osi.ooxoo.model.{Element, ModelBuilder, producer, producers}
+import org.odfi.ooxoo.model.out.markdown.MDProducer
+import org.odfi.ooxoo.model.out.scala.JSONBProducer
+import org.odfi.ooxoo.model.{Element, ModelBuilder, producer, producers}
 
 @producers(Array(
   new producer(value = classOf[JSONBProducer])))

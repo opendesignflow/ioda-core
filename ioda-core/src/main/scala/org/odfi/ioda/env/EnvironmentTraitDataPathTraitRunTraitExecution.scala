@@ -1,6 +1,6 @@
 package org.odfi.ioda.env
 
-import com.idyria.osi.ooxoo.core.buffers.datatypes.DateTimeBuffer
+import org.odfi.ooxoo.core.buffers.datatypes.DateTimeBuffer
 
 class EnvironmentTraitDataPathTraitRunTraitExecution extends EnvironmentTraitDataPathTraitRunTraitExecutionTrait {
 

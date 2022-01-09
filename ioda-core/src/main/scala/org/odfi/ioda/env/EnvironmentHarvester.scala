@@ -2,7 +2,7 @@ package org.odfi.ioda.env
 
 import org.odfi.indesign.core.harvest.Harvester
 import org.odfi.ioda.IODA
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xelement
 
 object EnvironmentHarvester extends Harvester {
   

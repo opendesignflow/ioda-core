@@ -1,7 +1,7 @@
 package org.odfi.ioda.data.protocols.matrix
 
 
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xelement
 import org.odfi.ioda.data.types.MatrixValueMessageTrait
 
 import scala.util.Random

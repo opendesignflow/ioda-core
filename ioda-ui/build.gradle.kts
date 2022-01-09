@@ -1,18 +1,22 @@
 
+val javafxVersion: String by rootProject.extra
+val indesignVersion: String by rootProject.extra
+val ubrokerVersion: String by rootProject.extra
 
 plugins {
-    id("java-library")
+
+    id("scala")
 
     // OOXOO
-    id("org.odfi.ooxoo") version "4.0.5"
+    id("org.odfi.ooxoo")
 
     // Publish
     id("maven-publish")
+    id("java-library")
 
 
-    id("scala")
     // JFX
-    id("org.openjfx.javafxplugin") version ("0.0.10")
+    id("org.openjfx.javafxplugin")
 
 }
 
@@ -50,7 +54,7 @@ tasks.withType<ScalaCompile>().configureEach {
 // Dependencies
 //----------------------
 javafx {
-    version = "18-ea+2"
+    version = javafxVersion
     modules(
         "javafx.controls",
         "javafx.fxml",
@@ -58,9 +62,7 @@ javafx {
         "javafx.media", "javafx.web", "javafx.swing")
 }
 
-val ooxooVersion: String by rootProject.extra
-val indesignVersion: String by rootProject.extra
-val ubrokerVersion: String by rootProject.extra
+
 
 dependencies {
 
@@ -69,8 +71,7 @@ dependencies {
     api (project(":ioda-instruments"))
 
     //api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
-    api ("org.controlsfx:controlsfx:11.1.0")
-
+    api ("org.controlsfx:controlsfx:11.1.1")
     api ("net.mahdilamb:colormap:0.9.511")
 
     // https://mvnrepository.com/artifact/org.graalvm.js/js

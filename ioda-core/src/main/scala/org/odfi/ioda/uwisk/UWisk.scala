@@ -203,7 +203,7 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
         val (pipeline, step) = pipelinesStack.pop()
 
         this.logger.debug(s"- Processing Pipeline ${pipeline.getAbsoluteName} with step $step")
-        if (this.logger.delegate.isDebugEnabled) {
+        if (this.logger.isDebugEnabled) {
 
           pipelineContext.metadata.foreach {
             case (k, v) =>

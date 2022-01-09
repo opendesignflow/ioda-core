@@ -1,11 +1,11 @@
 package org.odfi.ioda.pipelines
 
 import org.odfi.ioda.data.protocols.{Protocol, ProtocolWithId}
-import com.idyria.osi.ooxoo.core.buffers.structural.xelement
+import org.odfi.ooxoo.core.buffers.structural.xelement
 import org.odfi.indesign.core.config.model.CommonConfig
-import com.idyria.osi.ooxoo.core.buffers.structural.DataUnit
-import com.idyria.osi.ooxoo.core.buffers.datatypes.XSDStringBuffer
-import com.idyria.osi.ooxoo.core.buffers.structural.xattribute
+import org.odfi.ooxoo.core.buffers.structural.DataUnit
+import org.odfi.ooxoo.core.buffers.datatypes.XSDStringBuffer
+import org.odfi.ooxoo.core.buffers.structural.xattribute
 import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 
 trait Pipeline extends Protocol with CommonConfig {
