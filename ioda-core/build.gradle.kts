@@ -102,6 +102,7 @@ dependencies {
     testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.10")
     testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.10")
     testImplementation("com.vladsch.flexmark:flexmark-all:0.62.2")
+    testRuntimeOnly("org.eclipse:yasson:1.0.10")
 }
 
 
