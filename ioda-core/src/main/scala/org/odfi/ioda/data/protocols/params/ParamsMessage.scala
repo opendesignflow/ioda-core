@@ -3,7 +3,7 @@ package org.odfi.ioda.data.protocols.params
 import org.odfi.ioda.data.types.DataMessage
 import org.odfi.ubroker.core.broker.tree.single.SingleMessage
 
-import javax.json.JsonObject
+import jakarta.json.JsonObject
 import scala.collection.immutable.TreeMap
 import scala.reflect.ClassTag
 

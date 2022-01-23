@@ -144,8 +144,8 @@ publishing {
         maven {
 
             // change URLs to point to your repos, e.g. http://my.org/repo
-            def releasesRepoUrl = "https://www.opendesignflow.org/maven/repository/internal/"
-            def snapshotsRepoUrl = "https://www.opendesignflow.org/maven/repository/snapshots"
+            def releasesRepoUrl = "https://repo.opendesignflow.org/maven/repository/internal/"
+            def snapshotsRepoUrl = "https://repo.opendesignflow.org/maven/repository/snapshots"
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
             // Credentials
@@ -180,11 +180,11 @@ repositories {
     }
     maven {
         name = 'ODFI Releases'
-        url = 'https://www.opendesignflow.org/maven/repository/internal/'
+        url = 'https://repo.opendesignflow.org/maven/repository/internal/'
     }
     maven {
         name = 'ODFI Snapshots'
-        url = 'https://www.opendesignflow.org/maven/repository/snapshots/'
+        url = 'https://repo.opendesignflow.org/maven/repository/snapshots/'
     }
     maven {
         url "https://repo.triplequote.com/libs-release/"

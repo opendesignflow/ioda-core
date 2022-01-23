@@ -8,11 +8,11 @@ import org.odfi.ooxoo.core.buffers.structural.XList
 /**
  * This is a wrapper to gather different pipelines from XML
  */
-@xelement(name="pipelines",ns="http:///www.opendesignflow.org/ioda/pipelines/1.0")
+@xelement(name="pipelines",ns="http:///repo.opendesignflow.org/ioda/pipelines/1.0")
 class Pipelines extends ElementBuffer with STAXSyncTrait {
   
   
-  @xelement(name="pipeline",ns="http:///www.opendesignflow.org/ioda/pipelines/1.0")
+  @xelement(name="pipeline",ns="http:///repo.opendesignflow.org/ioda/pipelines/1.0")
   var pipelines = XList { new DefaultPipeline }
   
 }

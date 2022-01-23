@@ -17,7 +17,7 @@ plugins {
     // JFX
     id("org.openjfx.javafxplugin") version ("0.0.10")
 
-    id("org.odfi.anarres.jnaerator") version ("1.0.0")
+    id("org.odfi.anarres.jnaerator") version ("1.0.1")
 
 }
 
@@ -111,7 +111,7 @@ dependencies {
 
 
     //-- Serial
-    api("com.fazecast:jSerialComm:2.7.0")
+    api("com.fazecast:jSerialComm:2.8.2")
     api("org.scream3r:jssc:2.8.0")
     api("dk.thibaut:jserial:1.0.3")
 
@@ -154,8 +154,8 @@ publishing {
         maven {
 
             // change URLs to point to your repos, e.g. http://my.org/repo
-            var releasesRepoUrl = uri("https://www.opendesignflow.org/maven/repository/internal/")
-            var snapshotsRepoUrl = uri("https://www.opendesignflow.org/maven/repository/snapshots")
+            var releasesRepoUrl = uri("https://repo.opendesignflow.org/maven/repository/internal/")
+            var snapshotsRepoUrl = uri("https://repo.opendesignflow.org/maven/repository/snapshots")
 
             url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
 

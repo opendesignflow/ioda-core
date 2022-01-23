@@ -2,7 +2,7 @@ package org.odfi.ioda.uwisk
 
 import org.odfi.ioda.json.JsonExtensions.JsonValueHelperMethods
 
-import javax.json.{JsonString, JsonValue}
+import jakarta.json.{JsonString, JsonValue}
 
 class MetadataContainerTraitmetadata extends MetadataContainerTraitmetadataTrait {
 

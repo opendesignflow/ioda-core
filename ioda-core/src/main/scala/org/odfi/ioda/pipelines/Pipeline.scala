@@ -80,6 +80,6 @@ object Pipeline {
   }
 
   // Defaults
-  registerPipeline("http:///www.opendesignflow.org/ioda/pipelines/1.0", "pipeline", classOf[DefaultPipeline])
+  registerPipeline("http:///repo.opendesignflow.org/ioda/pipelines/1.0", "pipeline", classOf[DefaultPipeline])
 
 }

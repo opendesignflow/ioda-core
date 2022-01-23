@@ -2,7 +2,7 @@ package org.odfi.ioda.data.protocols
 
 import org.odfi.ioda.data.protocols.params.ParamValue
 
-import javax.json.{JsonNumber, JsonObject, JsonString, JsonValue}
+import jakarta.json.{JsonNumber, JsonObject, JsonString, JsonValue}
 import scala.reflect.ClassTag
 
 trait PMetadataContainer {

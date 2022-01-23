@@ -9,7 +9,7 @@ import org.odfi.ioda.data.protocols.PMetadataContainer
 
 import java.io.{File, FileInputStream, InputStream, InputStreamReader}
 import java.net.URL
-import javax.json.{JsonString, JsonValue}
+import jakarta.json.{JsonString, JsonValue}
 
 
 class wpackage extends wpackageTrait {
@@ -261,7 +261,7 @@ object wpackage {
   class JsonValueDesierualiser extends com.fasterxml.jackson.databind.JsonDeserializer[JsonValue] {
     override def deserialize(p: JsonParser, ctxt: DeserializationContext): JsonValue = {
       println("IN DESER")
-      javax.json.Json.createValue("OK")
+      jakarta.json.Json.createValue("OK")
       // new JsonString("OK")
     }
   }

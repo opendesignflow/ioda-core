@@ -1,8 +1,8 @@
 buildscript {
     dependencies {
-        classpath("org.odfi.indesign:indesign-core:2.9.0-SNAPSHOT")
+        classpath("org.odfi.indesign:indesign-core:3.0.0-SNAPSHOT")
         // classpath ("org.odfi.indesign:indesign-core:$indesign_version")
-        classpath("org.odfi.ubroker:ubroker-core:2.9.0-SNAPSHOT")
+        classpath("org.odfi.ubroker:ubroker-core:3.0.0-SNAPSHOT")
     }
 }
 
@@ -95,6 +95,9 @@ dependencies {
     //api("org.scala-lang:scala-library:$scala_version")
 
     //implementation("javax.persistence:javax.persistence-api:3.0.0")
+    // https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api
+   // implementation("jakarta.persistence:jakarta.persistence-api:3.0.0")
+
 
     // Test
     //---------------------
@@ -102,7 +105,7 @@ dependencies {
     testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.10")
     testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.10")
     testImplementation("com.vladsch.flexmark:flexmark-all:0.62.2")
-    testRuntimeOnly("org.eclipse:yasson:1.0.10")
+    testRuntimeOnly("org.eclipse:yasson:2.0.4")
 }
 
 
@@ -139,8 +142,8 @@ publishing {
         maven {
 
             // change URLs to point to your repos, e.g. http://my.org/repo
-            var releasesRepoUrl = uri("https://www.opendesignflow.org/maven/repository/internal/")
-            var snapshotsRepoUrl = uri("https://www.opendesignflow.org/maven/repository/snapshots")
+            var releasesRepoUrl = uri("https://repo.opendesignflow.org/maven/repository/internal/")
+            var snapshotsRepoUrl = uri("https://repo.opendesignflow.org/maven/repository/snapshots")
 
             url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
 

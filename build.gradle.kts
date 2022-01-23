@@ -2,18 +2,18 @@
 //----------------
 
 var scalaMajorVersion by extra("2.13")
-var scalaMinorVersion by extra("7")
+var scalaMinorVersion by extra("8")
 val scalaVersion by extra {
     "$scalaMajorVersion.$scalaMinorVersion"
 }
 
 //var ooxooVersion by extra("5")
-var indesignVersion by extra("2.9.0-SNAPSHOT")
-var ubrokerVersion by extra("2.9.0-SNAPSHOT")
+var indesignVersion by extra("3.0.0-SNAPSHOT")
+var ubrokerVersion by extra("3.0.0-SNAPSHOT")
 var javafxVersion by extra("18-ea+8")
 
 // Project version
-var lib_version by extra("2.9.0-SNAPSHOT")
+var lib_version by extra("3.0.0-SNAPSHOT")
 var branch by extra { System.getenv("BRANCH_NAME") }
 
 if (System.getenv().getOrDefault("BRANCH_NAME", "dev").contains("release")) {
@@ -37,11 +37,11 @@ allprojects {
         }
         maven {
             name = "ODFI Releases"
-            url = uri("https://www.opendesignflow.org/maven/repository/internal/")
+            url = uri("https://repo.opendesignflow.org/maven/repository/internal/")
         }
         maven {
             name = "ODFI Snapshots"
-            url = uri("https://www.opendesignflow.org/maven/repository/snapshots/")
+            url = uri("https://repo.opendesignflow.org/maven/repository/snapshots/")
         }
         maven {
             url = uri("https://repo.triplequote.com/libs-release/")
