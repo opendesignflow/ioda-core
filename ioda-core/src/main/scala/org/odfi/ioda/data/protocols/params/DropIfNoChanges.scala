@@ -47,8 +47,8 @@ class DropIfNoChangesInMetadata extends ProtocolWithId {
   this.onDownMessage {
     case dm : DataMessage => 
       
-      dm.metadata.find {
-        case (name,pv) => pv.changed
+      dm.metadatasAsScala.find {
+        case m => m.changed
       } match {
         case Some(pv) => 
           

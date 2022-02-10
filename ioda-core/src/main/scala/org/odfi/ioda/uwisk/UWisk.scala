@@ -171,7 +171,7 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
         val context = new ProcessingContext
         params.foreach {
           case (k, v) =>
-            context.addMetadata(k, v)
+            context.addMetadataFromValue(k, v)
         }
 
         // Run
@@ -198,16 +198,16 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
     topPipeline.runTimeOrCreate.total = 0
 
     try {
-      while (!pipelinesStack.isEmpty) {
+      while (pipelinesStack.nonEmpty) {
 
         val (pipeline, step) = pipelinesStack.pop()
 
         this.logger.debug(s"- Processing Pipeline ${pipeline.getAbsoluteName} with step $step")
         if (this.logger.isDebugEnabled) {
 
-          pipelineContext.metadata.foreach {
-            case (k, v) =>
-              this.logger.debug(s"-- M: $k -> ${v.value}")
+          pipelineContext.metadatasAsScala.foreach {
+            case (m) =>
+              this.logger.debug(s"-- M: ${m.id} -> ${m.value}")
           }
         }
 
@@ -329,19 +329,19 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
 
                 // Run Pipelines
                 //---------------------------
-                this.logger.debug(s"Found Pipeline 2: ${pipeline.id} // ${msg.metadata}")
+                this.logger.debug(s"Found Pipeline 2: ${pipeline.id} // ${msg.metadatasAsScala}")
                 try {
                   val pipelineContext = new ProcessingContext
 
                   pipeline.parametersAsScala.foreach {
                     case p if (p.default != null) =>
-                      pipelineContext.addMetadata(p.id, p.default.toString)
+                      pipelineContext.addMetadataFromValue(p.id, p.default)
                     case p =>
                   }
 
-                  msg.metadata.foreach {
-                    case (k, v) =>
-                      pipelineContext.addMetadata(k, v)
+                  msg.metadatasAsScala.foreach {
+                    case m =>
+                      pipelineContext.addMetadataFromValue(m.id, m.value)
                   }
 
                   runPipeline(pipeline, msg, pipelineContext)
@@ -398,16 +398,16 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
   def addMetadataFromStep(context: PMetadataContainer, pipeline: wpackageTraitpipeline, step: wpackageTraitpipelineTraitstep) = {
     step.metadatasAsScala.foreach {
       case m if (m.value != null) =>
-        context.addMetadata(m.id, pipeline.wpackage.resolveValue(context,m.toString))
+        context.addMetadataFromValue(m.id, pipeline.wpackage.resolveValue(context,m.toString))
       case other =>
-        context.addMetadata(other.id, true)
+        context.addMetadataFromValue(other.id, true)
 
     }
   }
 
   def addMetadataFromAction(msg: DataMessage, params: Map[String, Any]) = {
 
-    params.foreach { case (k, v) => msg.addMetadata(k, v) }
+    params.foreach { case (k, v) => msg.addMetadataFromValue(k, v) }
   }
 
 }

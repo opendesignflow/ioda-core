@@ -14,8 +14,6 @@ import org.odfi.indesign.core.harvest.HarvestedResourceDefaultId
 trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedResourceDefaultId with PMetadataContainer {
 
 
-  this.metadata = Map()
-
   var __nextMessage: Option[_ <: DataMessage] = None
 
   def nextMessage_=[T <: DataMessage](next: T) = {
@@ -29,7 +27,7 @@ trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedR
     }
 
     //-- Transfer metadatas
-    next.metadata = next.metadata ++ this.metadata
+    next.metadatas.addAll(this.metadatas)
     next.processingContext = processingContext
 
     this.__nextMessage = Some(next)
@@ -91,13 +89,13 @@ trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedR
 
 
   def addUID(uid: String) = {
-    this.addMetadata("ioda.uid", uid)
+    this.addMetadataFromValue("ioda.uid", uid)
   }
 
-  def getUID = this.getMetadata("ioda.uid")
+  def getUID = this.getMetadataString("ioda.uid")
 
   def getVCAndUID = this.getVirtualChannelAsString + (getUID match {
-    case Some(p) => "." + p.value.toString()
+    case Some(p) => "." + p.toString()
     case None => ""
   })
 

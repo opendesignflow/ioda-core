@@ -1,8 +1,8 @@
 package org.odfi.ioda.uwisk
 
 import org.odfi.ioda.json.JsonExtensions.JsonValueHelperMethods
+import jakarta.json.{Json, JsonObject, JsonValue}
 
-import jakarta.json.{Json, JsonValue}
 import scala.reflect.ClassTag
 
 trait MetadataContainer extends MetadataContainerTrait {
@@ -83,6 +83,49 @@ trait MetadataContainer extends MetadataContainerTrait {
     m
   }
 
+  /**
+   * Generic add which tries to determine type from input value
+   *
+   * @param name
+   * @param value
+   * @return
+   */
+  def addMetadataFromValue(id: String, value: Any): MetadataContainerTraitmetadata = {
+
+    value match {
+      case b: Boolean =>
+        addMetadataFromValue(id, b)
+      case b: String =>
+        addMetadataFromValue(id, b)
+      case b: Long =>
+        addMetadataFromValue(id, b)
+      case b: Double =>
+        addMetadataFromValue(id, b)
+      case b: Int =>
+        addMetadataFromValue(id, b)
+      case b: Float =>
+        addMetadataFromValue(id, b)
+      case b: JsonValue =>
+        addMetadataFromValue(id, b)
+      case other =>
+        val m = getOrAddMetadata(id)
+        m.objectValue = other
+        m
+    }
+
+  }
+
+  def importMetadata(m: MetadataContainerTraitmetadata) = {
+    val newMetadata = this.getOrAddMetadata(m.id)
+    newMetadata.id = m.id
+    newMetadata.value = m.value
+    newMetadata.`type` = m.`type`
+    newMetadata.displayName = m.displayName
+    newMetadata.tags = m.tags
+    newMetadata.unit = m.unit
+    newMetadata
+  }
+
 
   def geMetadataJsonValue(id: String) = {
     this.metadatasAsScala.find(_.id == id) match {
@@ -92,9 +135,16 @@ trait MetadataContainer extends MetadataContainerTrait {
     }
   }
 
+  def getMetadataJsonObject(id: String): Option[JsonObject] = {
+    geMetadataJsonValue(id) match {
+      case Some(obj: JsonObject) => Some(obj)
+      case None => None
+    }
+  }
+
   def getMetadataAsPrimitiveOrJsonValue(id: String) = {
     getMetadataOption(id) match {
-      case Some(m)  =>
+      case Some(m) =>
         Some(m.asPrimitiveOrJsonValue)
       case other =>
         None
@@ -138,12 +188,26 @@ trait MetadataContainer extends MetadataContainerTrait {
     }
   }
 
+  def getMetadataEpochInstant(id: String) = {
+    getMetadataOption(id) match {
+      case Some(m) if (m.isTypeEpoch) => Some(m.asInstant)
+      case other => None
+    }
+  }
+
   def getMetadataInteger(name: String): Option[Integer] = {
     geMetadataJsonValue(name) match {
       case Some(m) if (m.isNumber) =>
         Some(m.asInt)
       case other =>
         None
+    }
+  }
+
+  def getMetadataObject[T](id: String)(implicit tag: ClassTag[T]): Option[T] = {
+    this.getMetadataOption(id) match {
+      case Some(obj) if (obj.objectValue != null && obj.objectValue.isInstanceOf[T]) => Some(obj.objectValue.asInstanceOf[T])
+      case other => None
     }
   }
 

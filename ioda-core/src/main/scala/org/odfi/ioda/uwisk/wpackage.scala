@@ -201,9 +201,9 @@ class wpackage extends wpackageTrait {
             }
           // NoEenv -> Metadata
           case None =>
-            context.getMetadata(varName) match {
+            context.getMetadataOption(varName) match {
               case Some(metadata) =>
-                metadata.asString
+                metadata.toString
               case None =>
                 sys.error(s"Could not find environment $env for $env:$varName, or metadata for $varName")
             }

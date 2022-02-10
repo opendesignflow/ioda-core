@@ -21,16 +21,16 @@ class SimpleLogProtocol extends ProtocolWithId {
           logInfo[SimpleLogProtocol](s"$k=${v.value} (changed=${v.changed},param type: ${v.getClass().getCanonicalName})")
       }
 
-      pm.metadata.foreach {
-        case (k, v) =>
-          logInfo[SimpleLogProtocol](s"Metadata $k=${v.value} (changed=${v.changed},param type: ${v.getClass().getCanonicalName})")
+      pm.metadatasAsScala.foreach {
+        case m =>
+          logInfo[SimpleLogProtocol](s"Metadata ${m.id}=${m.value} (type: ${m.`type`})")
       }
 
     case d =>
       logInfo[SimpleLogProtocol]("Type=" + d.getClass.getCanonicalName)
-      d.metadata.foreach {
-        case (k, v) =>
-          logInfo[SimpleLogProtocol](s"Metadata $k=${v.value} (changed=${v.changed},param type: ${v.getClass().getCanonicalName})")
+      d.metadatasAsScala.foreach {
+        case m =>
+          logInfo[SimpleLogProtocol](s"Metadata ${m.id}=${m.value} (type: ${m.`type`})")
       }
   }
 

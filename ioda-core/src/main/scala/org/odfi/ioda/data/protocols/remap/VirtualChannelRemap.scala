@@ -43,7 +43,7 @@ class VirtualChannelRemap extends ProtocolWithId {
 
     m.getUID match {
       case Some(uid) =>
-        m.virtualChannel = Some(m.getVirtualChannelAsString.replace("$UID", uid.value.toString()))
+        m.virtualChannel = Some(m.getVirtualChannelAsString.replace("$UID", uid))
 
       case other =>
     }

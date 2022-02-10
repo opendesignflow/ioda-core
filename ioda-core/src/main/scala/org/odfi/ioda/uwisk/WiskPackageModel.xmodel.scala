@@ -17,7 +17,9 @@ class WiskPackageModel extends ModelBuilder {
       attribute("value") ofType ("jsonvalue")
       attribute("type")
       attribute("unit")
-      attribute("json") ofType ("json")
+      attribute("displayName")
+      ("tags" ofType("string")).setMultiple(true)
+      //attribute("json") ofType ("json")
     }
   }
 
