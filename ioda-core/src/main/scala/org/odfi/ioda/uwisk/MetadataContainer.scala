@@ -126,6 +126,17 @@ trait MetadataContainer extends MetadataContainerTrait {
     newMetadata
   }
 
+  def importMetadataWithNewID(id : String , m: MetadataContainerTraitmetadata) = {
+    val newMetadata = this.getOrAddMetadata(m.id)
+    newMetadata.id = id
+    newMetadata.value = m.value
+    newMetadata.`type` = m.`type`
+    newMetadata.displayName = m.displayName
+    newMetadata.tags = m.tags
+    newMetadata.unit = m.unit
+    newMetadata
+  }
+
 
   def geMetadataJsonValue(id: String) = {
     this.metadatasAsScala.find(_.id == id) match {
