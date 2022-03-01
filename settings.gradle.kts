@@ -4,7 +4,7 @@ pluginManagement {
     pluginManagement {
         plugins {
             id("org.odfi.ooxoo") version "5.0.0-SNAPSHOT"
-            id("org.openjfx.javafxplugin") version "0.0.10"
+            id("org.openjfx.javafxplugin") version "0.0.12"
             id("com.github.maiflai.scalatest") version "0.31"
         }
     }
