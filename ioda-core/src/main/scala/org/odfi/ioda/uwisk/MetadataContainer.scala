@@ -138,7 +138,7 @@ trait MetadataContainer extends MetadataContainerTrait {
   }
 
 
-  def geMetadataJsonValue(id: String) = {
+  def getMetadataJsonValue(id: String) = {
     this.metadatasAsScala.find(_.id == id) match {
       case Some(m) =>
         Some(m.value)
@@ -146,8 +146,30 @@ trait MetadataContainer extends MetadataContainerTrait {
     }
   }
 
+  def getMetadataJsonArray(id: String) = {
+    getMetadataJsonValue(id) match {
+      case Some(v) if (v.getValueType() == JsonValue.ValueType.ARRAY) =>
+        Some(v.asJsonArray())
+      case other => None
+
+    }
+  }
+
+  def getMetadataJsonStringArray(id: String) = {
+    getMetadataJsonArray(id) match {
+      case Some(arr) if (arr.size()==0) =>
+        Some(Array[String]())
+      case Some(arr) =>
+        Some((0 until arr.size()).map {
+          i =>
+            arr.getJsonString(i).getString
+        }.toArray)
+      case other => None
+    }
+  }
+
   def getMetadataJsonObject(id: String): Option[JsonObject] = {
-    geMetadataJsonValue(id) match {
+    getMetadataJsonValue(id) match {
       case Some(obj: JsonObject) => Some(obj)
       case None => None
     }
@@ -163,7 +185,7 @@ trait MetadataContainer extends MetadataContainerTrait {
   }
 
   def getMetadataBoolean(name: String): Option[Boolean] = {
-    geMetadataJsonValue(name) match {
+    getMetadataJsonValue(name) match {
       case Some(m) if (m.isBoolean) =>
         Some(m.asBoolean)
       case other =>
@@ -172,7 +194,7 @@ trait MetadataContainer extends MetadataContainerTrait {
   }
 
   def getMetadataString(name: String): Option[String] = {
-    geMetadataJsonValue(name) match {
+    getMetadataJsonValue(name) match {
       case Some(m) =>
         Some(m.asString)
       case other =>
@@ -181,7 +203,7 @@ trait MetadataContainer extends MetadataContainerTrait {
   }
 
   def getMetadataDouble(name: String): Option[Double] = {
-    geMetadataJsonValue(name) match {
+    getMetadataJsonValue(name) match {
       case Some(m) if (m.isNumber) =>
         Some(m.asDouble)
       case other =>
@@ -190,7 +212,7 @@ trait MetadataContainer extends MetadataContainerTrait {
   }
 
   def getMetadataLong(name: String): Option[Long] = {
-    geMetadataJsonValue(name) match {
+    getMetadataJsonValue(name) match {
       case Some(m) if (m.isNumber) =>
         Some(m.asLong)
 
@@ -207,7 +229,7 @@ trait MetadataContainer extends MetadataContainerTrait {
   }
 
   def getMetadataInteger(name: String): Option[Integer] = {
-    geMetadataJsonValue(name) match {
+    getMetadataJsonValue(name) match {
       case Some(m) if (m.isNumber) =>
         Some(m.asInt)
       case other =>
