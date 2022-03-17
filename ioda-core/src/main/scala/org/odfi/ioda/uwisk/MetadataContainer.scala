@@ -126,6 +126,14 @@ trait MetadataContainer extends MetadataContainerTrait {
     newMetadata
   }
 
+  def importMetadataOption(m: Option[MetadataContainerTraitmetadata]) = {
+    m match {
+      case Some(m) =>
+        this.importMetadata(m)
+      case None =>
+    }
+  }
+
   def importMetadataWithNewID(id : String , m: MetadataContainerTraitmetadata) = {
     val newMetadata = this.getOrAddMetadata(m.id)
     newMetadata.id = id

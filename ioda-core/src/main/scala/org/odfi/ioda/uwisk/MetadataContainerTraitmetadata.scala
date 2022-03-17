@@ -55,6 +55,21 @@ class MetadataContainerTraitmetadata extends MetadataContainerTraitmetadataTrait
     this
   }
 
+  def tagVisible = {
+    if (!tags.contains("std:visible")) {
+      this.tags.add("std:visible")
+    }
+    tags.remove("std:hidden")
+    this
+  }
+  def tagHidden = {
+    if (!tags.contains("std:hidden")) {
+      this.tags.add("std:hidden")
+    }
+    tags.remove("std:visible")
+    this
+  }
+
   def isOfOneType(types:Iterable[String]) = {
     types.find( t => t == this.`type`).isDefined
   }
