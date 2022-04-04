@@ -8,8 +8,8 @@ val scalaVersion by extra {
 }
 
 //var ooxooVersion by extra("5")
-var indesignVersion by extra("3.0.0-SNAPSHOT")
-var ubrokerVersion by extra("3.0.0-SNAPSHOT")
+var indesignVersion by extra("3.0.0")
+var ubrokerVersion by extra("3.0.0")
 var javafxVersion by extra("18-ea+8")
 
 // Project version

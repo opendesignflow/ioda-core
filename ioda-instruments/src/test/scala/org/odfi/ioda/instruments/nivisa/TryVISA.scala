@@ -69,12 +69,11 @@ object TryVISA extends App {
   println(s"")
 
   VISA.close
-  sys.exit
+  sys.exit()
 
   // Create RM Pointer
 
   var defaultRM = Pointer.allocateCLong()
-  println(s"Default RM Init: $res -> ${defaultRM.get}")
   var res = VisaLibrary.viOpenDefaultRM(defaultRM)
 
   println(s"Default RM Result: $res -> ${defaultRM.getLong}")

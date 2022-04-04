@@ -105,21 +105,21 @@ dependencies {
     api("org.jfree:jcommon:1.0.24")
 
     api("net.java.dev.jna:jna:4.2.0")
-    api("org.apache.poi:poi:5.0.0")
-    api("org.apache.poi:poi-ooxml:5.0.0")
+    api("org.apache.poi:poi:5.2.2")
+    api("org.apache.poi:poi-ooxml:5.2.2")
    //api("org.apache.jackrabbit:jackrabbit-webdav:2.21.9")
 
 
     //-- Serial
-    api("com.fazecast:jSerialComm:2.8.2")
+    api("com.fazecast:jSerialComm:2.9.1")
     api("org.scream3r:jssc:2.8.0")
     api("dk.thibaut:jserial:1.0.3")
 
     api("org.scala-lang.modules:scala-parallel-collections_$scalaMajorVersion:1.0.4")
     //api("org.scala-lang:scala-library:$scala_version")
     testImplementation("org.scala-lang.modules:scala-xml_$scalaMajorVersion:2.0.1")
-    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.10")
-    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.10")
+    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.11")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.11")
     //testImplementation("com.vladsch.flexmark:flexmark-all:0.35.10")
 
 }

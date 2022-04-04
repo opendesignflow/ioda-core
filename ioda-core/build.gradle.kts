@@ -72,10 +72,10 @@ dependencies {
 
     // External dependencies
     //-------------
-    val jacksonVersion = "2.13.1"
+    /*val jacksonVersion = "2.13.1"
     api("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
     api("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
-    api("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
+    api("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")*/
 
     api("org.jmdns:jmdns:3.5.7")
 
@@ -102,9 +102,9 @@ dependencies {
     // Test
     //---------------------
     testImplementation("commons-io:commons-io:2.11.0")
-    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.10")
-    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.10")
-    testImplementation("com.vladsch.flexmark:flexmark-all:0.62.2")
+    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.11")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.11")
+    testImplementation("com.vladsch.flexmark:flexmark-all:0.64.0")
     testRuntimeOnly("org.eclipse:yasson:2.0.4")
 }
 
