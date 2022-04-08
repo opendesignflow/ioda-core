@@ -296,7 +296,7 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
   def runTrigger(iname: String, msg: DataMessage): Unit = {
 
     val name = ("/" + iname).replaceAll("//+", "/")
-    println("Rtrigger: " + logger)
+    //println("Rtrigger: " + logger)
     logger.info(s"runTrigger: $name with $msg")
 
     // Search for Package
