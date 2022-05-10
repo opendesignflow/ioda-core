@@ -59,8 +59,7 @@ object IODALogging {
     setClassLoggerLevel(cl, Level.OFF)
   }
 
-  def configureDefaultColoredLogging = {
-
+  def createDefaultColoredLoggingConfig = {
     sys.props.put("log4j.skipJansi", "false")
     sys.props.put("log4j.debug", "false")
 
@@ -76,7 +75,7 @@ object IODALogging {
       .addAttribute("target", ConsoleAppender.Target.SYSTEM_OUT)
       .add(builder.newLayout("PatternLayout")
         .addAttribute("pattern", "%highlight{%d [%c{1.}] %-5level: %msg %throwable}%n"))
-    builder.add(appenderBuilder);
+    builder.add(appenderBuilder)
 
 
     // Create New Root Logger
@@ -87,23 +86,18 @@ object IODALogging {
 
     // Create new Top Context
     //-----------
-    val config = builder.build()
-    //val topContext = Configurator.initialize(builder.build())
+    builder.build()
+  }
+
+  def configureDefaultColoredLogging = {
+
+    // Create new Top Context
+    //-----------
+    val config = createDefaultColoredLoggingConfig
+
     Configurator.initialize(config)
     Configurator.reconfigure(config)
-    /* LogManager.setFactory(new LoggerContextFactory {
-       override def getContext(fqcn: String, loader: ClassLoader, externalContext: Any, currentContext: Boolean): LoggerContext = {
-         topContext
-       }
 
-       override def getContext(fqcn: String, loader: ClassLoader, externalContext: Any, currentContext: Boolean, configLocation: URI, name: String): LoggerContext =  {
-         topContext
-       }
-
-       override def removeContext(context: LoggerContext): Unit = {
-
-       }
-     })*/
 
   }
 
