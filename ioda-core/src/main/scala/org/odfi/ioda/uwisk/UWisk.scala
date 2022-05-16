@@ -14,7 +14,7 @@ import org.odfi.ioda.uwisk.messages.{EmptyMessage, TestTrigger}
  * This is the entry point which references packages, pipelines, actions and triggers them
  *
  */
-class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedResource {
+class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) extends WithLogger with HarvestedResource {
 
   def getId = baseNamespace
 
@@ -24,7 +24,6 @@ class UWisk(val baseNamespace: String = "/") extends WithLogger with HarvestedRe
 
   // Runtime requests
   //---------------------
-  val wiskImpl = new LWisk
 
   def getWisk: LWiskTrait = wiskImpl
 

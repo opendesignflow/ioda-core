@@ -24,4 +24,8 @@ trait LWiskTrait {
     }
   }
 
+  def getEnvironmentVariable(name:String) : Option[String] = {
+    sys.env.get(name)
+  }
+
 }
