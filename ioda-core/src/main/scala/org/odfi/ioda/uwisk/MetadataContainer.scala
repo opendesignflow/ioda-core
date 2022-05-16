@@ -1,7 +1,7 @@
 package org.odfi.ioda.uwisk
 
 import org.odfi.ioda.json.JsonExtensions.JsonValueHelperMethods
-import jakarta.json.{Json, JsonObject, JsonValue}
+import javax.json.{Json, JsonObject, JsonValue}
 
 import scala.reflect.ClassTag
 

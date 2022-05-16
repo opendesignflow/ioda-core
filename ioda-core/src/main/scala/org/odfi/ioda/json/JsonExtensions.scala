@@ -1,8 +1,8 @@
 package org.odfi.ioda.json
 
 
-import jakarta.json.JsonValue.ValueType
-import jakarta.json.{JsonNumber, JsonString, JsonValue}
+import javax.json.JsonValue.ValueType
+import javax.json.{JsonNumber, JsonString, JsonValue}
 
 object JsonExtensions {
 

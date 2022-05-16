@@ -2,7 +2,7 @@ package org.odfi.ioda.data.metadata
 
 
 import com.google.gson.annotations.{Expose, SerializedName}
-import jakarta.json.bind.annotation.JsonbProperty
+import javax.json.bind.annotation.JsonbProperty
 
 import java.util
 import scala.beans.BeanProperty

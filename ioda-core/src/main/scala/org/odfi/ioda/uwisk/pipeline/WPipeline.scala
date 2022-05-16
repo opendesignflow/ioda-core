@@ -1,6 +1,6 @@
 package org.odfi.ioda.uwisk.pipeline
 
-import jakarta.persistence.Transient
+import javax.persistence.Transient
 import org.odfi.ioda.data.protocols.ProcessingContext
 import org.odfi.ioda.data.types.{DataMapMessage, DataMessage}
 import org.odfi.ioda.pipelines.{Pipeline, PipelineWithId}

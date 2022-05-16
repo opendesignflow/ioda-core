@@ -7,7 +7,7 @@ val scalaVersion by extra {
     "$scalaMajorVersion.$scalaMinorVersion"
 }
 
-//var ooxooVersion by extra("5")
+var ooxooVersion by extra("5.0.1-SNAPSHOT")
 var indesignVersion by extra("3.0.0")
 var ubrokerVersion by extra("3.0.0")
 var javafxVersion by extra("18-ea+8")
@@ -26,6 +26,17 @@ allprojects {
     // Name + version
     group = "org.odfi.ioda"
     version = lib_version
+
+    val ooxooVersion : String by rootProject.extra
+
+    configurations.all {
+        resolutionStrategy {
+            //force("jakarta.json:jakarta.json-api:1.1.6")
+            //force("jakarta.json.bind:jakarta.json.bind-api:1.0.2")
+            force("org.odfi.ooxoo:ooxoo-core:$ooxooVersion")
+            force("org.odfi.ooxoo:ooxoo-db:$ooxooVersion")
+        }
+    }
 
     repositories {
 

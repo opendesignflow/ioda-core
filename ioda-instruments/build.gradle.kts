@@ -20,7 +20,9 @@ plugins {
     id("org.odfi.anarres.jnaerator") version ("1.0.1")
 
 }
-
+ooxoo {
+    javax.set(true)
+}
 
 // Sources
 //-------------------

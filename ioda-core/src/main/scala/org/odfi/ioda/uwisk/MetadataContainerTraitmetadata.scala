@@ -1,9 +1,9 @@
 package org.odfi.ioda.uwisk
 
-import jakarta.json.bind.annotation.JsonbTransient
+import javax.json.bind.annotation.JsonbTransient
 import org.odfi.ioda.json.JsonExtensions.JsonValueHelperMethods
-import jakarta.json.{JsonString, JsonValue}
-import jakarta.persistence.Transient
+import javax.json.{JsonString, JsonValue}
+import javax.persistence.Transient
 
 import java.time.Instant
 

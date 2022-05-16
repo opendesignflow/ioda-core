@@ -19,6 +19,9 @@ plugins {
     id("org.openjfx.javafxplugin")
 
 }
+ooxoo {
+    javax.set(true)
+}
 
 // Sources
 //-------------------

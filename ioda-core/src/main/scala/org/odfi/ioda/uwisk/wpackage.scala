@@ -9,7 +9,7 @@ import org.odfi.ioda.data.protocols.PMetadataContainer
 
 import java.io.{File, FileInputStream, InputStream, InputStreamReader}
 import java.net.URL
-import jakarta.json.{JsonString, JsonValue}
+import javax.json.{JsonString, JsonValue}
 
 
 class wpackage extends wpackageTrait {
@@ -62,11 +62,11 @@ class wpackage extends wpackageTrait {
 
     this.pipelinesAsScala.filter {
       p =>
-        p.triggersAsScala.find {
+        p.triggersAsScala.exists {
           ta =>
             //println(s"testing against $ta")
             fullName.startsWith(ta) || action.startsWith(ta)
-        }.isDefined
+        }
     }.toList
 
   }
@@ -174,7 +174,7 @@ class wpackage extends wpackageTrait {
 
     env match {
       case "env" =>
-        sys.env.get(varName) match {
+        uwisk.getWisk.getEnvironmentVariable(varName) match {
           case Some(value) => value
           case None => sys.error(s"Cannot find value for Environment variable $varName")
         }
@@ -261,7 +261,7 @@ object wpackage {
   class JsonValueDesierualiser extends com.fasterxml.jackson.databind.JsonDeserializer[JsonValue] {
     override def deserialize(p: JsonParser, ctxt: DeserializationContext): JsonValue = {
       println("IN DESER")
-      jakarta.json.Json.createValue("OK")
+      javax.json.Json.createValue("OK")
       // new JsonString("OK")
     }
   }

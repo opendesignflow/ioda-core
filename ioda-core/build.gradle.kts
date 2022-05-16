@@ -23,6 +23,10 @@ plugins {
 
 //version = gradle.ext.has("version") ? gradle.ext.version : "dev"
 
+ooxoo {
+    javax.set(true)
+}
+
 // Sources
 //-------------------
 sourceSets {
@@ -60,15 +64,27 @@ tasks.withType<ScalaCompile>().configureEach {
 val scalaMajorVersion: String by rootProject.extra
 val indesignVersion: String by rootProject.extra
 val ubrokerVersion: String by rootProject.extra
+val ooxooVersion: String by rootProject.extra
+
 
 
 dependencies {
 
 
+    // Json
+    //-----------
+    // https://mvnrepository.com/artifact/org.eclipse/yasson
+    // https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api
+    //api("jakarta.json:jakarta.json-api:1.1.6]")
+
+    implementation("org.eclipse:yasson:1.0.11")
+
     // ODFI
     //----------
+    api("org.odfi.ooxoo:ooxoo-core:$ooxooVersion")
     api("org.odfi.ubroker:ubroker-core:$ubrokerVersion")
     api("org.odfi.indesign:indesign-core:$indesignVersion")
+
 
     // External dependencies
     //-------------
@@ -82,7 +98,7 @@ dependencies {
     api("org.apache.logging.log4j:log4j-api:2.17.1")
     api("org.apache.logging.log4j:log4j-core:2.17.1")
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala
-   // api("org.apache.logging.log4j:log4j-api-scala_2.13:12.0")
+    // api("org.apache.logging.log4j:log4j-api-scala_2.13:12.0")
 
     //api("org.apache.logging.log4j:log4j-api-scala_$scalaMajor:12.0")
     api("org.fusesource.jansi:jansi:2.4.0")
@@ -96,7 +112,7 @@ dependencies {
 
     //implementation("javax.persistence:javax.persistence-api:3.0.0")
     // https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api
-   // implementation("jakarta.persistence:jakarta.persistence-api:3.0.0")
+    // implementation("jakarta.persistence:jakarta.persistence-api:3.0.0")
 
 
     // Test
@@ -105,7 +121,7 @@ dependencies {
     testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.11")
     testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.11")
     testImplementation("com.vladsch.flexmark:flexmark-all:0.64.0")
-    testRuntimeOnly("org.eclipse:yasson:2.0.4")
+    //testRuntimeOnly("org.eclipse:yasson:2.0.4")
 }
 
 
