@@ -328,7 +328,7 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
 
                 // Run Pipelines
                 //---------------------------
-                this.logger.debug(s"Found Pipeline 2: ${pipeline.id} // ${msg.metadatasAsScala}")
+                //this.logger.debug(s"Found Pipeline 2: ${pipeline.id} // ${msg.metadatasAsScala}")
                 try {
                   val pipelineContext = new ProcessingContext
 
