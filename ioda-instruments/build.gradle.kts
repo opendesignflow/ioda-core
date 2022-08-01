@@ -103,7 +103,7 @@ dependencies {
     api("org.apache.commons:commons-compress:1.21")
     api("com.nativelibs4java:bridj:0.7.0")
     api("org.jfree:jfreechart:1.5.3")
-    api("org.jfree:jfreesvg:3.4.2")
+    api("org.jfree:jfreesvg:3.4.3")
     api("org.jfree:jcommon:1.0.24")
 
     api("net.java.dev.jna:jna:4.2.0")
@@ -119,9 +119,9 @@ dependencies {
 
     api("org.scala-lang.modules:scala-parallel-collections_$scalaMajorVersion:1.0.4")
     //api("org.scala-lang:scala-library:$scala_version")
-    testImplementation("org.scala-lang.modules:scala-xml_$scalaMajorVersion:2.0.1")
-    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.11")
-    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.11")
+    testImplementation("org.scala-lang.modules:scala-xml_3:2.1.0")
+    testImplementation("org.scalatest:scalatest-funsuite_3:3.2.12")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_3:3.2.12")
     //testImplementation("com.vladsch.flexmark:flexmark-all:0.35.10")
 
 }

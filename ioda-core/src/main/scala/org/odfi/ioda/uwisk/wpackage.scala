@@ -62,7 +62,7 @@ class wpackage extends wpackageTrait {
 
     this.pipelinesAsScala.filter {
       p =>
-        p.triggersAsScala.exists {
+        p.triggers.exists {
           ta =>
             //println(s"testing against $ta")
             fullName.startsWith(ta) || action.startsWith(ta)

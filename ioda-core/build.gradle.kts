@@ -95,8 +95,8 @@ dependencies {
 
     api("org.jmdns:jmdns:3.5.7")
 
-    api("org.apache.logging.log4j:log4j-api:2.17.1")
-    api("org.apache.logging.log4j:log4j-core:2.17.1")
+    api("org.apache.logging.log4j:log4j-api:2.18.0")
+    api("org.apache.logging.log4j:log4j-core:2.18.0")
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala
     // api("org.apache.logging.log4j:log4j-api-scala_2.13:12.0")
 
@@ -118,8 +118,8 @@ dependencies {
     // Test
     //---------------------
     testImplementation("commons-io:commons-io:2.11.0")
-    testImplementation("org.scalatest:scalatest-funsuite_$scalaMajorVersion:3.2.11")
-    testImplementation("org.scalatest:scalatest-shouldmatchers_$scalaMajorVersion:3.2.11")
+    testImplementation("org.scalatest:scalatest-funsuite_3:3.2.12")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_3:3.2.12")
     testImplementation("com.vladsch.flexmark:flexmark-all:0.64.0")
     //testRuntimeOnly("org.eclipse:yasson:2.0.4")
 }

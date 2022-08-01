@@ -27,7 +27,7 @@ trait DataMessage extends DataMessageTrait with ListeningSupport with HarvestedR
     }
 
     //-- Transfer metadatas
-    next.metadatas.addAll(this.metadatas)
+    next.metadatas = next.metadatas :++ (this.metadatas)
     next.processingContext = processingContext
 
     this.__nextMessage = Some(next)

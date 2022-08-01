@@ -50,23 +50,24 @@ class MetadataContainerTraitmetadata extends MetadataContainerTraitmetadataTrait
 
   def tagWarning = {
     if (!tags.contains("std:warning")) {
-      this.tags.add("std:warning")
+
+      this.addTags("std:warning")
     }
     this
   }
 
   def tagVisible = {
     if (!tags.contains("std:visible")) {
-      this.tags.add("std:visible")
+      this.addTags("std:visible")
     }
-    tags.remove("std:hidden")
+    this.removeTags("std:hidden")
     this
   }
   def tagHidden = {
     if (!tags.contains("std:hidden")) {
-      this.tags.add("std:hidden")
+      this.addTags("std:hidden")
     }
-    tags.remove("std:visible")
+    this.removeTags("std:visible")
     this
   }
 

@@ -17,6 +17,8 @@ class WPackageTest extends AnyFunSuite {
       |id: globals
       |pipelines:
       |  - id: organisation.add
+      |    implementation:
+      |      javaClass: Test
       |    triggers:
       |      - /system/#global/@organisation.add
       |    steps:
@@ -39,6 +41,8 @@ class WPackageTest extends AnyFunSuite {
     val reader = new StringReader(testPackage)
     val is = new ReaderInputStream(reader,StandardCharsets.UTF_8)
     val parsed = wpackage(is)
+
+    assert(parsed.pipelinesAsScala.nonEmpty )
   }
 
 

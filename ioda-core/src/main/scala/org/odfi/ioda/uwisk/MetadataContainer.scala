@@ -24,7 +24,8 @@ trait MetadataContainer extends MetadataContainerTrait {
   def deleteMetadata(name: String) = {
     this.getMetadataOption(name) match {
       case Some(m) =>
-        this.metadatas.remove(m)
+        this.removeMetadata(m)
+        true
       case None =>
         false
     }

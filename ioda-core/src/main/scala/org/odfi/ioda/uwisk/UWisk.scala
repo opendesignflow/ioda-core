@@ -131,6 +131,7 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
 
     } catch {
       case e: Throwable =>
+        e.printStackTrace()
         sys.error(s"Could no check package:  ${p.getPackageAbsolutePath} -> " + e.getLocalizedMessage)
     }
 
