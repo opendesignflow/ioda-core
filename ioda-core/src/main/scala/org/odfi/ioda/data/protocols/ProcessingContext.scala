@@ -1,20 +1,39 @@
 package org.odfi.ioda.data.protocols
 
-import org.apache.logging.log4j.{Level, LogManager, Logger}
-import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilderFactory
-import org.apache.logging.log4j.core.config.Configurator
-import org.apache.logging.log4j.core.appender.ConsoleAppender
 import org.apache.logging.log4j.core.LoggerContext
-import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilder
+import org.apache.logging.log4j.core.appender.ConsoleAppender
+import org.apache.logging.log4j.core.config.Configurator
+import org.apache.logging.log4j.core.config.builder.api.{ConfigurationBuilder, ConfigurationBuilderFactory}
 import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration
+import org.apache.logging.log4j.{Level, LogManager, Logger}
+import org.odfi.indesign.core.harvest.{HarvestedResource, HarvestedResourceDefaultId}
 
-class ProcessingContext extends PMetadataContainer {
+import scala.reflect.ClassTag
 
-  /*var verbose = true
-  var verboseLevel = Level.INFO
+class ProcessingContext extends PMetadataContainer with HarvestedResourceDefaultId {
 
-  var loggerContext: Option[LoggerContext] = None
-  var builder: ConfigurationBuilder[BuiltConfiguration] = _*/
+
+  // Context Objects
+  var contextObjects = Map[String,Any]()
+
+  def addContextObject(k:String,o:Any) = {
+    this.contextObjects = this.contextObjects + (k -> o)
+  }
+
+  def getContextObject(k:String) = this.contextObjects.get(k)
+
+  def getContextObjectAs[T](k: String)(implicit tag:ClassTag[T]) = this.contextObjects.get(k) match {
+    case Some( v: T) => Some(v)
+    case other => None
+  }
+
+  def findContextObjectAs[T](implicit tag:ClassTag[T]) = {
+    this.contextObjects.values.collectFirst {
+      case v : T => v
+    }
+  }
+
+
   var _logger: Option[Logger] = None
   def logger = _logger match {
     case Some(l) => Some(l)
