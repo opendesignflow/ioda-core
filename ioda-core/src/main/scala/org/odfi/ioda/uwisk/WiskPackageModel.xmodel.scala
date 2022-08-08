@@ -18,7 +18,7 @@ class WiskPackageModel extends ModelBuilder {
       attribute("type")
       attribute("unit")
       attribute("displayName")
-      ("tags" ofType("string")).setMultiple(true)
+      ("tags" ofType ("string")).setMultiple(true)
       //attribute("json") ofType ("json")
     }
   }
@@ -70,6 +70,26 @@ class WiskPackageModel extends ModelBuilder {
       attribute("env")
       attribute("ignore") ofType ("boolean") default ("false")
 
+      // Parameters to be used throughout the pipeline
+      "parameter" multiple {
+        attribute("id")
+        attribute("type")
+        attribute("default")
+      }
+
+      // Events
+      "trigger" ofType ("string") setMultiple (true)
+      "emit" multiple {
+        withTrait(idAndMetadata)
+
+      }
+
+      // Steps
+      "step" multiple {
+        withTrait(idAndMetadata)
+        makeTraitAndUseCustomImplementation
+      }
+
       "pre" multiple {
         withTrait(pipelineRef)
       }
@@ -78,7 +98,6 @@ class WiskPackageModel extends ModelBuilder {
         withTrait(pipelineRef)
       }
 
-      "trigger" ofType ("string") setMultiple (true)
 
       "implementation" is {
         "javaClass" ofType ("string")
@@ -87,16 +106,7 @@ class WiskPackageModel extends ModelBuilder {
         }
       }
 
-      "parameter" multiple {
-        attribute("id")
-        attribute("type")
-        attribute("default")
-      }
 
-      "step" multiple {
-        withTrait(idAndMetadata)
-        makeTraitAndUseCustomImplementation
-      }
 
 
     }
@@ -130,7 +140,7 @@ class WiskPackageModel extends ModelBuilder {
         "total" ofType ("long")
       }
       "error" is {
-        "message" ofType("string")
+        "message" ofType ("string")
       }
     }
 
@@ -142,7 +152,7 @@ class WiskPackageModel extends ModelBuilder {
   }
   "utrace" is {
     withTrait(commonTrace)
-    attribute("dry-run") ofType("boolean") default("false")
+    attribute("dry-run") ofType ("boolean") default ("false")
   }
 
 }

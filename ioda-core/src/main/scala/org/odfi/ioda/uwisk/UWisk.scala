@@ -71,6 +71,18 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
     }
   }
 
+  /**
+   * This returns the package + action pair, supporting using a local base package
+   * @param base
+   */
+  def convertToPackageAndAction(currentPackage:wpackage, base:String) = {
+    val splitRequest = splitNamespaceToPackageAndActionQuery(base)
+     splitRequest match {
+      case None => (currentPackage.getPackageAbsolutePath, "@"+base)
+      case Some((p, n, _)) => (p, n)
+    }
+  }
+
   def findPackageAndActionQuery(q: String) = {
     splitNamespaceToPackageAndActionQuery(q) match {
       case None => None
@@ -293,13 +305,13 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
 
   }
 
-  def runTrigger(iname: String, msg: DataMessage): Unit = {
+  def runTrigger(iname: String, msg: DataMessage , pipelineContext: ProcessingContext = new ProcessingContext): Unit = {
 
     val name = ("/" + iname).replaceAll("//+", "/")
     //println("Rtrigger: " + logger)
     logger.info(s"runTrigger: $name with $msg")
 
-    // Search for Package
+    // Search for Source Package containing the action
     //-------------
     findPackageAndActionQuery(name) match {
       case Some((wpackage, action, params)) =>
@@ -320,10 +332,6 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
             // Run Pipelines
             //----------------
             val pipelines = currentPackage.gatherPipelinesForTrigger(name, action)
-            if (pipelines.size > 0) {
-
-
-            }
             pipelines.foreach {
               case pipeline =>
 
@@ -331,8 +339,6 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
                 //---------------------------
                 //this.logger.debug(s"Found Pipeline 2: ${pipeline.id} // ${msg.metadatasAsScala}")
                 try {
-                  val pipelineContext = new ProcessingContext
-
                   pipeline.parametersAsScala.foreach {
                     case p if (p.default != null) =>
                       pipelineContext.addMetadataFromValue(p.id, p.default)
@@ -345,6 +351,16 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
                   }
 
                   runPipeline(pipeline, msg, pipelineContext)
+
+                  // Send Emit
+                  //------------
+                  pipeline.emitsAsScala.foreach {
+                    emit =>
+                      val (p,action) = convertToPackageAndAction(currentPackage,emit.id)
+                      logger.info(s"Emitting: $p/$action")
+
+                      this.wiskImpl.requestTrigger(p,action)
+                  }
                 } catch {
                   case e: Throwable =>
                     e.printStackTrace()
@@ -355,15 +371,21 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
         }
         // EOF Run on all package
 
-        // Collect
+        // Collect Action in source package
         //----------------
         wpackage.getAction(action) match {
           case Some(sourceAction) =>
             sourceAction.collectsAsScala.foreach {
               collectAction =>
-                this.logger.debug(s"Collecting: ${collectAction.id}")
 
-                val collectable = this.wiskImpl.getPendingTriggers(collectAction.id)
+
+                // Convert collect id to a full name
+                val (p,action) = convertToPackageAndAction(wpackage,collectAction.id)
+                val fullAction = s"${p}/$action"
+
+                this.logger.debug(s"Collecting: ${fullAction}")
+
+                val collectable = this.wiskImpl.getPendingTriggers(fullAction)
                 this.logger.info(s"- Found ${collectable.size} requests")
 
                 collectable.foreach {
