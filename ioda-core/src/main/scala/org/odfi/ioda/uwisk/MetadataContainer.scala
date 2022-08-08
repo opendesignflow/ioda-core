@@ -31,6 +31,52 @@ trait MetadataContainer extends MetadataContainerTrait {
     }
   }
 
+  def updateOrDeleteMetadatas(lst:Iterable[(String,Option[JsonValue])]) = {
+    lst.map {
+      case (id,v) => updateOrDeleteMetadata(id,v)
+    }.exists( _ == true)
+  }
+
+  /** Returns true if something changes
+   *
+   * @param namespace
+   * @param id
+   * @param v
+   */
+  def updateOrDeleteMetadata(
+                                   id: String,
+                                   value: Option[JsonValue]
+                                 ) = {
+
+    value match {
+      // Set or update
+      case Some(providedValue) =>
+        this.getMetadataJsonValue(id) match {
+          // Set
+          case None =>
+            this.addMetadataFromValue(id,providedValue)
+            true
+          case Some(actualValue) if (!actualValue.equals(providedValue)) =>
+            this.addMetadataFromValue(id,providedValue)
+            true
+          case other =>
+            // No Change
+            false
+        }
+      // Delete
+      case None =>
+        this.getMetadataJsonValue(id) match {
+          case Some(metadata) =>
+            this.deleteMetadata(id)
+            true
+          // Setting was not set, don't delete
+          case None =>
+            false
+        }
+    }
+
+  }
+
   def addMetadataFromValue(name: String, value: String): MetadataContainerTraitmetadata = {
 
     val m = this.getOrAddMetadata(name)
