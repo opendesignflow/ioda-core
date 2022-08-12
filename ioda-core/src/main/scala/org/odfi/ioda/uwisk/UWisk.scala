@@ -210,6 +210,9 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
     topPipeline.runTimeOrCreate.total = 0
 
     try {
+      // Begin Pipeline
+      this.wiskImpl.instantiator.beginPipeline
+
       while (pipelinesStack.nonEmpty) {
 
         val (pipeline, step) = pipelinesStack.pop()
@@ -225,6 +228,9 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
 
         // trace
         val tPipeline = trace.addPipelineTrace(pipeline)
+
+
+
 
         // Run Pipelines
         (pipeline, step) match {
@@ -293,6 +299,11 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
         }
 
       }
+      // EOF Pipeline loop
+
+      // Begin Pipeline
+      this.wiskImpl.instantiator.endPipeline
+
 
     }
     catch {
