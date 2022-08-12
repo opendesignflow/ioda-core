@@ -65,7 +65,7 @@ class wpackage extends wpackageTrait {
         p.triggers.exists {
           ta =>
             //println(s"testing against $ta")
-            fullName.startsWith(ta) || action == ta
+            fullName.equals(ta) || action == ta
         }
     }.toList
 
