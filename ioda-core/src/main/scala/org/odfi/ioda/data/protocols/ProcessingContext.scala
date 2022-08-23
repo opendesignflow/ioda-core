@@ -38,6 +38,8 @@ class ProcessingContext extends PMetadataContainer with HarvestedResourceDefault
   def logger = _logger match {
     case Some(l) => Some(l)
     case None =>
+      LogManager.getLogger()
+      LogManager.getLogger(getClass)
       this._logger = Some(LogManager.getLogger(getClass))
       this._logger
   }

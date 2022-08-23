@@ -2,7 +2,6 @@ package org.odfi.ioda.uwisk
 
 import org.odfi.ioda.json.JsonExtensions.JsonValueHelperMethods
 import javax.json.{Json, JsonObject, JsonValue}
-
 import scala.reflect.ClassTag
 
 trait MetadataContainer extends MetadataContainerTrait {
@@ -82,6 +81,18 @@ trait MetadataContainer extends MetadataContainerTrait {
     val m = this.getOrAddMetadata(name)
     m.value = Json.createValue(value)
     m.`type` = "std:string"
+
+    m
+
+  }
+
+  def addMetadataFromValue(name: String, value: Array[String]): MetadataContainerTraitmetadata = {
+
+    val m = this.getOrAddMetadata(name)
+    var arr = Json.createArrayBuilder()
+    value.map(Json.createValue).foreach(arr.add)
+    m.value = arr.build()
+    m.`type` = "std:array"
 
     m
 
@@ -201,10 +212,20 @@ trait MetadataContainer extends MetadataContainerTrait {
     }
   }
 
+  /**
+   *
+   * This method returns the value as an array,event if the value is single
+   * @param id
+   * @return
+   */
   def getMetadataJsonArray(id: String) = {
     getMetadataJsonValue(id) match {
-      case Some(v) if (v.getValueType() == JsonValue.ValueType.ARRAY) =>
+      case Some(v) if (v.getValueType == JsonValue.ValueType.ARRAY) =>
         Some(v.asJsonArray())
+      case Some(v) =>
+        val jsarrBuilder = Json.createArrayBuilder()
+        jsarrBuilder.add(v)
+        Some(jsarrBuilder.build())
       case other => None
 
     }
