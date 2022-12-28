@@ -2,14 +2,14 @@
 //----------------
 
 var scalaMajorVersion by extra("3")
-var scalaMinorVersion by extra("13.1")
+var scalaMinorVersion by extra("2.1")
 val scalaVersion by extra {
     "$scalaMajorVersion.$scalaMinorVersion"
 }
 
-var ooxooVersion by extra("5.0.2-SNAPSHOT")
-var indesignVersion by extra("3.0.1-SNAPSHOT")
-var ubrokerVersion by extra("3.0.1-SNAPSHOT")
+var ooxooVersion by extra("5.0.3")
+var indesignVersion by extra("3.0.2")
+var ubrokerVersion by extra("3.0.1")
 var javafxVersion by extra("20-ea+1")
 
 // Project version

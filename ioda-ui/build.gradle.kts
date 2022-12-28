@@ -74,7 +74,7 @@ dependencies {
     api (project(":ioda-instruments"))
 
     //api "com.kodedu.terminalfx:terminalfx:1.2.0-SNAPSHOT"
-    api ("org.controlsfx:controlsfx:11.1.1")
+    api ("org.controlsfx:controlsfx:11.1.2")
     api ("net.mahdilamb:colormap:0.9.511")
 
     // https://mvnrepository.com/artifact/org.graalvm.js/js

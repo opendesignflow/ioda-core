@@ -113,15 +113,15 @@ dependencies {
 
 
     //-- Serial
-    api("com.fazecast:jSerialComm:2.9.1")
+    api("com.fazecast:jSerialComm:2.9.3")
     api("org.scream3r:jssc:2.8.0")
     api("dk.thibaut:jserial:1.0.3")
 
     api("org.scala-lang.modules:scala-parallel-collections_$scalaMajorVersion:1.0.4")
     //api("org.scala-lang:scala-library:$scala_version")
     testImplementation("org.scala-lang.modules:scala-xml_3:2.1.0")
-    testImplementation("org.scalatest:scalatest-funsuite_3:3.2.12")
-    testImplementation("org.scalatest:scalatest-shouldmatchers_3:3.2.12")
+    testImplementation("org.scalatest:scalatest-funsuite_3:3.2.14")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_3:3.2.14")
     //testImplementation("com.vladsch.flexmark:flexmark-all:0.35.10")
 
 }

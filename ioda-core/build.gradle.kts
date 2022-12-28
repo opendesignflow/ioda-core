@@ -93,17 +93,17 @@ dependencies {
     api("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
     api("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")*/
 
-    api("org.jmdns:jmdns:3.5.7")
+    api("org.jmdns:jmdns:3.5.8")
 
-    api("org.apache.logging.log4j:log4j-api:2.18.0")
-    api("org.apache.logging.log4j:log4j-core:2.18.0")
+    api("org.apache.logging.log4j:log4j-api:2.19.0")
+    api("org.apache.logging.log4j:log4j-core:2.19.0")
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala
     // api("org.apache.logging.log4j:log4j-api-scala_2.13:12.0")
 
     //api("org.apache.logging.log4j:log4j-api-scala_$scalaMajor:12.0")
     api("org.fusesource.jansi:jansi:2.4.0")
 
-    api("org.apache.httpcomponents:fluent-hc:4.5.13")
+    api("org.apache.httpcomponents:fluent-hc:4.5.14")
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     // api group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
@@ -118,8 +118,8 @@ dependencies {
     // Test
     //---------------------
     testImplementation("commons-io:commons-io:2.11.0")
-    testImplementation("org.scalatest:scalatest-funsuite_3:3.2.12")
-    testImplementation("org.scalatest:scalatest-shouldmatchers_3:3.2.12")
+    testImplementation("org.scalatest:scalatest-funsuite_3:3.2.14")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_3:3.2.14")
     testImplementation("com.vladsch.flexmark:flexmark-all:0.64.0")
     //testRuntimeOnly("org.eclipse:yasson:2.0.4")
 }
