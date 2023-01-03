@@ -61,7 +61,7 @@ object IODALogging {
 
   def createDefaultColoredLoggingConfig = {
     sys.props.put("log4j.skipJansi", "false")
-    sys.props.put("log4j.debug", "false")
+    //sys.props.put("log4j.debug", "false")
 
     // Create Configu Builder
     //-----------
@@ -96,9 +96,7 @@ object IODALogging {
     val config = createDefaultColoredLoggingConfig
 
     Configurator.initialize(config)
-    Configurator.reconfigure(config)
-
-
+    
   }
 
 }
