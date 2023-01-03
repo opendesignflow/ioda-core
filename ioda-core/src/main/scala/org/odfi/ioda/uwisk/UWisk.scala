@@ -320,7 +320,7 @@ class UWisk(val baseNamespace: String = "/", val wiskImpl : LWisk = new LWisk) e
 
     val name = ("/" + iname).replaceAll("//+", "/")
     //println("Rtrigger: " + logger)
-    logger.info(s"runTrigger: $name with $msg")
+    logger.info(s"runTrigger: $name with message type ${msg.getClass}")
 
     // Search for Source Package containing the action
     //-------------
