@@ -96,7 +96,7 @@ dependencies {
     api("org.jmdns:jmdns:3.5.8")
 
     api("org.apache.logging.log4j:log4j-api:2.19.0")
-    api("org.apache.logging.log4j:log4j-core:2.19.0")
+    implementation("org.apache.logging.log4j:log4j-core:2.19.0")
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api-scala
     // api("org.apache.logging.log4j:log4j-api-scala_2.13:12.0")
 
