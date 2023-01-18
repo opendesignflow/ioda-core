@@ -118,8 +118,8 @@ dependencies {
     // Test
     //---------------------
     testImplementation("commons-io:commons-io:2.11.0")
-    testImplementation("org.scalatest:scalatest-funsuite_3:3.2.14")
-    testImplementation("org.scalatest:scalatest-shouldmatchers_3:3.2.14")
+    testImplementation("org.scalatest:scalatest-funsuite_3:3.2.15")
+    testImplementation("org.scalatest:scalatest-shouldmatchers_3:3.2.15")
     testImplementation("com.vladsch.flexmark:flexmark-all:0.64.0")
     //testRuntimeOnly("org.eclipse:yasson:2.0.4")
 }
