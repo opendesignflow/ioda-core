@@ -1,15 +1,13 @@
 package org.odfi.ioda.instruments.nivisa
 
 object VISAList extends App {
-  
-   var h = VISAHarvester
+
+  var h = VISAHarvester
   h.harvest
-  
-  h.getResourcesOfType[VISADevice].foreach {
-     case r => 
-       println("Found Resource: "+r.getId)
-   }
-  
-  
-  
+
+  h.getResourcesOfType[VISADevice]
+    .foreach { case r =>
+      println("Found Resource: " + r.getId)
+    }
+
 }
