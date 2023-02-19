@@ -1,8 +1,7 @@
 buildscript {
     dependencies {
-        classpath("org.odfi.indesign:indesign-core:3.0.0-SNAPSHOT")
-        // classpath ("org.odfi.indesign:indesign-core:$indesign_version")
-        classpath("org.odfi.ubroker:ubroker-core:3.0.0-SNAPSHOT")
+        classpath("org.odfi.indesign:indesign-core:3.0.3")
+        classpath("org.odfi.ubroker:ubroker-core:3.0.1")
     }
 }
 
@@ -20,8 +19,6 @@ plugins {
     id("java-library")
 
 }
-
-//version = gradle.ext.has("version") ? gradle.ext.version : "dev"
 
 ooxoo {
     javax.set(true)
