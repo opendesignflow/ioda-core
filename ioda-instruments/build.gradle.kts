@@ -59,7 +59,8 @@ sourceSets {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(21))
+        vendor.set(JvmVendorSpec.ADOPTIUM)
     }
     withJavadocJar()
     //withSourcesJar()
@@ -115,7 +116,7 @@ dependencies {
     //-- Serial
     api("com.fazecast:jSerialComm:2.9.3")
     api("org.scream3r:jssc:2.8.0")
-    api("dk.thibaut:jserial:1.0.3")
+    //api("dk.thibaut:jserial:1.0.3")
 
     api("org.scala-lang.modules:scala-parallel-collections_$scalaMajorVersion:1.0.4")
     //api("org.scala-lang:scala-library:$scala_version")
@@ -170,4 +171,3 @@ publishing {
         }
     }
 }
-

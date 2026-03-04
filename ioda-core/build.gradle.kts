@@ -1,7 +1,7 @@
 buildscript {
     dependencies {
-        classpath("org.odfi.indesign:indesign-core:3.0.3")
-        classpath("org.odfi.ubroker:ubroker-core:3.0.1")
+        classpath("org.odfi.indesign:indesign-core:3.0.4")
+        classpath("org.odfi.ubroker:ubroker-core:3.0.3")
     }
 }
 
@@ -39,7 +39,8 @@ sourceSets {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(21))
+        vendor.set(JvmVendorSpec.ADOPTIUM)
     }
     withJavadocJar()
     withSourcesJar()

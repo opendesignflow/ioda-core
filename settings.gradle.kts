@@ -3,7 +3,7 @@ pluginManagement {
 
     pluginManagement {
         plugins {
-            id("org.odfi.ooxoo") version "5.0.4"
+            id("org.odfi.ooxoo") version "5.0.5"
             id("org.openjfx.javafxplugin") version "0.0.12"
             id("com.github.maiflai.scalatest") version "0.32"
         }
@@ -13,14 +13,14 @@ pluginManagement {
         mavenLocal()
         gradlePluginPortal()
         mavenCentral()
-        maven {
+        /*maven {
             name = "ODFI Releases"
             url = java.net.URI("https://repo.opendesignflow.org/maven/repository/internal/")
         }
         maven {
             name = "ODFI Snapshots"
             url = java.net.URI("https://repo.opendesignflow.org/maven/repository/snapshots/")
-        }
+            }*/
     }
 
 

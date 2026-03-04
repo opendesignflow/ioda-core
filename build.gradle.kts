@@ -2,18 +2,18 @@
 //----------------
 
 var scalaMajorVersion by extra("3")
-var scalaMinorVersion by extra("2.2")
+var scalaMinorVersion by extra("8.2")
 val scalaVersion by extra {
     "$scalaMajorVersion.$scalaMinorVersion"
 }
 
-var ooxooVersion by extra("5.0.4")
-var indesignVersion by extra("3.0.3")
-var ubrokerVersion by extra("3.0.1")
+var ooxooVersion by extra("5.0.5")
+var indesignVersion by extra("3.0.4")
+var ubrokerVersion by extra("3.0.3")
 var javafxVersion by extra("20-ea+1")
 
 // Project version
-var lib_version by extra("3.0.1-SNAPSHOT")
+var lib_version by extra("3.0.2-SNAPSHOT")
 var branch by extra { System.getenv("BRANCH_NAME") }
 
 if (System.getenv().getOrDefault("BRANCH_NAME", "dev").contains("release")) {
@@ -46,14 +46,14 @@ allprojects {
             name = "Sonatype Nexus Snapshots"
             url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
         }
-        maven {
+        /*maven {
             name = "ODFI Releases"
             url = uri("https://repo.opendesignflow.org/maven/repository/internal/")
         }
         maven {
             name = "ODFI Snapshots"
             url = uri("https://repo.opendesignflow.org/maven/repository/snapshots/")
-        }
+            }*/
         maven {
             url = uri("https://repo.triplequote.com/libs-release/")
         }
